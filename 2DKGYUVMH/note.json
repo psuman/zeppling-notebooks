@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\nThe Structured APIs are a tool for manipulating all sorts of data, from unstructured log files to semi-structured CSV files and highly structured Parquet files. These APIs refer to three core types of distributed collection APIs\n- Datasets\n- DataFrames\n- SQL tables and views\n\nmajority of the Structured APIs apply to both batch and streaming computation. This means that when you work with the Structured APIs, it should be simple to migrate from batch to streaming (or vice versa) with little to no effort\n\nThe Structured APIs are the fundamental abstraction that you will use to write the majority of your data flows\n\nDataFrames and Datasets are (distributed) table-like collections with well-defined rows and columns.\n\n- To Spark, DataFrames and Datasets represent immutable, lazily evaluated plans that specify what operations to apply to data residing at a location to generate some output\n\n- When we perform an action on a DataFrame, we instruct Spark to perform the actual transformations and return the result. These represent plans of how to manipulate rows and columns to compute the user’s desired result.",
+      "text": "%md\n### Structured API\n- The Structured APIs are a tool for manipulating all sorts of data, from unstructured log files to semi-structured CSV files and highly structured Parquet files. These APIs refer to three core types of distributed collection APIs\n    - Datasets\n    - DataFrames\n    - SQL tables and views\n\n- Majority of the Structured APIs apply to both batch and streaming computation. \n- This means that when you work with the Structured APIs, it should be simple to migrate from batch to streaming (or vice versa) with little to no effort\n- The Structured APIs are the fundamental abstraction that you will use to write the majority of your data flows\n- DataFrames and Datasets are (distributed) table-like collections with well-defined rows and columns.\n- To Spark, DataFrames and Datasets represent immutable, lazily evaluated plans that specify what operations to apply to data residing at a location to generate some output\n- When we perform an action on a DataFrame, we instruct Spark to perform the actual transformations and return the result. These represent plans of how to manipulate rows and columns to compute the user’s desired result.",
       "user": "anonymous",
-      "dateUpdated": "Aug 5, 2018 2:15:45 PM",
+      "dateUpdated": "Aug 5, 2018 3:14:45 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -25,7 +25,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cp\u003eThe Structured APIs are a tool for manipulating all sorts of data, from unstructured log files to semi-structured CSV files and highly structured Parquet files. These APIs refer to three core types of distributed collection APIs\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eDatasets\u003c/li\u003e\n\u003cli\u003eDataFrames\u003c/li\u003e\n\u003cli\u003eSQL tables and views\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003emajority of the Structured APIs apply to both batch and streaming computation. This means that when you work with the Structured APIs, it should be simple to migrate from batch to streaming (or vice versa) with little to no effort\u003c/p\u003e\n\u003cp\u003eThe Structured APIs are the fundamental abstraction that you will use to write the majority of your data flows\u003c/p\u003e\n\u003cp\u003eDataFrames and Datasets are (distributed) table-like collections with well-defined rows and columns.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cp\u003eTo Spark, DataFrames and Datasets represent immutable, lazily evaluated plans that specify what operations to apply to data residing at a location to generate some output\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eWhen we perform an action on a DataFrame, we instruct Spark to perform the actual transformations and return the result. These represent plans of how to manipulate rows and columns to compute the user’s desired result.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n"
+            "data": "\u003ch3\u003eStructured API\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cp\u003eThe Structured APIs are a tool for manipulating all sorts of data, from unstructured log files to semi-structured CSV files and highly structured Parquet files. These APIs refer to three core types of distributed collection APIs\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eDatasets\u003c/li\u003e\n\u003cli\u003eDataFrames\u003c/li\u003e\n\u003cli\u003eSQL tables and views\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eMajority of the Structured APIs apply to both batch and streaming computation.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThis means that when you work with the Structured APIs, it should be simple to migrate from batch to streaming (or vice versa) with little to no effort\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThe Structured APIs are the fundamental abstraction that you will use to write the majority of your data flows\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eDataFrames and Datasets are (distributed) table-like collections with well-defined rows and columns.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eTo Spark, DataFrames and Datasets represent immutable, lazily evaluated plans that specify what operations to apply to data residing at a location to generate some output\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eWhen we perform an action on a DataFrame, we instruct Spark to perform the actual transformations and return the result. These represent plans of how to manipulate rows and columns to compute the user’s desired result.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n"
           }
         ]
       },
@@ -33,15 +33,15 @@
       "jobName": "paragraph_1533477972082_1237321597",
       "id": "20180805-140612_236552655",
       "dateCreated": "Aug 5, 2018 2:06:12 PM",
-      "dateStarted": "Aug 5, 2018 2:15:45 PM",
-      "dateFinished": "Aug 5, 2018 2:15:45 PM",
+      "dateStarted": "Aug 5, 2018 3:14:45 PM",
+      "dateFinished": "Aug 5, 2018 3:14:45 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n### Schemas\n\n- A schema defines the column names and types of a DataFrame. \n- You can define schemas manually or read a schema from a data source (often called schema on read). \n- Schemas consist of types, meaning that you need a way of specifying what lies where.\n\n### Structured Spark Types\n\n- Spark is effectively a programming language of its own. \n- Internally, Spark uses an engine called Catalyst that maintains its own type information through the planning and processing of work. \n- In doing so, this opens up a wide variety of execution optimizations that make significant differences.\n- Spark types map directly to the different language APIs that Spark maintains and there exists a lookup table for each of these in Scala, Java, Python, SQL, and R. \n- Even if we use Spark’s Structured APIs from Python or R, the majority of our manipulations will operate strictly on Spark types, not Python types.\n\n\n##### For example, the following code does not perform addition in Scala or Python; it actually performs addition purely in Spark",
+      "text": "%md\n### Schemas\n\n- A schema defines the column names and types of a DataFrame. \n- You can define schemas manually or read a schema from a data source (often called schema on read). \n- Schemas consist of types, meaning that you need a way of specifying what lies where.\n\n### Structured Spark Types\n\n- Spark is effectively a programming language of its own. \n- Internally, Spark uses an engine called Catalyst that maintains its own type information through the planning and processing of work. \n- In doing so, this opens up a wide variety of execution optimizations that make significant differences.\n- Spark types map directly to the different language APIs that Spark maintains and there exists a lookup table for each of these in Scala, Java, Python, SQL, and R. \n- Even if we use Spark’s Structured APIs from Python or R, the majority of our manipulations will operate strictly on Spark types, not Python types.\n\n\n##### For example, the following code does not perform addition in Scala or Python; it actually performs addition purely in Spark\n\n- This addition operation happens because Spark will convert an expression written in an input language to Spark’s internal Catalyst representation of that same type information. It then will operate on that internal representation\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 5, 2018 2:26:05 PM",
+      "dateUpdated": "Aug 5, 2018 3:16:49 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -147,44 +147,6 @@
       "dateCreated": "Aug 5, 2018 2:21:33 PM",
       "dateStarted": "Aug 5, 2018 2:26:42 PM",
       "dateFinished": "Aug 5, 2018 2:26:43 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%md\n\nThis addition operation happens because Spark will convert an expression written in an input language to Spark’s internal Catalyst representation of that same type information. It then will operate on that internal representation\n",
-      "user": "anonymous",
-      "dateUpdated": "Aug 5, 2018 2:27:52 PM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cp\u003eThis addition operation happens because Spark will convert an expression written in an input language to Spark’s internal Catalyst representation of that same type information. It then will operate on that internal representation\u003c/p\u003e\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1533479202219_1061683463",
-      "id": "20180805-142642_1193531175",
-      "dateCreated": "Aug 5, 2018 2:26:42 PM",
-      "dateStarted": "Aug 5, 2018 2:27:52 PM",
-      "dateFinished": "Aug 5, 2018 2:27:52 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
