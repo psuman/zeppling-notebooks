@@ -1,0 +1,1072 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# Spark Toolkit\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43674819-dd49cf2c-97f6-11e8-8b72-da213e41c1e8.png)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSpark Toolkit\u003c/h1\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43674819-dd49cf2c-97f6-11e8-8b72-da213e41c1e8.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661246_572046421",
+      "id": "20180804-092859_1276560917",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "sc.version  ",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res18: String \u003d 2.3.0.2.6.5.0-292\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661250_558195461",
+      "id": "20180804-085509_650511616",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n# Spark Applications\n\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43674677-a3d9727a-97f5-11e8-9df2-8ecbc8cc2074.png)\n\n\n- Spark Applications consist of a driver process and a set of executor processes. \n- The driver process runs your main() function, sits on a node in the cluster, and is responsible for three things: maintaining information about the Spark Application; responding to a user’s program or input; and analyzing, distributing, and scheduling work across the executors (discussed momentarily). - The driver process is absolutely essential—it’s the heart of a Spark Application and maintains all relevant information during the lifetime of the application.\n- The executors are responsible for actually carrying out the work that the driver assigns them. This means that each executor is responsible for only two things: executing code assigned to it by the driver, and reporting the state of the computation on that executor back to the driver node.\n\n\nHere are the key points to understand about Spark Applications at this point\n - Spark employs a cluster manager that keeps track of the resources available.\n - The driver process is responsible for executing the driver program’s commands across the executors to complete a given task.",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSpark Applications\u003c/h1\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43674677-a3d9727a-97f5-11e8-9df2-8ecbc8cc2074.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eSpark Applications consist of a driver process and a set of executor processes.\u003c/li\u003e\n\u003cli\u003eThe driver process runs your main() function, sits on a node in the cluster, and is responsible for three things: maintaining information about the Spark Application; responding to a user’s program or input; and analyzing, distributing, and scheduling work across the executors (discussed momentarily). - The driver process is absolutely essential—it’s the heart of a Spark Application and maintains all relevant information during the lifetime of the application.\u003c/li\u003e\n\u003cli\u003eThe executors are responsible for actually carrying out the work that the driver assigns them. This means that each executor is responsible for only two things: executing code assigned to it by the driver, and reporting the state of the computation on that executor back to the driver node.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eHere are the key points to understand about Spark Applications at this point\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eSpark employs a cluster manager that keeps track of the resources available.\u003c/li\u003e\n\u003cli\u003eThe driver process is responsible for executing the driver program’s commands across the executors to complete a given task.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661250_558195461",
+      "id": "20180804-092045_247748192",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n# Spark’s Language APIs\n\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43674847-4ae1d7aa-97f7-11e8-9ccd-5eed8413bde8.png)\n\n\nSpark’s language APIs make it possible for you to run Spark code using various programming languages. For the most part, Spark presents some core “concepts” in every language; these concepts are then translated into Spark code that runs on the cluster of machines\n\n### Scala\n - Spark is primarily written in Scala, making it Spark’s “default” language.\n\n### Java\n- Even though Spark is written in Scala, Spark’s authors have been careful to ensure that you can write Spark code in Java.\n\n### Python\n- Python supports nearly all constructs that Scala supports.\n\n### SQL\n- Spark supports a subset of the ANSI SQL 2003 standard. This makes it easy for analysts and non-programmers to take advantage of the big data powers of Spark.\n\n### R\n\n- Spark has two commonly used R libraries: one as a part of Spark core (SparkR) and another as an R community-driven package (sparklyr).\n\n\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eSpark’s Language APIs\u003c/h1\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43674847-4ae1d7aa-97f7-11e8-9ccd-5eed8413bde8.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cp\u003eSpark’s language APIs make it possible for you to run Spark code using various programming languages. For the most part, Spark presents some core “concepts” in every language; these concepts are then translated into Spark code that runs on the cluster of machines\u003c/p\u003e\n\u003ch3\u003eScala\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSpark is primarily written in Scala, making it Spark’s “default” language.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eJava\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eEven though Spark is written in Scala, Spark’s authors have been careful to ensure that you can write Spark code in Java.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003ePython\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003ePython supports nearly all constructs that Scala supports.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eSQL\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSpark supports a subset of the ANSI SQL 2003 standard. This makes it easy for analysts and non-programmers to take advantage of the big data powers of Spark.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eR\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSpark has two commonly used R libraries: one as a part of Spark core (SparkR) and another as an R community-driven package (sparklyr).\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661250_558195461",
+      "id": "20180804-092402_870177122",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n# The Spark Session\n\nyou control your Spark Application through a driver process called the SparkSession. The SparkSession instance is the way Spark executes user-defined manipulations across the cluster. There is a one-to-one correspondence between a SparkSession and a Spark Application\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eThe Spark Session\u003c/h1\u003e\n\u003cp\u003eyou control your Spark Application through a driver process called the SparkSession. The SparkSession instance is the way Spark executes user-defined manipulations across the cluster. There is a one-to-one correspondence between a SparkSession and a Spark Application\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661251_557810712",
+      "id": "20180804-093432_1843495243",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\nval maRangeScala \u003d spark.range(1000).toDF(\"number\")",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "maRangeScala: org.apache.spark.sql.DataFrame \u003d [number: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661251_557810712",
+      "id": "20180804-085556_2132728776",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nmyRangePython \u003d spark.range(1000).toDF(\"number\")",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661251_557810712",
+      "id": "20180804-085612_805773896",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nYou just ran your first Spark code! We created a DataFrame with one column containing 1,000 rows with values from 0 to 999. This range of numbers represents a distributed collection\n\n### **DataFrames**\n\n- A DataFrame is the most common Structured API and simply represents a table of data with rows and columns. The list that defines the columns and the types within those columns is called the schema\n- The DataFrame concept is not unique to Spark. R and Python both have similar concepts. However, Python/R DataFrames (with some exceptions) exist on one machine rather than multiple machines. \n- This limits what you can do with a given DataFrame to the resources that exist on that specific machine. However, because Spark has language interfaces for both Python and R, it’s quite easy to convert Pandas (Python) DataFrames to Spark DataFrames, and R DataFrames to Spark DataFrames.\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43674654-41dbf1ba-97f5-11e8-8c52-fa07bc754e5e.jpg) \n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eYou just ran your first Spark code! We created a DataFrame with one column containing 1,000 rows with values from 0 to 999. This range of numbers represents a distributed collection\u003c/p\u003e\n\u003ch1\u003e\u003cstrong\u003eDataFrames\u003c/strong\u003e\u003c/h1\u003e\n\u003cul\u003e\n\u003cli\u003eA DataFrame is the most common Structured API and simply represents a table of data with rows and columns. The list that defines the columns and the types within those columns is called the schema\u003c/li\u003e\n\u003cli\u003eThe DataFrame concept is not unique to Spark. R and Python both have similar concepts. However, Python/R DataFrames (with some exceptions) exist on one machine rather than multiple machines.\u003c/li\u003e\n\u003cli\u003eThis limits what you can do with a given DataFrame to the resources that exist on that specific machine. However, because Spark has language interfaces for both Python and R, it’s quite easy to convert Pandas (Python) DataFrames to Spark DataFrames, and R DataFrames to Spark DataFrames.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43674654-41dbf1ba-97f5-11e8-8c52-fa07bc754e5e.jpg\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661251_557810712",
+      "id": "20180804-085935_757102317",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Transformations\n\n- In Spark, the core data structures are immutable, meaning they cannot be changed after they’re created. \n- To “change” a DataFrame, you need to instruct Spark how you would like to modify it to do what you want.\n\nThese instructions are called transformations",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eTransformations\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eIn Spark, the core data structures are immutable, meaning they cannot be changed after they’re created.\u003c/li\u003e\n\u003cli\u003eTo “change” a DataFrame, you need to instruct Spark how you would like to modify it to do what you want.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThese instructions are called transformations\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661251_557810712",
+      "id": "20180804-085743_1320018337",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val divsBy2Scala \u003d maRangeScala.where(\"number % 2 \u003d 0\")\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "divsBy2Scala: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [number: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661251_555886967",
+      "id": "20180804-094030_1271371785",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\ndivsBy2Python \u003d myRangePython.where(\"number %2 \u003d\u003d 0\")",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661252_555886967",
+      "id": "20180804-094109_771886526",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\nNotice that these return no output.\n\n- Spark will not act on transformations until we call an action (we discuss this shortly). \n- Transformations are the core of how you express your business logic using Spark.\n- There are two types of transformations:\n        - narrow Transformations\n        - wide Transformations\n\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43674974-9a3a0866-97f9-11e8-97e7-b97ed8d81247.png)\n\nTransformations consisting of narrow dependencies (we’ll call them narrow transformations) are those for which each input partition will contribute to only one output partition\n\nWith narrow transformations, Spark will automatically perform an operation called pipelining, meaning that if we specify multiple filters on DataFrames, they’ll all be performed in-memory\n\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43674975-9fcc2e08-97f9-11e8-968b-0ff70fd91be5.png)\n\n- A wide dependency (or wide transformation) style transformation will have input partitions contributing to many output partitions. \n- Wide transformations are the result of groupByKey and reduceByKey. The data required to compute the records in a single partition may reside in many partitions of the parent RDD.\n- All of the tuples with the same key must end up in the same partition, processed by the same task.\n- To satisfy these operations, Spark must execute RDD shuffle, which transfers data across cluster and results in a new stage with a new set of partition",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eNotice that these return no output.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eSpark will not act on transformations until we call an action (we discuss this shortly).\u003c/li\u003e\n\u003cli\u003eTransformations are the core of how you express your business logic using Spark.\u003c/li\u003e\n\u003cli\u003eThere are two types of transformations:\u003cpre\u003e\u003ccode\u003e- narrow Transformations\n- wide Transformations\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43674974-9a3a0866-97f9-11e8-97e7-b97ed8d81247.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cp\u003eTransformations consisting of narrow dependencies (we’ll call them narrow transformations) are those for which each input partition will contribute to only one output partition\u003c/p\u003e\n\u003cp\u003eWith narrow transformations, Spark will automatically perform an operation called pipelining, meaning that if we specify multiple filters on DataFrames, they’ll all be performed in-memory\u003c/p\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43674975-9fcc2e08-97f9-11e8-968b-0ff70fd91be5.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eA wide dependency (or wide transformation) style transformation will have input partitions contributing to many output partitions.\u003c/li\u003e\n\u003cli\u003eWide transformations are the result of groupByKey and reduceByKey. The data required to compute the records in a single partition may reside in many partitions of the parent RDD.\u003c/li\u003e\n\u003cli\u003eAll of the tuples with the same key must end up in the same partition, processed by the same task.\u003c/li\u003e\n\u003cli\u003eTo satisfy these operations, Spark must execute RDD shuffle, which transfers data across cluster and results in a new stage with a new set of partition\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661252_555886967",
+      "id": "20180804-094231_1205569300",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Lazy Evaluation\n\n- Lazy evaulation means that Spark will wait until the very last moment to execute the graph of computation instructions. \n- In Spark, instead of modifying the data immediately when you express some operation, you build up a plan of transformations that you would like to apply to your source data. \n- By waiting until the last minute to execute the code, Spark compiles this plan from your raw DataFrame transformations to a streamlined physical plan that will run as efficiently as possible across the cluster. \n- This provides immense benefits because Spark can optimize the entire data flow from end to end\n\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eLazy Evaluation\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eLazy evaulation means that Spark will wait until the very last moment to execute the graph of computation instructions.\u003c/li\u003e\n\u003cli\u003eIn Spark, instead of modifying the data immediately when you express some operation, you build up a plan of transformations that you would like to apply to your source data.\u003c/li\u003e\n\u003cli\u003eBy waiting until the last minute to execute the code, Spark compiles this plan from your raw DataFrame transformations to a streamlined physical plan that will run as efficiently as possible across the cluster.\u003c/li\u003e\n\u003cli\u003eThis provides immense benefits because Spark can optimize the entire data flow from end to end\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661253_555502218",
+      "id": "20180804-094925_1098024216",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Actions\n\n- Transformations allow us to build up our logical transformation plan. To trigger the computation, we run an action. \n- An action instructs Spark to compute a result from a series of transformations.\n- There are three kinds of actions\n        - Actions to view data in the console\n        - Actions to collect data to native objects in the respective language\n        - Actions to write to output data sources",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eActions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eTransformations allow us to build up our logical transformation plan. To trigger the computation, we run an action.\u003c/li\u003e\n\u003cli\u003eAn action instructs Spark to compute a result from a series of transformations.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661253_555502218",
+      "id": "20180804-095411_1010734753",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "divsBy2Scala.count()\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res23: Long \u003d 500\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661253_555502218",
+      "id": "20180804-100030_2093779616",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### End-To-End Example\n\nWe’ll use Spark to analyze some flight data from the United States Bureau of Transportation statistics.\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eEnd-To-End Example\u003c/h3\u003e\n\u003cp\u003eWe’ll use Spark to analyze some flight data from the United States Bureau of Transportation statistics.\u003c/p\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43675188-91db8c0e-97fd-11e8-95e6-019cc9011be1.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43675190-95d0cea0-97fd-11e8-8a19-38874b4506e3.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43675191-97c0a64a-97fd-11e8-8ae3-fc72ba94e48c.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661253_555502218",
+      "id": "20180804-100046_1021022036",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nif [ -e /tmp/2015-summary.csv ]\nthen\n    rm -f /tmp/2015-summary.csv\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/csv/2015-summary.csv -O /tmp/2015-summary.csv\n\nhdfs dfs -rm -f /tmp/2015-summary.csv\n\n# Move downloaded JSON file from local storage to HDFS\nhdfs dfs -put /tmp/2015-summary.csv /tmp\n\n\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2018-08-04 10:29:16--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/csv/2015-summary.csv\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 7080 (6.9K) [text/plain]\nSaving to: ‘/tmp/2015-summary.csv’\n\n     0K ......                                                100% 16.4K\u003d0.4s\n\n2018-08-04 10:29:17 (16.4 KB/s) - ‘/tmp/2015-summary.csv’ saved [7080/7080]\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661253_555502218",
+      "id": "20180804-101740_1641405532",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val flightData2015Scala \u003d spark\n                     .read  \n                     .option(\"inferSchema\", \"true\")\n                     .option(\"header\", \"true\")\n                     .csv(\"/tmp/2015-summary.csv\")\n\nflightData2015Scala.take(3)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "flightData2015Scala: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres26: Array[org.apache.spark.sql.Row] \u003d Array([United States,Romania,15], [United States,Croatia,1], [United States,Ireland,344])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661254_556656465",
+      "id": "20180804-102543_2033894016",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "flightData2015Scala.sort(\"count\").take(3)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res27: Array[org.apache.spark.sql.Row] \u003d Array([Moldova,United States,1], [United States,Croatia,1], [United States,Singapore,1])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661254_556656465",
+      "id": "20180804-103353_2034521253",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43675190-95d0cea0-97fd-11e8-8a19-38874b4506e3.png)\n\n\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43675188-91db8c0e-97fd-11e8-95e6-019cc9011be1.png)\n\n\n\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43675191-97c0a64a-97fd-11e8-8ae3-fc72ba94e48c.png)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43675190-95d0cea0-97fd-11e8-8a19-38874b4506e3.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43675188-91db8c0e-97fd-11e8-95e6-019cc9011be1.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43675191-97c0a64a-97fd-11e8-8ae3-fc72ba94e48c.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661254_556656465",
+      "id": "20180804-103757_1030321134",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nflightData2015Python \u003d spark.read.option(\"inferSchema\", \"true\").option(\"header\", \"true\").csv(\"/tmp/2015-summary.csv\")\n\nflightData2015Python.take(3)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[Row(DEST_COUNTRY_NAME\u003du\u0027United States\u0027, ORIGIN_COUNTRY_NAME\u003du\u0027Romania\u0027, count\u003d15), Row(DEST_COUNTRY_NAME\u003du\u0027United States\u0027, ORIGIN_COUNTRY_NAME\u003du\u0027Croatia\u0027, count\u003d1), Row(DEST_COUNTRY_NAME\u003du\u0027United States\u0027, ORIGIN_COUNTRY_NAME\u003du\u0027Ireland\u0027, count\u003d344)]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661254_556656465",
+      "id": "20180804-102651_379729250",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nflightData2015Python.sort(\"count\").take(3)\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "python"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[Row(DEST_COUNTRY_NAME\u003du\u0027Moldova\u0027, ORIGIN_COUNTRY_NAME\u003du\u0027United States\u0027, count\u003d1), Row(DEST_COUNTRY_NAME\u003du\u0027United States\u0027, ORIGIN_COUNTRY_NAME\u003du\u0027Croatia\u0027, count\u003d1), Row(DEST_COUNTRY_NAME\u003du\u0027United States\u0027, ORIGIN_COUNTRY_NAME\u003du\u0027Singapore\u0027, count\u003d1)]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661254_556656465",
+      "id": "20180804-103125_593692435",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- The logical plan of transformations that we build up defines a lineage for the DataFrame so that at any given point in time, Spark knows how to recompute any partition by performing all of the operations it had before on the same input data. \n- This sits at the heart of Spark’s programming model—functional programming where the same inputs always result in the same outputs when the transformations on that data stay constant.\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eThe logical plan of transformations that we build up defines a lineage for the DataFrame so that at any given point in time, Spark knows how to recompute any partition by performing all of the operations it had before on the same input data.\u003c/li\u003e\n\u003cli\u003eThis sits at the heart of Spark’s programming model—functional programming where the same inputs always result in the same outputs when the transformations on that data stay constant.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661255_556271716",
+      "id": "20180804-103427_1557468140",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### DataFrames and SQL\n\n- Spark can run the same transformations, regardless of the language, in the exact same way. \n- You can express your business logic in SQL or DataFrames (either in R, Python, Scala, or Java) and Spark will compile that logic down to an underlying plan (that you can see in the explain plan) before actually executing your code\n- With Spark SQL, you can register any DataFrame as a table or view (a temporary table) and query it using pure SQL. \n- There is no performance difference between writing SQL queries or writing DataFrame code, they both “compile” to the same underlying plan that we specify in DataFrame code\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eDataFrames and SQL\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSpark can run the same transformations, regardless of the language, in the exact same way.\u003c/li\u003e\n\u003cli\u003eYou can express your business logic in SQL or DataFrames (either in R, Python, Scala, or Java) and Spark will compile that logic down to an underlying plan (that you can see in the explain plan) before actually executing your code\u003c/li\u003e\n\u003cli\u003eWith Spark SQL, you can register any DataFrame as a table or view (a temporary table) and query it using pure SQL.\u003c/li\u003e\n\u003cli\u003eThere is no performance difference between writing SQL queries or writing DataFrame code, they both “compile” to the same underlying plan that we specify in DataFrame code\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661255_556271716",
+      "id": "20180804-103943_1629947985",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "flightData2015Scala.createOrReplaceTempView(\"flight_data_2015\")\n\nval sqlWay \u003d spark.sql(\"\"\" select DEST_COUNTRY_NAME, count(1) \n                           from flight_data_2015 \n                           group by DEST_COUNTRY_NAME\"\"\")\n                           \nval dataFrameWay \u003d flightData2015Scala\n                   .groupBy(\"DEST_COUNTRY_NAME\")\n                   .count()\n                           \nsqlWay.take(1)\n\ndataFrameWay.take(1)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "sqlWay: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, count(1): bigint]\ndataFrameWay: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, count: bigint]\nres42: Array[org.apache.spark.sql.Row] \u003d Array([Anguilla,1])\nres44: Array[org.apache.spark.sql.Row] \u003d Array([Anguilla,1])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661255_556271716",
+      "id": "20180804-104119_576111776",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.sql(\"select max(count) from flight_data_2015\").take(2)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res45: Array[org.apache.spark.sql.Row] \u003d Array([370002])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661255_556271716",
+      "id": "20180804-104418_218120432",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "flightData2015Scala.select(max(\"count\")).take(1)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res46: Array[org.apache.spark.sql.Row] \u003d Array([370002])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661256_554347972",
+      "id": "20180804-105057_1268364688",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val maxSql \u003d spark.sql(\"\"\" select DEST_COUNTRY_NAME, sum(count) as DESTINATION_TOTAL\n              from flight_data_2015\n              group by DEST_COUNTRY_NAME\n              order by DESTINATION_TOTAL DESC\n              limit 5\n              \"\"\")\nmaxSql.show()\n              ",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "maxSql: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, DESTINATION_TOTAL: bigint]\n+-----------------+-----------------+\n|DEST_COUNTRY_NAME|DESTINATION_TOTAL|\n+-----------------+-----------------+\n|    United States|           411352|\n|           Canada|             8399|\n|           Mexico|             7140|\n|   United Kingdom|             2025|\n|            Japan|             1548|\n+-----------------+-----------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661256_554347972",
+      "id": "20180804-105137_1142887725",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": " flightData2015Scala\n            .groupBy(\"DEST_COUNTRY_NAME\")\n            .sum(\"count\")\n            .withColumnRenamed(\"sum(count)\", \"destination_toal\")\n            .sort(desc(\"destination_toal\"))\n            .limit(5)\n            .show()\n            ",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+----------------+\n|DEST_COUNTRY_NAME|destination_toal|\n+-----------------+----------------+\n|    United States|          411352|\n|           Canada|            8399|\n|           Mexico|            7140|\n|   United Kingdom|            2025|\n|            Japan|            1548|\n+-----------------+----------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661256_554347972",
+      "id": "20180804-105454_286425016",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43675826-1122e164-9804-11e8-9aed-b76f86b9caef.png)",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43675826-1122e164-9804-11e8-9aed-b76f86b9caef.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661256_554347972",
+      "id": "20180804-105816_313747788",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "dateUpdated": "Aug 5, 2018 2:01:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala"
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533477661257_553963223",
+      "id": "20180804-110336_1678199903",
+      "dateCreated": "Aug 5, 2018 2:01:01 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "spark-getting-started",
+  "id": "2DP89X5NH",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
