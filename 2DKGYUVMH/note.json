@@ -227,18 +227,56 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\n\n## Spark Types\n- ByteType\n- ShortType\n- IntegerType\n- LongType\n- FloatType\n- DoubleType\n- DecimalType\n- StringType\n- BinaryType\n- BooleanType\n- TimestampType\n- DateType\n- ArrayType\n- MapType\n- StructType\n- StructField\n\n\n## Structured API Execution\n\n![sv-imge](https://user-images.githubusercontent.com/1182329/43687201-e8993126-98ee-11e8-9a2b-99334dba938a.png)\n\n\n- Write DataFrame/Dataset/SQL Code.\n- If valid code, Spark converts this to a Logical Plan.\n- Spark transforms this Logical Plan to a Physical Plan, checking for optimizations along the way.\n- Spark then executes this Physical Plan (RDD manipulations) on the cluster.\n\n## Logical Planning\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43687225-18205992-98ef-11e8-81cc-808ad4aa4107.png)\n\n\n- it’s purely to convert the user’s set of expressions into the most optimized version. \n- It does this by converting user code into an unresolved logical plan. \n- This plan is unresolved because although your code might be valid, the tables or columns that it refers to might or might not exist. \n- Spark uses the catalog, a repository of all table and DataFrame information, to resolve columns and tables in the analyzer. \n- The analyzer might reject the unresolved logical plan if the required table or column name does not exist in the catalog.\n- If the analyzer can resolve it, the result is passed through the Catalyst Optimizer, a collection of rules that attempt to optimize the logical plan by pushing down predicates or selections\n\n## Physical Plan\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43687258-ae765a04-98ef-11e8-9dcb-6485a5af5fa3.png)\n\n- The physical plan, often called a Spark plan, specifies how the logical plan will execute on the cluster by generating different physical execution strategies and comparing them through a cost model\n- Physical planning results in a series of RDDs and transformations\n- This result is why you might have heard Spark referred to as a compiler—it takes queries in DataFrames, Datasets, and SQL and compiles them into RDD transformations for you\n- Upon selecting a physical plan, Spark runs all of this code over RDDs, the lower-level programming interface of Spark\n- Spark performs further optimizations at runtime, generating native Java bytecode that can remove entire tasks or stages during execution. Finally the result is returned to the user\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 5, 2018 3:11:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003eSpark Types\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eByteType\u003c/li\u003e\n\u003cli\u003eShortType\u003c/li\u003e\n\u003cli\u003eIntegerType\u003c/li\u003e\n\u003cli\u003eLongType\u003c/li\u003e\n\u003cli\u003eFloatType\u003c/li\u003e\n\u003cli\u003eDoubleType\u003c/li\u003e\n\u003cli\u003eDecimalType\u003c/li\u003e\n\u003cli\u003eStringType\u003c/li\u003e\n\u003cli\u003eBinaryType\u003c/li\u003e\n\u003cli\u003eBooleanType\u003c/li\u003e\n\u003cli\u003eTimestampType\u003c/li\u003e\n\u003cli\u003eDateType\u003c/li\u003e\n\u003cli\u003eArrayType\u003c/li\u003e\n\u003cli\u003eMapType\u003c/li\u003e\n\u003cli\u003eStructType\u003c/li\u003e\n\u003cli\u003eStructField\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eStructured API Execution\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43687201-e8993126-98ee-11e8-9a2b-99334dba938a.png\" alt\u003d\"sv-imge\" /\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eWrite DataFrame/Dataset/SQL Code.\u003c/li\u003e\n\u003cli\u003eIf valid code, Spark converts this to a Logical Plan.\u003c/li\u003e\n\u003cli\u003eSpark transforms this Logical Plan to a Physical Plan, checking for optimizations along the way.\u003c/li\u003e\n\u003cli\u003eSpark then executes this Physical Plan (RDD manipulations) on the cluster.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eLogical Planning\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43687225-18205992-98ef-11e8-81cc-808ad4aa4107.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eit’s purely to convert the user’s set of expressions into the most optimized version.\u003c/li\u003e\n\u003cli\u003eIt does this by converting user code into an unresolved logical plan.\u003c/li\u003e\n\u003cli\u003eThis plan is unresolved because although your code might be valid, the tables or columns that it refers to might or might not exist.\u003c/li\u003e\n\u003cli\u003eSpark uses the catalog, a repository of all table and DataFrame information, to resolve columns and tables in the analyzer.\u003c/li\u003e\n\u003cli\u003eThe analyzer might reject the unresolved logical plan if the required table or column name does not exist in the catalog.\u003c/li\u003e\n\u003cli\u003eIf the analyzer can resolve it, the result is passed through the Catalyst Optimizer, a collection of rules that attempt to optimize the logical plan by pushing down predicates or selections\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003ePhysical Plan\u003c/h2\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43687258-ae765a04-98ef-11e8-9dcb-6485a5af5fa3.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eThe physical plan, often called a Spark plan, specifies how the logical plan will execute on the cluster by generating different physical execution strategies and comparing them through a cost model\u003c/li\u003e\n\u003cli\u003ePhysical planning results in a series of RDDs and transformations\u003c/li\u003e\n\u003cli\u003eThis result is why you might have heard Spark referred to as a compiler—it takes queries in DataFrames, Datasets, and SQL and compiles them into RDD transformations for you\u003c/li\u003e\n\u003cli\u003eUpon selecting a physical plan, Spark runs all of this code over RDDs, the lower-level programming interface of Spark\u003c/li\u003e\n\u003cli\u003eSpark performs further optimizations at runtime, generating native Java bytecode that can remove entire tasks or stages during execution. Finally the result is returned to the user\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533479617248_205786249",
+      "id": "20180805-143337_1780461336",
+      "dateCreated": "Aug 5, 2018 2:33:37 PM",
+      "dateStarted": "Aug 5, 2018 3:11:39 PM",
+      "dateFinished": "Aug 5, 2018 3:11:39 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "%md\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 5, 2018 2:33:37 PM",
+      "dateUpdated": "Aug 5, 2018 3:04:31 PM",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1533479617248_205786249",
-      "id": "20180805-143337_1780461336",
-      "dateCreated": "Aug 5, 2018 2:33:37 PM",
+      "jobName": "paragraph_1533481471296_924929561",
+      "id": "20180805-150431_2065166433",
+      "dateCreated": "Aug 5, 2018 3:04:31 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
