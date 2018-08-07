@@ -2006,7 +2006,7 @@
     {
       "text": "val coalescepart \u003d df.repartition(5, col(\"DEST_COUNTRY_NAME\")).coalesce(2)\ncoalescepart.rdd.getNumPartitions\n\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 7, 2018 6:16:44 AM",
+      "dateUpdated": "Aug 7, 2018 6:33:41 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -2016,8 +2016,8 @@
           "editOnDblClick": true
         },
         "editorMode": "ace/mode/scala",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -2038,6 +2038,44 @@
       "dateCreated": "Aug 7, 2018 6:16:13 AM",
       "dateStarted": "Aug 7, 2018 6:16:44 AM",
       "dateFinished": "Aug 7, 2018 6:16:45 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n\n### Coalesce example\n\nSo, it would go something like this:\n\nNode 1 \u003d 1,2,3\nNode 2 \u003d 4,5,6\nNode 3 \u003d 7,8,9\nNode 4 \u003d 10,11,12\n\nThen coalesce down to 2 partitions:\n\nNode 1 \u003d 1,2,3 + (10,11,12)\nNode 3 \u003d 7,8,9 + (4,5,6)\n\nNotice that Node 1 and Node 3 did not require its original data to move.\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:33:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCoalesce example\u003c/h3\u003e\n\u003cp\u003eSo, it would go something like this:\u003c/p\u003e\n\u003cp\u003eNode 1 \u003d 1,2,3\n\u003cbr  /\u003eNode 2 \u003d 4,5,6\n\u003cbr  /\u003eNode 3 \u003d 7,8,9\n\u003cbr  /\u003eNode 4 \u003d 10,11,12\u003c/p\u003e\n\u003cp\u003eThen coalesce down to 2 partitions:\u003c/p\u003e\n\u003cp\u003eNode 1 \u003d 1,2,3 + (10,11,12)\n\u003cbr  /\u003eNode 3 \u003d 7,8,9 + (4,5,6)\u003c/p\u003e\n\u003cp\u003eNotice that Node 1 and Node 3 did not require its original data to move.\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533623623630_1585535290",
+      "id": "20180807-063343_1111193317",
+      "dateCreated": "Aug 7, 2018 6:33:43 AM",
+      "dateStarted": "Aug 7, 2018 6:33:48 AM",
+      "dateFinished": "Aug 7, 2018 6:33:48 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
