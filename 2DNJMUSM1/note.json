@@ -2001,9 +2001,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n\n- When partitioning by a column, Spark will create a minimum of 200 partitions by default. This example will have two partitions with data and 198 empty partitions.\n- The colorDf contains different partitions for each color and is optimized for extracts by color. \n- Partitioning by a column is similar to indexing a column in a relational database.",
+      "text": "%md\n\n- When partitioning by a column, Spark will create a minimum of 200 partitions by default. This example will have two partitions with data and 198 empty partitions.\n- The colorDf contains different partitions for each color and is optimized for extracts by color. \n- Partitioning by a column is similar to indexing a column in a relational database.\n\nRefer https://hackernoon.com/managing-spark-partitions-with-coalesce-and-repartition-4050c57ad5c4",
       "user": "anonymous",
-      "dateUpdated": "Aug 7, 2018 6:39:55 AM",
+      "dateUpdated": "Aug 7, 2018 6:51:33 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
