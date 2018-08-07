@@ -1966,6 +1966,66 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "val people \u003d List(\n  (10, \"blue\"),\n  (13, \"red\"),\n  (15, \"blue\"),\n  (99, \"red\"),\n  (67, \"blue\")\n)\n\nval peopleDf \u003d people.toDF(\"age\", \"color\")\n\npeopleDf.rdd.getNumPartitions\n\nval colorDf \u003d peopleDf.repartition($\"color\")\n\ncolorDf.rdd.getNumPartitions\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:50:46 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "people: List[(Int, String)] \u003d List((10,blue), (13,red), (15,blue), (99,red), (67,blue))\npeopleDf: org.apache.spark.sql.DataFrame \u003d [age: int, color: string]\nres378: Int \u003d 2\ncolorDf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [age: int, color: string]\nres381: Int \u003d 200\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533623890776_216966484",
+      "id": "20180807-063810_2036022263",
+      "dateCreated": "Aug 7, 2018 6:38:10 AM",
+      "dateStarted": "Aug 7, 2018 6:50:06 AM",
+      "dateFinished": "Aug 7, 2018 6:50:08 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- When partitioning by a column, Spark will create a minimum of 200 partitions by default. This example will have two partitions with data and 198 empty partitions.\n- The colorDf contains different partitions for each color and is optimized for extracts by color. \n- Partitioning by a column is similar to indexing a column in a relational database.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:39:55 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533623965375_517329492",
+      "id": "20180807-063925_1888642361",
+      "dateCreated": "Aug 7, 2018 6:39:25 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "%md\n\n- Coalesce, will not incur a full shuffle and will try to combine partitions. \n- Below operation will shuffle your data into five partitions based on the destination country name, and then coalesce them (without a full shuffle):",
       "user": "anonymous",
       "dateUpdated": "Aug 7, 2018 6:16:13 AM",
@@ -2044,7 +2104,7 @@
     {
       "text": "%md\n\n\n### Coalesce example\n\nSo, it would go something like this:\n\nNode 1 \u003d 1,2,3\nNode 2 \u003d 4,5,6\nNode 3 \u003d 7,8,9\nNode 4 \u003d 10,11,12\n\nThen coalesce down to 2 partitions:\n\nNode 1 \u003d 1,2,3 + (10,11,12)\nNode 3 \u003d 7,8,9 + (4,5,6)\n\nNotice that Node 1 and Node 3 did not require its original data to move.\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 7, 2018 6:33:50 AM",
+      "dateUpdated": "Aug 7, 2018 6:35:19 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -2074,8 +2134,69 @@
       "jobName": "paragraph_1533623623630_1585535290",
       "id": "20180807-063343_1111193317",
       "dateCreated": "Aug 7, 2018 6:33:43 AM",
-      "dateStarted": "Aug 7, 2018 6:33:48 AM",
-      "dateFinished": "Aug 7, 2018 6:33:48 AM",
+      "dateStarted": "Aug 7, 2018 6:35:17 AM",
+      "dateFinished": "Aug 7, 2018 6:35:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- You can try to increase the number of partitions with coalesce, but it won’t work!\n\n- The coalesce algorithm changes the number of nodes by moving data from some partitions to existing partitions. This algorithm obviously cannot increate the number of partitions.\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:35:43 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533623720885_1866691502",
+      "id": "20180807-063520_197163903",
+      "dateCreated": "Aug 7, 2018 6:35:20 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val coalescepart1 \u003d df.repartition(5, col(\"DEST_COUNTRY_NAME\")).coalesce(10)\ncoalescepart1.rdd.getNumPartitions\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:36:16 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "coalescepart1: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres302: Int \u003d 5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533623743383_-883646878",
+      "id": "20180807-063543_334246120",
+      "dateCreated": "Aug 7, 2018 6:35:43 AM",
+      "dateStarted": "Aug 7, 2018 6:36:16 AM",
+      "dateFinished": "Aug 7, 2018 6:36:17 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
