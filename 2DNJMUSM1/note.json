@@ -1453,16 +1453,763 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\n\n### Random Splits\n\n- Random splits can be helpful when you need to break up your DataFrame into a random “splits” of the original DataFrame. \n- This is often used with machine learning algorithms to create training, validation, and test sets. \n- This method is designed to be randomized, we will also specify a seed.\n- It’s important to note that if you don’t specify a proportion for each DataFrame that adds up to one, they will be normalized so that they do",
       "user": "anonymous",
-      "config": {},
+      "dateUpdated": "Aug 7, 2018 5:58:56 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eRandom Splits\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eRandom splits can be helpful when you need to break up your DataFrame into a random “splits” of the original DataFrame.\u003c/li\u003e\n\u003cli\u003eThis is often used with machine learning algorithms to create training, validation, and test sets.\u003c/li\u003e\n\u003cli\u003eThis method is designed to be randomized, we will also specify a seed.\u003c/li\u003e\n\u003cli\u003eIt’s important to note that if you don’t specify a proportion for each DataFrame that adds up to one, they will be normalized so that they do\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
       },
       "apps": [],
       "jobName": "paragraph_1533621179996_1063231524",
       "id": "20180807-055259_357420550",
       "dateCreated": "Aug 7, 2018 5:52:59 AM",
+      "dateStarted": "Aug 7, 2018 5:58:56 AM",
+      "dateFinished": "Aug 7, 2018 5:58:56 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val seed \u003d 5\n\nval dataFrames \u003d df.randomSplit(Array(0.25, 0.75), seed)\n\ndataFrames(0).count()\ndataFrames(1).count()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:01:00 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "seed: Int \u003d 5\ndataFrames: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] \u003d Array([DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field], [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field])\nres235: Long \u003d 60\nres236: Long \u003d 196\nres238: Long \u003d 256\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533621536573_1539872470",
+      "id": "20180807-055856_1126172620",
+      "dateCreated": "Aug 7, 2018 5:58:56 AM",
+      "dateStarted": "Aug 7, 2018 6:00:44 AM",
+      "dateFinished": "Aug 7, 2018 6:00:46 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Concatenating and Appending Rows (Union)\n\n- DataFrames are immutable. This means users cannot append to DataFrames because that would be changing it. \n- To append to a DataFrame, you must union the original DataFrame along with the new DataFrame. \n- This just concatenates the two DataFramess.\n- To union two DataFrames, you must be sure that they have the same schema and number of columns; otherwise, the union will fail.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:03:08 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eConcatenating and Appending Rows (Union)\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eDataFrames are immutable. This means users cannot append to DataFrames because that would be changing it.\u003c/li\u003e\n\u003cli\u003eTo append to a DataFrame, you must union the original DataFrame along with the new DataFrame.\u003c/li\u003e\n\u003cli\u003eThis just concatenates the two DataFramess.\u003c/li\u003e\n\u003cli\u003eTo union two DataFrames, you must be sure that they have the same schema and number of columns; otherwise, the union will fail.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533621631114_-1116944568",
+      "id": "20180807-060031_877952790",
+      "dateCreated": "Aug 7, 2018 6:00:31 AM",
+      "dateStarted": "Aug 7, 2018 6:03:08 AM",
+      "dateFinished": "Aug 7, 2018 6:03:08 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.Row\n\nval schema \u003d df.schema\n\nval newRows \u003d Seq(Row(\"New Country\", \"Other Country\", 5L),  Row(\"New Country 2\", \"Other Country 3\", 1L))\n\nval parallelizedRows \u003d spark.sparkContext.parallelize(newRows)\n\nval newDF \u003d spark.createDataFrame(parallelizedRows, schema)\n\nval unionDf \u003d df.union(newDF)\n\nunionDf.where(\"count \u003d 1\")\n       .where($\"ORIGIN_COUNTRY_NAME\" \u003d!\u003d \"United States\")\n       .show() // get all of them and we\u0027ll see our new rows at the end\n\n\ndf.count()\nunionDf.count()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:07:05 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.Row\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(DEST_COUNTRY_NAME,StringType,true), StructField(ORIGIN_COUNTRY_NAME,StringType,true), StructField(count,LongType,true))\nnewRows: Seq[org.apache.spark.sql.Row] \u003d List([New Country,Other Country,5], [New Country 2,Other Country 3,1])\nparallelizedRows: org.apache.spark.rdd.RDD[org.apache.spark.sql.Row] \u003d ParallelCollectionRDD[432] at parallelize at \u003cconsole\u003e:97\nnewDF: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nunionDf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Croatia|    1|\n|    United States|          Singapore|    1|\n|    United States|          Gibraltar|    1|\n|    United States|             Cyprus|    1|\n|    United States|            Estonia|    1|\n|    United States|          Lithuania|    1|\n|    United States|           Bulgaria|    1|\n|    United States|            Georgia|    1|\n|    United States|            Bahrain|    1|\n|    United States|   Papua New Guinea|    1|\n|    United States|         Montenegro|    1|\n|    United States|            Namibia|    1|\n|    New Country 2|    Other Country 3|    1|\n+-----------------+-------------------+-----+\n\nres272: Long \u003d 256\nres273: Long \u003d 258\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533621788798_-1209590787",
+      "id": "20180807-060308_111414911",
+      "dateCreated": "Aug 7, 2018 6:03:08 AM",
+      "dateStarted": "Aug 7, 2018 6:07:05 AM",
+      "dateFinished": "Aug 7, 2018 6:07:08 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Sorting Rows\n\n- When we sort the values in a DataFrame, we always want to sort with either the largest or smallest values at the top of a DataFrame. \n- There are two equivalent operations to do this sort and orderBy that work the exact same way. \n- They accept both column expressions and strings as well as multiple columns. The default is to sort in ascending order:",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:08:10 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eSorting Rows\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eWhen we sort the values in a DataFrame, we always want to sort with either the largest or smallest values at the top of a DataFrame.\u003c/li\u003e\n\u003cli\u003eThere are two equivalent operations to do this sort and orderBy that work the exact same way.\u003c/li\u003e\n\u003cli\u003eThey accept both column expressions and strings as well as multiple columns. The default is to sort in ascending order:\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533621863302_-492544720",
+      "id": "20180807-060423_910178862",
+      "dateCreated": "Aug 7, 2018 6:04:23 AM",
+      "dateStarted": "Aug 7, 2018 6:08:10 AM",
+      "dateFinished": "Aug 7, 2018 6:08:10 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.sort(\"count\").show(5)\ndf.orderBy(\"count\", \"DEST_COUNTRY_NAME\").show(5)\ndf.orderBy(col(\"count\"), col(\"DEST_COUNTRY_NAME\")).show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:08:31 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+-------------------+-----+\n|   DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+--------------------+-------------------+-----+\n|               Malta|      United States|    1|\n|Saint Vincent and...|      United States|    1|\n|       United States|            Croatia|    1|\n|       United States|          Gibraltar|    1|\n|       United States|          Singapore|    1|\n+--------------------+-------------------+-----+\nonly showing top 5 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|     Burkina Faso|      United States|    1|\n|    Cote d\u0027Ivoire|      United States|    1|\n|           Cyprus|      United States|    1|\n|         Djibouti|      United States|    1|\n|        Indonesia|      United States|    1|\n+-----------------+-------------------+-----+\nonly showing top 5 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|     Burkina Faso|      United States|    1|\n|    Cote d\u0027Ivoire|      United States|    1|\n|           Cyprus|      United States|    1|\n|         Djibouti|      United States|    1|\n|        Indonesia|      United States|    1|\n+-----------------+-------------------+-----+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622090592_-744415687",
+      "id": "20180807-060810_43823378",
+      "dateCreated": "Aug 7, 2018 6:08:10 AM",
+      "dateStarted": "Aug 7, 2018 6:08:27 AM",
+      "dateFinished": "Aug 7, 2018 6:08:30 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{desc, asc}\n\ndf.orderBy(expr(\"count desc\")).show(2)\ndf.orderBy(desc(\"count\"), asc(\"DEST_COUNTRY_NAME\")).show(2)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:08:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{desc, asc}\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|          Moldova|      United States|    1|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n+-----------------+-------------------+------+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME| count|\n+-----------------+-------------------+------+\n|    United States|      United States|370002|\n|    United States|             Canada|  8483|\n+-----------------+-------------------+------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622106955_521883538",
+      "id": "20180807-060826_1817875030",
+      "dateCreated": "Aug 7, 2018 6:08:26 AM",
+      "dateStarted": "Aug 7, 2018 6:08:59 AM",
+      "dateFinished": "Aug 7, 2018 6:09:01 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- You can use asc_nulls_first, desc_nulls_first, asc_nulls_last, or desc_nulls_last to specify where you would like your null values to appear in an ordered DataFrame",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:10:20 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eYou can use asc_nulls_first, desc_nulls_first, asc_nulls_last, or desc_nulls_last to specify where you would like your null values to appear in an ordered DataFrame\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622139045_960158508",
+      "id": "20180807-060859_1025521226",
+      "dateCreated": "Aug 7, 2018 6:08:59 AM",
+      "dateStarted": "Aug 7, 2018 6:10:20 AM",
+      "dateFinished": "Aug 7, 2018 6:10:20 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Limit\n\n- Oftentimes, you might want to restrict what you extract from a DataFrame; for example, you might want just the top ten of some DataFrame. You can do this by using the limit method:\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:10:51 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622220704_1412946666",
+      "id": "20180807-061020_249722948",
+      "dateCreated": "Aug 7, 2018 6:10:20 AM",
+      "dateStarted": "Aug 7, 2018 6:10:51 AM",
+      "dateFinished": "Aug 7, 2018 6:10:51 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.limit(5).show()\ndf.orderBy(expr(\"count desc\")).limit(6).show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:11:38 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n|    United States|            Ireland|  344|\n|            Egypt|      United States|   15|\n|    United States|              India|   62|\n+-----------------+-------------------+-----+\n\n+--------------------+-------------------+-----+\n|   DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+--------------------+-------------------+-----+\n|               Malta|      United States|    1|\n|Saint Vincent and...|      United States|    1|\n|       United States|            Croatia|    1|\n|       United States|          Gibraltar|    1|\n|       United States|          Singapore|    1|\n|             Moldova|      United States|    1|\n+--------------------+-------------------+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622251282_-237379284",
+      "id": "20180807-061051_1964371400",
+      "dateCreated": "Aug 7, 2018 6:10:51 AM",
+      "dateStarted": "Aug 7, 2018 6:11:38 AM",
+      "dateFinished": "Aug 7, 2018 6:11:40 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Repartition and Coalesce\n- One important optimization opportunity is to partition the data according to some frequently filtered columns, which control the physical layout of data across the cluster including the partitioning scheme and the number of partitions.\n- Repartition will incur a full shuffle of the data, regardless of whether one is necessary. This means that you should typically only repartition when the future number of partitions is greater than your current number of partitions or when you are looking to partition by a set of columns",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:12:34 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eRepartition and Coalesce\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eOne important optimization opportunity is to partition the data according to some frequently filtered columns, which control the physical layout of data across the cluster including the partitioning scheme and the number of partitions.\u003c/li\u003e\n\u003cli\u003eRepartition will incur a full shuffle of the data, regardless of whether one is necessary. This means that you should typically only repartition when the future number of partitions is greater than your current number of partitions or when you are looking to partition by a set of columns\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622297968_587799838",
+      "id": "20180807-061137_1308702095",
+      "dateCreated": "Aug 7, 2018 6:11:37 AM",
+      "dateStarted": "Aug 7, 2018 6:12:34 AM",
+      "dateFinished": "Aug 7, 2018 6:12:34 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.rdd.getNumPartitions \nval repartDf \u003d df.repartition(5)\nrepartDf.rdd.getNumPartitions ",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:13:39 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res286: Int \u003d 1\nrepartDf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres287: Int \u003d 5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622354769_-757054099",
+      "id": "20180807-061234_791789703",
+      "dateCreated": "Aug 7, 2018 6:12:34 AM",
+      "dateStarted": "Aug 7, 2018 6:13:39 AM",
+      "dateFinished": "Aug 7, 2018 6:13:40 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val destColPartDf \u003d df.repartition(col(\"DEST_COUNTRY_NAME\"))\ndestColPartDf.rdd.getNumPartitions\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:14:31 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "destColPartDf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres290: Int \u003d 200\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622366074_765797372",
+      "id": "20180807-061246_1148495743",
+      "dateCreated": "Aug 7, 2018 6:12:46 AM",
+      "dateStarted": "Aug 7, 2018 6:14:31 AM",
+      "dateFinished": "Aug 7, 2018 6:14:32 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val destColPartDfWithPartCount \u003d df.repartition(5, col(\"DEST_COUNTRY_NAME\"))\ndestColPartDfWithPartCount.rdd.getNumPartitions\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:15:36 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "destColPartDfWithPartCount: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres291: Int \u003d 5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622455050_-229994078",
+      "id": "20180807-061415_404486826",
+      "dateCreated": "Aug 7, 2018 6:14:15 AM",
+      "dateStarted": "Aug 7, 2018 6:15:36 AM",
+      "dateFinished": "Aug 7, 2018 6:15:37 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- Coalesce, will not incur a full shuffle and will try to combine partitions. \n- Below operation will shuffle your data into five partitions based on the destination country name, and then coalesce them (without a full shuffle):",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:16:13 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eCoalesce, will not incur a full shuffle and will try to combine partitions.\u003c/li\u003e\n\u003cli\u003eBelow operation will shuffle your data into five partitions based on the destination country name, and then coalesce them (without a full shuffle):\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622511500_1231959797",
+      "id": "20180807-061511_352101292",
+      "dateCreated": "Aug 7, 2018 6:15:11 AM",
+      "dateStarted": "Aug 7, 2018 6:16:13 AM",
+      "dateFinished": "Aug 7, 2018 6:16:13 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val coalescepart \u003d df.repartition(5, col(\"DEST_COUNTRY_NAME\")).coalesce(2)\ncoalescepart.rdd.getNumPartitions\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:16:44 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "coalescepart: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres292: Int \u003d 2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622573781_-2117401972",
+      "id": "20180807-061613_1486454009",
+      "dateCreated": "Aug 7, 2018 6:16:13 AM",
+      "dateStarted": "Aug 7, 2018 6:16:44 AM",
+      "dateFinished": "Aug 7, 2018 6:16:45 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Collecting Rows to the Driver\n- Spark maintains the state of the cluster in the driver.\n- There are times when you’ll want to collect some of your data to the driver in order to manipulate it on your local machine.\n- collect gets all data from the entire DataFrame, take selects the first N rows, and show prints out a number of rows nicely.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:17:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCollecting Rows to the Driver\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSpark maintains the state of the cluster in the driver.\u003c/li\u003e\n\u003cli\u003eThere are times when you’ll want to collect some of your data to the driver in order to manipulate it on your local machine.\u003c/li\u003e\n\u003cli\u003ecollect gets all data from the entire DataFrame, take selects the first N rows, and show prints out a number of rows nicely.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622604684_1781319930",
+      "id": "20180807-061644_783923931",
+      "dateCreated": "Aug 7, 2018 6:16:44 AM",
+      "dateStarted": "Aug 7, 2018 6:17:45 AM",
+      "dateFinished": "Aug 7, 2018 6:17:45 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val collectDF \u003d df.limit(10)\ncollectDF.take(5) // take works with an Integer count\ncollectDF.show() // this prints it out nicely\ncollectDF.show(5, false)\ncollectDF.collect()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:20:51 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "collectDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres293: Array[org.apache.spark.sql.Row] \u003d Array([United States,Romania,15], [United States,Croatia,1], [United States,Ireland,344], [Egypt,United States,15], [United States,India,62])\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n|    United States|            Ireland|  344|\n|            Egypt|      United States|   15|\n|    United States|              India|   62|\n|    United States|          Singapore|    1|\n|    United States|            Grenada|   62|\n|       Costa Rica|      United States|  588|\n|          Senegal|      United States|   40|\n|          Moldova|      United States|    1|\n+-----------------+-------------------+-----+\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|United States    |Romania            |15   |\n|United States    |Croatia            |1    |\n|United States    |Ireland            |344  |\n|Egypt            |United States      |15   |\n|United States    |India              |62   |\n+-----------------+-------------------+-----+\nonly showing top 5 rows\n\nres296: Array[org.apache.spark.sql.Row] \u003d Array([United States,Romania,15], [United States,Croatia,1], [United States,Ireland,344], [Egypt,United States,15], [United States,India,62], [United States,Singapore,1], [United States,Grenada,62], [Costa Rica,United States,588], [Senegal,United States,40], [Moldova,United States,1])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622665701_-42531063",
+      "id": "20180807-061745_130745049",
+      "dateCreated": "Aug 7, 2018 6:17:45 AM",
+      "dateStarted": "Aug 7, 2018 6:18:21 AM",
+      "dateFinished": "Aug 7, 2018 6:18:24 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val itr \u003d collectDF.toLocalIterator()\n\nitr.next()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:21:11 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "itr: java.util.Iterator[org.apache.spark.sql.Row] \u003d IteratorWrapper(non-empty iterator)\nres301: org.apache.spark.sql.Row \u003d [United States,Romania,15]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622701629_-797931072",
+      "id": "20180807-061821_1892674100",
+      "dateCreated": "Aug 7, 2018 6:18:21 AM",
+      "dateStarted": "Aug 7, 2018 6:21:11 AM",
+      "dateFinished": "Aug 7, 2018 6:21:12 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n##### Any collection of data to the driver can be a very expensive operation! If you have a large dataset and call collect, you can crash the driver. If you use toLocalIterator and have very large partitions, you can easily crash the driver node and lose the state of your application. This is also expensive because we can operate on a one-by-one basis, instead of running computation in parallel.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:21:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch5\u003eAny collection of data to the driver can be a very expensive operation! If you have a large dataset and call collect, you can crash the driver. If you use toLocalIterator and have very large partitions, you can easily crash the driver node and lose the state of your application. This is also expensive because we can operate on a one-by-one basis, instead of running computation in parallel.\u003c/h5\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622752902_1503529579",
+      "id": "20180807-061912_1128944264",
+      "dateCreated": "Aug 7, 2018 6:19:12 AM",
+      "dateStarted": "Aug 7, 2018 6:21:59 AM",
+      "dateFinished": "Aug 7, 2018 6:21:59 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 6:22:08 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533622915128_1348673342",
+      "id": "20180807-062155_51376423",
+      "dateCreated": "Aug 7, 2018 6:21:55 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
