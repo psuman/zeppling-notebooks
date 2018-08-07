@@ -227,7 +227,7 @@
     {
       "text": "import org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\nimport org.apache.spark.sql.types.Metadata\n\nval myManualSchema \u003d StructType(Array(\n                        StructField(\"DEST_COUNTRY_NAME\", StringType, true),\n                        StructField(\"ORIGIN_COUNTRY_NAME\", StringType, true),\n                        StructField(\"count\", LongType, false, Metadata.fromJson(\"{\\\"hello\\\":\\\"world\\\"}\")))\n                        )\n                        \nval df \u003d spark.read.format(\"json\").schema(myManualSchema).load(\"/tmp/2015-summary.json\")\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 5, 2018 4:42:51 PM",
+      "dateUpdated": "Aug 7, 2018 4:58:02 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -255,8 +255,8 @@
       "jobName": "paragraph_1533486957216_1672725939",
       "id": "20180805-163557_1720946413",
       "dateCreated": "Aug 5, 2018 4:35:57 PM",
-      "dateStarted": "Aug 5, 2018 4:42:51 PM",
-      "dateFinished": "Aug 5, 2018 4:42:53 PM",
+      "dateStarted": "Aug 7, 2018 4:58:03 AM",
+      "dateFinished": "Aug 7, 2018 4:58:21 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -559,7 +559,7 @@
     {
       "text": "df.selectExpr(\"avg(count)\", \"count(distinct(DEST_COUNTRY_NAME))\").show(2)\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 5, 2018 5:05:25 PM",
+      "dateUpdated": "Aug 7, 2018 4:58:28 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -574,11 +574,11 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "org.apache.spark.sql.AnalysisException: java.lang.RuntimeException: java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient;\n  at org.apache.spark.sql.hive.HiveExternalCatalog.withClient(HiveExternalCatalog.scala:106)\n  at org.apache.spark.sql.hive.HiveExternalCatalog.databaseExists(HiveExternalCatalog.scala:194)\n  at org.apache.spark.sql.internal.SharedState.externalCatalog$lzycompute(SharedState.scala:114)\n  at org.apache.spark.sql.internal.SharedState.externalCatalog(SharedState.scala:102)\n  at org.apache.spark.sql.hive.HiveSessionStateBuilder.org$apache$spark$sql$hive$HiveSessionStateBuilder$$externalCatalog(HiveSessionStateBuilder.scala:39)\n  at org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$1.apply(HiveSessionStateBuilder.scala:53)\n  at org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$1.apply(HiveSessionStateBuilder.scala:53)\n  at org.apache.spark.sql.catalyst.catalog.SessionCatalog.externalCatalog$lzycompute(SessionCatalog.scala:90)\n  at org.apache.spark.sql.catalyst.catalog.SessionCatalog.externalCatalog(SessionCatalog.scala:90)\n  at org.apache.spark.sql.catalyst.catalog.SessionCatalog.databaseExists(SessionCatalog.scala:237)\n  at org.apache.spark.sql.catalyst.catalog.SessionCatalog.org$apache$spark$sql$catalyst$catalog$SessionCatalog$$requireDbExists(SessionCatalog.scala:176)\n  at org.apache.spark.sql.catalyst.catalog.SessionCatalog.functionExists(SessionCatalog.scala:1074)\n  at org.apache.spark.sql.hive.HiveSessionCatalog.functionExists(HiveSessionCatalog.scala:175)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$$anonfun$apply$15.applyOrElse(Analyzer.scala:1198)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$$anonfun$apply$15.applyOrElse(Analyzer.scala:1197)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n  at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:266)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:306)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:304)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:272)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsDown$1.apply(QueryPlan.scala:85)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsDown$1.apply(QueryPlan.scala:85)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:107)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:107)\n  at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpression$1(QueryPlan.scala:106)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:118)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1$1.apply(QueryPlan.scala:122)\n  at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n  at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n  at scala.collection.AbstractTraversable.map(Traversable.scala:104)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:122)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$2.apply(QueryPlan.scala:127)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.mapExpressions(QueryPlan.scala:127)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressionsDown(QueryPlan.scala:85)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressions(QueryPlan.scala:76)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformAllExpressions$1.applyOrElse(QueryPlan.scala:138)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformAllExpressions$1.applyOrElse(QueryPlan.scala:137)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n  at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:266)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transform(TreeNode.scala:256)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.transformAllExpressions(QueryPlan.scala:137)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$.apply(Analyzer.scala:1197)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$.apply(Analyzer.scala:1196)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:87)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:84)\n  at scala.collection.IndexedSeqOptimized$class.foldl(IndexedSeqOptimized.scala:57)\n  at scala.collection.IndexedSeqOptimized$class.foldLeft(IndexedSeqOptimized.scala:66)\n  at scala.collection.mutable.WrappedArray.foldLeft(WrappedArray.scala:35)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:84)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:76)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:76)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:124)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:118)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:103)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:57)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:55)\n  at org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:47)\n  at org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:74)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$withPlan(Dataset.scala:3295)\n  at org.apache.spark.sql.Dataset.select(Dataset.scala:1307)\n  at org.apache.spark.sql.Dataset.selectExpr(Dataset.scala:1342)\n  ... 56 elided\nCaused by: java.lang.RuntimeException: java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient\n  at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:522)\n  at org.apache.spark.sql.hive.client.HiveClientImpl.newState(HiveClientImpl.scala:182)\n  at org.apache.spark.sql.hive.client.HiveClientImpl.\u003cinit\u003e(HiveClientImpl.scala:116)\n  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n  at java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n  at org.apache.spark.sql.hive.client.IsolatedClientLoader.createClient(IsolatedClientLoader.scala:270)\n  at org.apache.spark.sql.hive.HiveUtils$.newClientForMetadata(HiveUtils.scala:385)\n  at org.apache.spark.sql.hive.HiveUtils$.newClientForMetadata(HiveUtils.scala:287)\n  at org.apache.spark.sql.hive.HiveExternalCatalog.client$lzycompute(HiveExternalCatalog.scala:66)\n  at org.apache.spark.sql.hive.HiveExternalCatalog.client(HiveExternalCatalog.scala:65)\n  at org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply$mcZ$sp(HiveExternalCatalog.scala:195)\n  at org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply(HiveExternalCatalog.scala:195)\n  at org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply(HiveExternalCatalog.scala:195)\n  at org.apache.spark.sql.hive.HiveExternalCatalog.withClient(HiveExternalCatalog.scala:97)\n  ... 129 more\nCaused by: java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient\n  at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1523)\n  at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.\u003cinit\u003e(RetryingMetaStoreClient.java:86)\n  at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:132)\n  at org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:104)\n  at org.apache.hadoop.hive.ql.metadata.Hive.createMetaStoreClient(Hive.java:3021)\n  at org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3040)\n  at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:503)\n  ... 144 more\nCaused by: java.lang.reflect.InvocationTargetException: org.apache.hadoop.hive.metastore.api.MetaException: Could not connect to meta store using any of the URIs provided. Most recent failure: org.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused (Connection refused)\n\tat org.apache.thrift.transport.TSocket.open(TSocket.java:187)\n\tat org.apache.hadoop.hive.metastore.HiveMetaStoreClient.open(HiveMetaStoreClient.java:420)\n\tat org.apache.hadoop.hive.metastore.HiveMetaStoreClient.\u003cinit\u003e(HiveMetaStoreClient.java:236)\n\tat org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient.\u003cinit\u003e(SessionHiveMetaStoreClient.java:74)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1521)\n\tat org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.\u003cinit\u003e(RetryingMetaStoreClient.java:86)\n\tat org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:132)\n\tat org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:104)\n\tat org.apache.hadoop.hive.ql.metadata.Hive.createMetaStoreClient(Hive.java:3021)\n\tat org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3040)\n\tat org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:503)\n\tat org.apache.spark.sql.hive.client.HiveClientImpl.newState(HiveClientImpl.scala:182)\n\tat org.apache.spark.sql.hive.client.HiveClientImpl.\u003cinit\u003e(HiveClientImpl.scala:116)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat org.apache.spark.sql.hive.client.IsolatedClientLoader.createClient(IsolatedClientLoader.scala:270)\n\tat org.apache.spark.sql.hive.HiveUtils$.newClientForMetadata(HiveUtils.scala:385)\n\tat org.apache.spark.sql.hive.HiveUtils$.newClientForMetadata(HiveUtils.scala:287)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.client$lzycompute(HiveExternalCatalog.scala:66)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.client(HiveExternalCatalog.scala:65)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply$mcZ$sp(HiveExternalCatalog.scala:195)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply(HiveExternalCatalog.scala:195)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply(HiveExternalCatalog.scala:195)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.withClient(HiveExternalCatalog.scala:97)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.databaseExists(HiveExternalCatalog.scala:194)\n\tat org.apache.spark.sql.internal.SharedState.externalCatalog$lzycompute(SharedState.scala:114)\n\tat org.apache.spark.sql.internal.SharedState.externalCatalog(SharedState.scala:102)\n\tat org.apache.spark.sql.hive.HiveSessionStateBuilder.org$apache$spark$sql$hive$HiveSessionStateBuilder$$externalCatalog(HiveSessionStateBuilder.scala:39)\n\tat org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$1.apply(HiveSessionStateBuilder.scala:53)\n\tat org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$1.apply(HiveSessionStateBuilder.scala:53)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.externalCatalog$lzycompute(SessionCatalog.scala:90)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.externalCatalog(SessionCatalog.scala:90)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.databaseExists(SessionCatalog.scala:237)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.org$apache$spark$sql$catalyst$catalog$SessionCatalog$$requireDbExists(SessionCatalog.scala:176)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.functionExists(SessionCatalog.scala:1074)\n\tat org.apache.spark.sql.hive.HiveSessionCatalog.functionExists(HiveSessionCatalog.scala:175)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$$anonfun$apply$15.applyOrElse(Analyzer.scala:1198)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$$anonfun$apply$15.applyOrElse(Analyzer.scala:1197)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:266)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:306)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:304)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsDown$1.apply(QueryPlan.scala:85)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsDown$1.apply(QueryPlan.scala:85)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:107)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:107)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpression$1(QueryPlan.scala:106)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:118)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1$1.apply(QueryPlan.scala:122)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n\tat scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n\tat scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n\tat scala.collection.AbstractTraversable.map(Traversable.scala:104)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:122)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$2.apply(QueryPlan.scala:127)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.mapExpressions(QueryPlan.scala:127)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressionsDown(QueryPlan.scala:85)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressions(QueryPlan.scala:76)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformAllExpressions$1.applyOrElse(QueryPlan.scala:138)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformAllExpressions$1.applyOrElse(QueryPlan.scala:137)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:266)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transform(TreeNode.scala:256)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformAllExpressions(QueryPlan.scala:137)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$.apply(Analyzer.scala:1197)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$.apply(Analyzer.scala:1196)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:87)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:84)\n\tat scala.collection.IndexedSeqOptimized$class.foldl(IndexedSeqOptimized.scala:57)\n\tat scala.collection.IndexedSeqOptimized$class.foldLeft(IndexedSeqOptimized.scala:66)\n\tat scala.collection.mutable.WrappedArray.foldLeft(WrappedArray.scala:35)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:84)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:76)\n\tat scala.collection.immutable.List.foreach(List.scala:381)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:76)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:124)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:118)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:103)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:57)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:55)\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:47)\n\tat org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:74)\n\tat org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$withPlan(Dataset.scala:3295)\n\tat org.apache.spark.sql.Dataset.select(Dataset.scala:1307)\n\tat org.apache.spark.sql.Dataset.selectExpr(Dataset.scala:1342)\n\tat \u003cinit\u003e(\u003cconsole\u003e:57)\n\tat \u003cinit\u003e(\u003cconsole\u003e:62)\n\tat \u003cinit\u003e(\u003cconsole\u003e:64)\n\tat \u003cinit\u003e(\u003cconsole\u003e:66)\n\tat \u003cinit\u003e(\u003cconsole\u003e:68)\n\tat \u003cinit\u003e(\u003cconsole\u003e:70)\n\tat \u003cinit\u003e(\u003cconsole\u003e:72)\n\tat \u003cinit\u003e(\u003cconsole\u003e:74)\n\tat \u003cinit\u003e(\u003cconsole\u003e:76)\n\tat \u003cinit\u003e(\u003cconsole\u003e:78)\n\tat \u003cinit\u003e(\u003cconsole\u003e:80)\n\tat \u003cinit\u003e(\u003cconsole\u003e:82)\n\tat \u003cinit\u003e(\u003cconsole\u003e:84)\n\tat \u003cinit\u003e(\u003cconsole\u003e:86)\n\tat \u003cinit\u003e(\u003cconsole\u003e:88)\n\tat \u003cinit\u003e(\u003cconsole\u003e:90)\n\tat \u003cinit\u003e(\u003cconsole\u003e:92)\n\tat \u003cinit\u003e(\u003cconsole\u003e:94)\n\tat \u003cinit\u003e(\u003cconsole\u003e:96)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:100)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat .$print$lzycompute(\u003cconsole\u003e:7)\n\tat .$print(\u003cconsole\u003e:6)\n\tat $print(\u003cconsole\u003e)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat scala.tools.nsc.interpreter.IMain$ReadEvalPrint.call(IMain.scala:786)\n\tat scala.tools.nsc.interpreter.IMain$Request.loadAndRun(IMain.scala:1047)\n\tat scala.tools.nsc.interpreter.IMain$WrappedRequest$$anonfun$loadAndRunReq$1.apply(IMain.scala:638)\n\tat scala.tools.nsc.interpreter.IMain$WrappedRequest$$anonfun$loadAndRunReq$1.apply(IMain.scala:637)\n\tat scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala:31)\n\tat scala.reflect.internal.util.AbstractFileClassLoader.asContext(AbstractFileClassLoader.scala:19)\n\tat scala.tools.nsc.interpreter.IMain$WrappedRequest.loadAndRunReq(IMain.scala:637)\n\tat scala.tools.nsc.interpreter.IMain.interpret(IMain.scala:569)\n\tat scala.tools.nsc.interpreter.IMain.interpret(IMain.scala:565)\n\tat sun.reflect.GeneratedMethodAccessor51.invoke(Unknown Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:947)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpretInput(SparkInterpreter.java:1153)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:1120)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:1113)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:101)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:502)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:175)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:139)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\nCaused by: java.net.ConnectException: Connection refused (Connection refused)\n\tat java.net.PlainSocketImpl.socketConnect(Native Method)\n\tat java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)\n\tat java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)\n\tat java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)\n\tat java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n\tat java.net.Socket.connect(Socket.java:589)\n\tat org.apache.thrift.transport.TSocket.open(TSocket.java:182)\n\t... 158 more\n\n  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n  at java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n  at org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1521)\n  ... 150 more\nCaused by: org.apache.hadoop.hive.metastore.api.MetaException: Could not connect to meta store using any of the URIs provided. Most recent failure: org.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused (Connection refused)\n\tat org.apache.thrift.transport.TSocket.open(TSocket.java:187)\n\tat org.apache.hadoop.hive.metastore.HiveMetaStoreClient.open(HiveMetaStoreClient.java:420)\n\tat org.apache.hadoop.hive.metastore.HiveMetaStoreClient.\u003cinit\u003e(HiveMetaStoreClient.java:236)\n\tat org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient.\u003cinit\u003e(SessionHiveMetaStoreClient.java:74)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat org.apache.hadoop.hive.metastore.MetaStoreUtils.newInstance(MetaStoreUtils.java:1521)\n\tat org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.\u003cinit\u003e(RetryingMetaStoreClient.java:86)\n\tat org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:132)\n\tat org.apache.hadoop.hive.metastore.RetryingMetaStoreClient.getProxy(RetryingMetaStoreClient.java:104)\n\tat org.apache.hadoop.hive.ql.metadata.Hive.createMetaStoreClient(Hive.java:3021)\n\tat org.apache.hadoop.hive.ql.metadata.Hive.getMSC(Hive.java:3040)\n\tat org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:503)\n\tat org.apache.spark.sql.hive.client.HiveClientImpl.newState(HiveClientImpl.scala:182)\n\tat org.apache.spark.sql.hive.client.HiveClientImpl.\u003cinit\u003e(HiveClientImpl.scala:116)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat org.apache.spark.sql.hive.client.IsolatedClientLoader.createClient(IsolatedClientLoader.scala:270)\n\tat org.apache.spark.sql.hive.HiveUtils$.newClientForMetadata(HiveUtils.scala:385)\n\tat org.apache.spark.sql.hive.HiveUtils$.newClientForMetadata(HiveUtils.scala:287)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.client$lzycompute(HiveExternalCatalog.scala:66)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.client(HiveExternalCatalog.scala:65)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply$mcZ$sp(HiveExternalCatalog.scala:195)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply(HiveExternalCatalog.scala:195)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$databaseExists$1.apply(HiveExternalCatalog.scala:195)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.withClient(HiveExternalCatalog.scala:97)\n\tat org.apache.spark.sql.hive.HiveExternalCatalog.databaseExists(HiveExternalCatalog.scala:194)\n\tat org.apache.spark.sql.internal.SharedState.externalCatalog$lzycompute(SharedState.scala:114)\n\tat org.apache.spark.sql.internal.SharedState.externalCatalog(SharedState.scala:102)\n\tat org.apache.spark.sql.hive.HiveSessionStateBuilder.org$apache$spark$sql$hive$HiveSessionStateBuilder$$externalCatalog(HiveSessionStateBuilder.scala:39)\n\tat org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$1.apply(HiveSessionStateBuilder.scala:53)\n\tat org.apache.spark.sql.hive.HiveSessionStateBuilder$$anonfun$1.apply(HiveSessionStateBuilder.scala:53)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.externalCatalog$lzycompute(SessionCatalog.scala:90)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.externalCatalog(SessionCatalog.scala:90)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.databaseExists(SessionCatalog.scala:237)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.org$apache$spark$sql$catalyst$catalog$SessionCatalog$$requireDbExists(SessionCatalog.scala:176)\n\tat org.apache.spark.sql.catalyst.catalog.SessionCatalog.functionExists(SessionCatalog.scala:1074)\n\tat org.apache.spark.sql.hive.HiveSessionCatalog.functionExists(HiveSessionCatalog.scala:175)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$$anonfun$apply$15.applyOrElse(Analyzer.scala:1198)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$$anonfun$apply$15.applyOrElse(Analyzer.scala:1197)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:266)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:306)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:304)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsDown$1.apply(QueryPlan.scala:85)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformExpressionsDown$1.apply(QueryPlan.scala:85)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:107)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$1.apply(QueryPlan.scala:107)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpression$1(QueryPlan.scala:106)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:118)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1$1.apply(QueryPlan.scala:122)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n\tat scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n\tat scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n\tat scala.collection.AbstractTraversable.map(Traversable.scala:104)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$1(QueryPlan.scala:122)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$2.apply(QueryPlan.scala:127)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.mapExpressions(QueryPlan.scala:127)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressionsDown(QueryPlan.scala:85)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressions(QueryPlan.scala:76)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformAllExpressions$1.applyOrElse(QueryPlan.scala:138)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$transformAllExpressions$1.applyOrElse(QueryPlan.scala:137)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)\n\tat org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:266)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.transform(TreeNode.scala:256)\n\tat org.apache.spark.sql.catalyst.plans.QueryPlan.transformAllExpressions(QueryPlan.scala:137)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$.apply(Analyzer.scala:1197)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer$LookupFunctions$.apply(Analyzer.scala:1196)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:87)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:84)\n\tat scala.collection.IndexedSeqOptimized$class.foldl(IndexedSeqOptimized.scala:57)\n\tat scala.collection.IndexedSeqOptimized$class.foldLeft(IndexedSeqOptimized.scala:66)\n\tat scala.collection.mutable.WrappedArray.foldLeft(WrappedArray.scala:35)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:84)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:76)\n\tat scala.collection.immutable.List.foreach(List.scala:381)\n\tat org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:76)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:124)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:118)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:103)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:57)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:55)\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:47)\n\tat org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:74)\n\tat org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$withPlan(Dataset.scala:3295)\n\tat org.apache.spark.sql.Dataset.select(Dataset.scala:1307)\n\tat org.apache.spark.sql.Dataset.selectExpr(Dataset.scala:1342)\n\tat \u003cinit\u003e(\u003cconsole\u003e:57)\n\tat \u003cinit\u003e(\u003cconsole\u003e:62)\n\tat \u003cinit\u003e(\u003cconsole\u003e:64)\n\tat \u003cinit\u003e(\u003cconsole\u003e:66)\n\tat \u003cinit\u003e(\u003cconsole\u003e:68)\n\tat \u003cinit\u003e(\u003cconsole\u003e:70)\n\tat \u003cinit\u003e(\u003cconsole\u003e:72)\n\tat \u003cinit\u003e(\u003cconsole\u003e:74)\n\tat \u003cinit\u003e(\u003cconsole\u003e:76)\n\tat \u003cinit\u003e(\u003cconsole\u003e:78)\n\tat \u003cinit\u003e(\u003cconsole\u003e:80)\n\tat \u003cinit\u003e(\u003cconsole\u003e:82)\n\tat \u003cinit\u003e(\u003cconsole\u003e:84)\n\tat \u003cinit\u003e(\u003cconsole\u003e:86)\n\tat \u003cinit\u003e(\u003cconsole\u003e:88)\n\tat \u003cinit\u003e(\u003cconsole\u003e:90)\n\tat \u003cinit\u003e(\u003cconsole\u003e:92)\n\tat \u003cinit\u003e(\u003cconsole\u003e:94)\n\tat \u003cinit\u003e(\u003cconsole\u003e:96)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:100)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat .$print$lzycompute(\u003cconsole\u003e:7)\n\tat .$print(\u003cconsole\u003e:6)\n\tat $print(\u003cconsole\u003e)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat scala.tools.nsc.interpreter.IMain$ReadEvalPrint.call(IMain.scala:786)\n\tat scala.tools.nsc.interpreter.IMain$Request.loadAndRun(IMain.scala:1047)\n\tat scala.tools.nsc.interpreter.IMain$WrappedRequest$$anonfun$loadAndRunReq$1.apply(IMain.scala:638)\n\tat scala.tools.nsc.interpreter.IMain$WrappedRequest$$anonfun$loadAndRunReq$1.apply(IMain.scala:637)\n\tat scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala:31)\n\tat scala.reflect.internal.util.AbstractFileClassLoader.asContext(AbstractFileClassLoader.scala:19)\n\tat scala.tools.nsc.interpreter.IMain$WrappedRequest.loadAndRunReq(IMain.scala:637)\n\tat scala.tools.nsc.interpreter.IMain.interpret(IMain.scala:569)\n\tat scala.tools.nsc.interpreter.IMain.interpret(IMain.scala:565)\n\tat sun.reflect.GeneratedMethodAccessor51.invoke(Unknown Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:947)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpretInput(SparkInterpreter.java:1153)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:1120)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:1113)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:101)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:502)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:175)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:139)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\nCaused by: java.net.ConnectException: Connection refused (Connection refused)\n\tat java.net.PlainSocketImpl.socketConnect(Native Method)\n\tat java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)\n\tat java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)\n\tat java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)\n\tat java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n\tat java.net.Socket.connect(Socket.java:589)\n\tat org.apache.thrift.transport.TSocket.open(TSocket.java:182)\n\t... 158 more\n\n  at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.open(HiveMetaStoreClient.java:467)\n  at org.apache.hadoop.hive.metastore.HiveMetaStoreClient.\u003cinit\u003e(HiveMetaStoreClient.java:236)\n  at org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient.\u003cinit\u003e(SessionHiveMetaStoreClient.java:74)\n  ... 155 more\n"
+            "data": "+-----------+---------------------------------+\n| avg(count)|count(DISTINCT DEST_COUNTRY_NAME)|\n+-----------+---------------------------------+\n|1770.765625|                              132|\n+-----------+---------------------------------+\n\n"
           }
         ]
       },
@@ -586,9 +586,870 @@
       "jobName": "paragraph_1533488393551_-697565076",
       "id": "20180805-165953_1371102698",
       "dateCreated": "Aug 5, 2018 4:59:53 PM",
-      "dateStarted": "Aug 5, 2018 5:02:12 PM",
-      "dateFinished": "Aug 5, 2018 5:02:20 PM",
-      "status": "ERROR",
+      "dateStarted": "Aug 7, 2018 4:58:28 AM",
+      "dateFinished": "Aug 7, 2018 4:59:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- We can create data frames on the fly by taking set of rows and converting them into dataframe",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:00:39 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eWe can create data frames on the fly by taking set of rows and converting them into dataframe\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533488532761_-1598279220",
+      "id": "20180805-170212_1074519358",
+      "dateCreated": "Aug 5, 2018 5:02:12 PM",
+      "dateStarted": "Aug 7, 2018 5:00:39 AM",
+      "dateFinished": "Aug 7, 2018 5:00:43 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.Row\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, LongType}\n\nval mySchema \u003d new StructType(Array(new StructField(\"some\", StringType, true),\n                              new StructField(\"col\", StringType, true),\n                              new StructField(\"names\", LongType, false)))\n\nval myRows \u003d Seq(Row(\"Hello\", null, 1L))\n\nval myRDD \u003d spark.sparkContext.parallelize(myRows)\n\nval myManDf \u003d spark.createDataFrame(myRDD, mySchema)\n\n\nmyManDf.show()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:17:16 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.Row\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, LongType}\nmySchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(some,StringType,true), StructField(col,StringType,true), StructField(names,LongType,false))\nmyRows: Seq[org.apache.spark.sql.Row] \u003d List([Hello,null,1])\nmyRDD: org.apache.spark.rdd.RDD[org.apache.spark.sql.Row] \u003d ParallelCollectionRDD[42] at parallelize at \u003cconsole\u003e:67\nmyManDf: org.apache.spark.sql.DataFrame \u003d [some: string, col: string ... 1 more field]\n+-----+----+-----+\n| some| col|names|\n+-----+----+-----+\n|Hello|null|    1|\n+-----+----+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533618039157_1809758237",
+      "id": "20180807-050039_1233698306",
+      "dateCreated": "Aug 7, 2018 5:00:39 AM",
+      "dateStarted": "Aug 7, 2018 5:17:16 AM",
+      "dateFinished": "Aug 7, 2018 5:17:18 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- parallelized collection is the number of partition the dataset is cut into. \n- Spark will run one task for each partition of cluster.\n- Spark sets number of partition based on our cluster.\n- we can also manually set the number of partitions. This is achieved by passing number of partition as second parameter to parallelize",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:15:22 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533618894597_-448506557",
+      "id": "20180807-051454_423698811",
+      "dateCreated": "Aug 7, 2018 5:14:54 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.Row\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, LongType}\n\nval mySchema \u003d new StructType(Array(new StructField(\"some\", StringType, true),\n                              new StructField(\"col\", StringType, true),\n                              new StructField(\"names\", LongType, false)))\n\nval myRows \u003d Seq(Row(\"Hello\", null, 1L))\n\nval myRDD \u003d spark.sparkContext.parallelize(myRows, 5)\n\nval myManDf \u003d spark.createDataFrame(myRDD, mySchema)\n\n\nmyManDf.show()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:15:55 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.Row\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, LongType}\nmySchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(some,StringType,true), StructField(col,StringType,true), StructField(names,LongType,false))\nmyRows: Seq[org.apache.spark.sql.Row] \u003d List([Hello,null,1])\nmyRDD: org.apache.spark.rdd.RDD[org.apache.spark.sql.Row] \u003d ParallelCollectionRDD[36] at parallelize at \u003cconsole\u003e:64\nmyManDf: org.apache.spark.sql.DataFrame \u003d [some: string, col: string ... 1 more field]\n+-----+----+-----+\n| some| col|names|\n+-----+----+-----+\n|Hello|null|    1|\n+-----+----+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533618931974_776210489",
+      "id": "20180807-051531_876597538",
+      "dateCreated": "Aug 7, 2018 5:15:31 AM",
+      "dateStarted": "Aug 7, 2018 5:15:55 AM",
+      "dateFinished": "Aug 7, 2018 5:16:00 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val myManDF1 \u003d Seq((\"Hello\", \"TWO\", 1L)).toDF(\"col1\", \"col2\", \"col3\")\nmyManDF1.show()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:11:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "myManDF1: org.apache.spark.sql.DataFrame \u003d [col1: string, col2: string ... 1 more field]\n+-----+----+----+\n| col1|col2|col3|\n+-----+----+----+\n|Hello| TWO|   1|\n+-----+----+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533618415488_446160518",
+      "id": "20180807-050655_434465204",
+      "dateCreated": "Aug 7, 2018 5:06:55 AM",
+      "dateStarted": "Aug 7, 2018 5:11:50 AM",
+      "dateFinished": "Aug 7, 2018 5:11:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Creating RDD from existing RDD\n\n- Transformation mutates one RDD into another RDD, thus transformation is the way to create an RDD from already existing RDD. \n- This creates difference between Apache Spark and Hadoop MapReduce. Transformation acts as a function that intakes an RDD and produces one. \n- The input RDD does not get changed, because RDDs are immutable in nature but it produces one or more RDD by applying operations",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:19:31 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCreating RDD from existing RDD\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eTransformation mutates one RDD into another RDD, thus transformation is the way to create an RDD from already existing RDD.\u003c/li\u003e\n\u003cli\u003eThis creates difference between Apache Spark and Hadoop MapReduce. Transformation acts as a function that intakes an RDD and produces one.\u003c/li\u003e\n\u003cli\u003eThe input RDD does not get changed, because RDDs are immutable in nature but it produces one or more RDD by applying operations\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533618737560_-1012996135",
+      "id": "20180807-051217_987282526",
+      "dateCreated": "Aug 7, 2018 5:12:17 AM",
+      "dateStarted": "Aug 7, 2018 5:19:31 AM",
+      "dateFinished": "Aug 7, 2018 5:19:31 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val words \u003d spark.sparkContext.parallelize(Seq(\"prokarma\", \"india\", \"hyderabad\"))\n\nval wordPairs \u003d words.map(w \u003d\u003e (w.charAt(0), w))\n\nwordPairs.collect().foreach(println)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:23:47 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "words: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[56] at parallelize at \u003cconsole\u003e:64\nwordPairs: org.apache.spark.rdd.RDD[(Char, String)] \u003d MapPartitionsRDD[57] at map at \u003cconsole\u003e:67\n(p,prokarma)\n(i,india)\n(h,hyderabad)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533619170993_-1656422702",
+      "id": "20180807-051930_1323588175",
+      "dateCreated": "Aug 7, 2018 5:19:30 AM",
+      "dateStarted": "Aug 7, 2018 5:23:47 AM",
+      "dateFinished": "Aug 7, 2018 5:23:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- Sometimes, we need to pass explicit values into Spark that are just a value \n- This is basically a translation from a given programming language’s literal value to one that Spark understands",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:28:15 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eSometimes, we need to pass explicit values into Spark that are just a value\u003c/li\u003e\n\u003cli\u003eThis is basically a translation from a given programming language’s literal value to one that Spark understands\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533619319483_843857897",
+      "id": "20180807-052159_109463657",
+      "dateCreated": "Aug 7, 2018 5:21:59 AM",
+      "dateStarted": "Aug 7, 2018 5:28:16 AM",
+      "dateFinished": "Aug 7, 2018 5:28:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.lit\n\ndf.select(expr(\"*\"), lit(1).as(\"one\")).show(2)\n\ndf.show(2)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:36:27 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.lit\n+-----------------+-------------------+-----+---+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|one|\n+-----------------+-------------------+-----+---+\n|    United States|            Romania|   15|  1|\n|    United States|            Croatia|    1|  1|\n+-----------------+-------------------+-----+---+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+---+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|one|\n+-----------------+-------------------+-----+---+\n|    United States|            Romania|   15|  1|\n|    United States|            Croatia|    1|  1|\n+-----------------+-------------------+-----+---+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+-------------+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|withInCountry|\n+-----------------+-------------------+-----+-------------+\n|    United States|            Romania|   15|        false|\n|    United States|            Croatia|    1|        false|\n+-----------------+-------------------+-----+-------------+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\nres192: Array[String] \u003d Array(dest, ORIGIN_COUNTRY_NAME, count)\nres194: Array[String] \u003d Array(DEST_COUNTRY_NAME, ORIGIN_COUNTRY_NAME, count)\nres196: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, count: bigint]\nres198: org.apache.spark.sql.DataFrame \u003d [count: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533619695959_-97084671",
+      "id": "20180807-052815_1166940121",
+      "dateCreated": "Aug 7, 2018 5:28:15 AM",
+      "dateStarted": "Aug 7, 2018 5:35:19 AM",
+      "dateFinished": "Aug 7, 2018 5:35:24 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.withColumn(\"one\", lit(1)).show(2)\n\ndf.show(2)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:36:37 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-------------------+-----+---+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|one|\n+-----------------+-------------------+-----+---+\n|    United States|            Romania|   15|  1|\n|    United States|            Croatia|    1|  1|\n+-----------------+-------------------+-----+---+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533619744392_89362015",
+      "id": "20180807-052904_293027787",
+      "dateCreated": "Aug 7, 2018 5:29:04 AM",
+      "dateStarted": "Aug 7, 2018 5:36:37 AM",
+      "dateFinished": "Aug 7, 2018 5:36:38 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.withColumn(\"withInCountry\", expr(\"DEST_COUNTRY_NAME \u003d\u003d ORIGIN_COUNTRY_NAME\")).show(2)\n\ndf.show(2)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:36:44 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-------------------+-----+-------------+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|withInCountry|\n+-----------------+-------------------+-----+-------------+\n|    United States|            Romania|   15|        false|\n|    United States|            Croatia|    1|        false|\n+-----------------+-------------------+-----+-------------+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620197380_-2097686483",
+      "id": "20180807-053637_1575478149",
+      "dateCreated": "Aug 7, 2018 5:36:37 AM",
+      "dateStarted": "Aug 7, 2018 5:36:44 AM",
+      "dateFinished": "Aug 7, 2018 5:36:44 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.withColumnRenamed(\"DEST_COUNTRY_NAME\", \"dest\").columns\n\ndf.columns\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:36:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res205: Array[String] \u003d Array(dest, ORIGIN_COUNTRY_NAME, count)\nres207: Array[String] \u003d Array(DEST_COUNTRY_NAME, ORIGIN_COUNTRY_NAME, count)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620204076_-1954929317",
+      "id": "20180807-053644_716896787",
+      "dateCreated": "Aug 7, 2018 5:36:44 AM",
+      "dateStarted": "Aug 7, 2018 5:36:50 AM",
+      "dateFinished": "Aug 7, 2018 5:36:51 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.drop(\"ORIGIN_COUNTRY_NAME\")\n\ndf.drop(\"ORIGIN_COUNTRY_NAME\", \"DEST_COUNTRY_NAME\")",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:36:54 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res208: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, count: bigint]\nres210: org.apache.spark.sql.DataFrame \u003d [count: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620210546_-1514376502",
+      "id": "20180807-053650_1768502634",
+      "dateCreated": "Aug 7, 2018 5:36:50 AM",
+      "dateStarted": "Aug 7, 2018 5:36:54 AM",
+      "dateFinished": "Aug 7, 2018 5:36:55 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.filter(col(\"count\") \u003c 2).show(2)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:37:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Croatia|    1|\n|    United States|          Singapore|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620214681_143506509",
+      "id": "20180807-053654_934596766",
+      "dateCreated": "Aug 7, 2018 5:36:54 AM",
+      "dateStarted": "Aug 7, 2018 5:37:52 AM",
+      "dateFinished": "Aug 7, 2018 5:37:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.where(col(\"count\") \u003c 2).show(2)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:38:09 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Croatia|    1|\n|    United States|          Singapore|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620272714_-1981618197",
+      "id": "20180807-053752_1328081277",
+      "dateCreated": "Aug 7, 2018 5:37:52 AM",
+      "dateStarted": "Aug 7, 2018 5:38:09 AM",
+      "dateFinished": "Aug 7, 2018 5:38:09 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-  if you want to specify multiple AND filters, just chain them sequentially",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:38:55 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eif you want to specify multiple AND filters, just chain them sequentially\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620289469_468108698",
+      "id": "20180807-053809_311058213",
+      "dateCreated": "Aug 7, 2018 5:38:09 AM",
+      "dateStarted": "Aug 7, 2018 5:38:55 AM",
+      "dateFinished": "Aug 7, 2018 5:38:55 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.where(col(\"count\") \u003c 2).where(col(\"ORIGIN_COUNTRY_NAME\") \u003d!\u003d \"Croatia\").show(2)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:40:38 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|          Singapore|    1|\n|          Moldova|      United States|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620335068_1713048869",
+      "id": "20180807-053855_1851408842",
+      "dateCreated": "Aug 7, 2018 5:38:55 AM",
+      "dateStarted": "Aug 7, 2018 5:40:38 AM",
+      "dateFinished": "Aug 7, 2018 5:40:38 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Getting Unique Rows\n- A very common use case is to extract the unique or distinct values in a DataFrame. These values can be in one or more columns. \n- The way we do this is by using the distinct method on a DataFrame, which allows us to deduplicate any rows that are in that DataFrame",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:42:00 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eGetting Unique Rows\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eA very common use case is to extract the unique or distinct values in a DataFrame. These values can be in one or more columns.\u003c/li\u003e\n\u003cli\u003eThe way we do this is by using the distinct method on a DataFrame, which allows us to deduplicate any rows that are in that DataFrame\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620397748_-1091862557",
+      "id": "20180807-053957_1401571004",
+      "dateCreated": "Aug 7, 2018 5:39:57 AM",
+      "dateStarted": "Aug 7, 2018 5:42:01 AM",
+      "dateFinished": "Aug 7, 2018 5:42:01 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.select(\"ORIGIN_COUNTRY_NAME\").distinct().count()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:44:28 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res219: Long \u003d 125\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620520919_1181000793",
+      "id": "20180807-054200_1512823401",
+      "dateCreated": "Aug 7, 2018 5:42:00 AM",
+      "dateStarted": "Aug 7, 2018 5:44:28 AM",
+      "dateFinished": "Aug 7, 2018 5:44:33 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.select(\"ORIGIN_COUNTRY_NAME\", \"DEST_COUNTRY_NAME\").distinct().count()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:44:42 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res220: Long \u003d 256\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620551304_-1697675154",
+      "id": "20180807-054231_2051422271",
+      "dateCreated": "Aug 7, 2018 5:42:31 AM",
+      "dateStarted": "Aug 7, 2018 5:44:42 AM",
+      "dateFinished": "Aug 7, 2018 5:44:48 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Random Samples\n\n- Sometimes, you might just want to sample some random records from your DataFrame. \n- You can do this by using the sample method on a DataFrame, which makes it possible for you to specify a fraction of rows to extract from a DataFrame and whether you’d like to sample with or without replacement",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:45:43 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eRandom Samples\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSometimes, you might just want to sample some random records from your DataFrame.\u003c/li\u003e\n\u003cli\u003eYou can do this by using the sample method on a DataFrame, which makes it possible for you to specify a fraction of rows to extract from a DataFrame and whether you’d like to sample with or without replacement\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620589407_-1751277844",
+      "id": "20180807-054309_1041515460",
+      "dateCreated": "Aug 7, 2018 5:43:09 AM",
+      "dateStarted": "Aug 7, 2018 5:45:43 AM",
+      "dateFinished": "Aug 7, 2018 5:45:43 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val seed \u003d 5\nval withReplacement\u003d false\nval fraction \u003d 0.5\n\nval sampleDf \u003d df.sample(withReplacement, fraction, seed)\n\nsampleDf.count()\n\nsampleDf.show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:47:51 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "seed: Int \u003d 5\nwithReplacement: Boolean \u003d false\nfraction: Double \u003d 0.5\nsampleDf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nres225: Long \u003d 126\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|            Egypt|      United States|   15|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620743227_-501366585",
+      "id": "20180807-054543_867602818",
+      "dateCreated": "Aug 7, 2018 5:45:43 AM",
+      "dateStarted": "Aug 7, 2018 5:47:32 AM",
+      "dateFinished": "Aug 7, 2018 5:47:35 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- The fraction parameter represents the aproximate fraction of the dataset that will be returned. For instance, if you set it to 0.1, 10% (1/10) of the rows will be retu\n- fraction will be a threshold for a random-generated value (as you can see here), so the resulting dataset size can vary\n\n\n### If you want exact number of samples then we can use limit\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:52:56 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eThe fraction parameter represents the aproximate fraction of the dataset that will be returned. For instance, if you set it to 0.1, 10% (1/10) of the rows will be retu\u003c/li\u003e\n\u003cli\u003efraction will be a threshold for a random-generated value (as you can see here), so the resulting dataset size can vary\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eIf you want exact number of samples then we can use limit\u003c/h3\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533620821090_1779683761",
+      "id": "20180807-054701_576367673",
+      "dateCreated": "Aug 7, 2018 5:47:01 AM",
+      "dateStarted": "Aug 7, 2018 5:52:56 AM",
+      "dateFinished": "Aug 7, 2018 5:52:56 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val noOfSamples \u003d 100\n\ndf.sample(withReplacement, fraction, seed).limit(noOfSamples)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 7, 2018 5:53:14 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "noOfSamples: Int \u003d 100\nres228: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533621176419_852773875",
+      "id": "20180807-055256_330821616",
+      "dateCreated": "Aug 7, 2018 5:52:56 AM",
+      "dateStarted": "Aug 7, 2018 5:53:00 AM",
+      "dateFinished": "Aug 7, 2018 5:53:00 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -599,9 +1460,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1533488532761_-1598279220",
-      "id": "20180805-170212_1074519358",
-      "dateCreated": "Aug 5, 2018 5:02:12 PM",
+      "jobName": "paragraph_1533621179996_1063231524",
+      "id": "20180807-055259_357420550",
+      "dateCreated": "Aug 7, 2018 5:52:59 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
