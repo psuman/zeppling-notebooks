@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n### Today we are going to cover building expressions\n- which are the bread and butter of Spark’s structured operations. \n- We also review working with a variety of different kinds of data\n           - Booleans\n           - Numbers\n           - Strings\n           - Dates\n           - timestamps\n           - Handling null\n           - Complex types\n           - User-defined functions\n\n#### API Links\n\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spa\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Column\n\n#### SQL functions\n\n- org.apache.spark.sql.functions contains a variety of functions for a range of different data types.\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions",
+      "text": "%md\n\n### Building expressions and working with different types of data\n\n- which are the bread and butter of Spark’s structured operations. \n- We also review working with a variety of different kinds of data\n           - Booleans\n           - Numbers\n           - Strings\n           - Dates\n           - timestamps\n           - Handling null\n           - Complex types\n           - User-defined functions\n\n#### API Links\n\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spa\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Column\n\n#### SQL functions\n\n- org.apache.spark.sql.functions contains a variety of functions for a range of different data types.\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions",
       "user": "anonymous",
-      "dateUpdated": "Aug 8, 2018 3:42:32 AM",
+      "dateUpdated": "Aug 8, 2018 5:02:52 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -13,8 +13,8 @@
           "editOnDblClick": true
         },
         "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -25,7 +25,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003ch3\u003eToday we are going to cover building expressions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003ewhich are the bread and butter of Spark’s structured operations.\u003c/li\u003e\n\u003cli\u003eWe also review working with a variety of different kinds of data\u003cpre\u003e\u003ccode\u003e   - Booleans\n   - Numbers\n   - Strings\n   - Dates\n   - timestamps\n   - Handling null\n   - Complex types\n   - User-defined functions\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eAPI Links\u003c/h4\u003e\n\u003cul\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spa\u003c/li\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Column\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eSQL functions\u003c/h4\u003e\n\u003cul\u003e\n\u003cli\u003eorg.apache.spark.sql.functions contains a variety of functions for a range of different data types.\u003c/li\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions\u003c/li\u003e\n\u003c/ul\u003e\n"
+            "data": "\u003ch3\u003ebuilding expressions and working with different types of data\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003ewhich are the bread and butter of Spark’s structured operations.\u003c/li\u003e\n\u003cli\u003eWe also review working with a variety of different kinds of data\u003cpre\u003e\u003ccode\u003e   - Booleans\n   - Numbers\n   - Strings\n   - Dates\n   - timestamps\n   - Handling null\n   - Complex types\n   - User-defined functions\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eAPI Links\u003c/h4\u003e\n\u003cul\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spa\u003c/li\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Column\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eSQL functions\u003c/h4\u003e\n\u003cul\u003e\n\u003cli\u003eorg.apache.spark.sql.functions contains a variety of functions for a range of different data types.\u003c/li\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions\u003c/li\u003e\n\u003c/ul\u003e\n"
           }
         ]
       },
@@ -33,8 +33,8 @@
       "jobName": "paragraph_1533699503335_291883990",
       "id": "20180808-033823_1744307158",
       "dateCreated": "Aug 8, 2018 3:38:23 AM",
-      "dateStarted": "Aug 8, 2018 3:42:32 AM",
-      "dateFinished": "Aug 8, 2018 3:42:32 AM",
+      "dateStarted": "Aug 8, 2018 5:02:44 AM",
+      "dateFinished": "Aug 8, 2018 5:02:44 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -392,6 +392,506 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\n\n### Working with Numbers\n\n- When working with big data, the second most common task you will do after filtering things is counting things\n\n\n#### let’s imagine that we found out that we mis-recorded the quantity in our retail dataset and the true quantity is equal to (the current quantity * the unit price)2 + 5.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:33:42 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eWorking with Numbers\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eWhen working with big data, the second most common task you will do after filtering things is counting things\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533701108903_1026652577",
+      "id": "20180808-040508_2089107573",
+      "dateCreated": "Aug 8, 2018 4:05:08 AM",
+      "dateStarted": "Aug 8, 2018 4:32:40 AM",
+      "dateFinished": "Aug 8, 2018 4:32:40 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{expr, pow}\n\nval fabricatedQuantity \u003d pow((col(\"Quantity\") * col(\"UnitPrice\")), 2) + 5\n\ndf.select(expr(\"CustomerId\"), fabricatedQuantity.alias(\"realQuantity\"))\n  .show(5)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:39:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{expr, pow}\nfabricatedQuantity: org.apache.spark.sql.Column \u003d (POWER((Quantity * UnitPrice), 2.0) + 5)\n+----------+------------------+\n|CustomerId|      realQuantity|\n+----------+------------------+\n|   17850.0|239.08999999999997|\n|   17850.0|          418.7156|\n|   17850.0|             489.0|\n|   17850.0|          418.7156|\n|   17850.0|          418.7156|\n+----------+------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533702760408_2085075423",
+      "id": "20180808-043240_848820343",
+      "dateCreated": "Aug 8, 2018 4:32:40 AM",
+      "dateStarted": "Aug 8, 2018 4:39:50 AM",
+      "dateFinished": "Aug 8, 2018 4:39:51 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.selectExpr(  \"CustomerId\",  \"(POWER((Quantity * UnitPrice), 2.0) + 5) as realQuantity\")\n  .show(2)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:41:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+------------------+\n|CustomerId|      realQuantity|\n+----------+------------------+\n|   17850.0|239.08999999999997|\n|   17850.0|          418.7156|\n+----------+------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703122740_-1057667964",
+      "id": "20180808-043842_288160318",
+      "dateCreated": "Aug 8, 2018 4:38:42 AM",
+      "dateStarted": "Aug 8, 2018 4:41:43 AM",
+      "dateFinished": "Aug 8, 2018 4:41:50 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{round, bround}\n\ndf.select(round(col(\"UnitPrice\"), 1).alias(\"rounded\"), col(\"UnitPrice\"))\n  .show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:44:14 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{round, bround}\n+-------+---------+\n|rounded|UnitPrice|\n+-------+---------+\n|    2.6|     2.55|\n|    3.4|     3.39|\n|    2.8|     2.75|\n|    3.4|     3.39|\n|    3.4|     3.39|\n+-------+---------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703303341_606464618",
+      "id": "20180808-044143_213506087",
+      "dateCreated": "Aug 8, 2018 4:41:43 AM",
+      "dateStarted": "Aug 8, 2018 4:44:14 AM",
+      "dateFinished": "Aug 8, 2018 4:44:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### correlation of two columns\n\n- we can see the Pearson correlation coefficient for two columns to see if cheaper things are typically bought in greater quantities. \n- We can do this through a function as well as through the DataFrame statistic methods:",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:45:28 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003ecorrelation of two columns\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003ewe can see the Pearson correlation coefficient for two columns to see if cheaper things are typically bought in greater quantities.\u003c/li\u003e\n\u003cli\u003eWe can do this through a function as well as through the DataFrame statistic methods:\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703454817_1425023099",
+      "id": "20180808-044414_1097207121",
+      "dateCreated": "Aug 8, 2018 4:44:14 AM",
+      "dateStarted": "Aug 8, 2018 4:45:28 AM",
+      "dateFinished": "Aug 8, 2018 4:45:28 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{corr}\n\ndf.stat.corr(\"Quantity\", \"UnitPrice\")\ndf.select(corr(\"Quantity\", \"UnitPrice\"))\n  .show(5)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:47:48 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.corr\nres52: Double \u003d -0.04112314436835551\n+-------------------------+\n|corr(Quantity, UnitPrice)|\n+-------------------------+\n|     -0.04112314436835551|\n+-------------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703530343_1519979456",
+      "id": "20180808-044530_411900469",
+      "dateCreated": "Aug 8, 2018 4:45:30 AM",
+      "dateStarted": "Aug 8, 2018 4:47:41 AM",
+      "dateFinished": "Aug 8, 2018 4:47:43 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### compute summary statistics \n\n- We can use the describe method to calculate summary statistics. \n- This will take all numeric columns and calculate the count, mean, standard deviation, min, and max",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:49:31 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003ecompute summary statistics\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eWe can use the describe method to calculate summary statistics.\u003c/li\u003e\n\u003cli\u003eThis will take all numeric columns and calculate the count, mean, standard deviation, min, and max\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703528472_2053626181",
+      "id": "20180808-044528_80462706",
+      "dateCreated": "Aug 8, 2018 4:45:28 AM",
+      "dateStarted": "Aug 8, 2018 4:49:31 AM",
+      "dateFinished": "Aug 8, 2018 4:49:31 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.describe().show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:49:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-----------------+------------------+--------------------+------------------+------------------+------------------+--------------+\n|summary|        InvoiceNo|         StockCode|         Description|          Quantity|         UnitPrice|        CustomerID|       Country|\n+-------+-----------------+------------------+--------------------+------------------+------------------+------------------+--------------+\n|  count|             3108|              3108|                3098|              3108|              3108|              1968|          3108|\n|   mean| 536516.684944841|27834.304044117645|                null| 8.627413127413128| 4.151946589446603|15661.388719512195|          null|\n| stddev|72.89447869788873|17407.897548583845|                null|26.371821677029203|15.638659854603892|1854.4496996893627|          null|\n|    min|           536365|             10002| 4 PURPLE FLOCK D...|               -24|               0.0|           12431.0|     Australia|\n|    max|          C536548|              POST|ZINC WILLIE WINKI...|               600|            607.49|           18229.0|United Kingdom|\n+-------+-----------------+------------------+--------------------+------------------+------------------+------------------+--------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703771818_1860419292",
+      "id": "20180808-044931_1417871983",
+      "dateCreated": "Aug 8, 2018 4:49:31 AM",
+      "dateStarted": "Aug 8, 2018 4:49:45 AM",
+      "dateFinished": "Aug 8, 2018 4:49:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- There are a number of statistical functions available in the StatFunctions Package (accessible using stat as we see in the code block below). \n- These are DataFrame methods that you can use to calculate a variety of different things. For instance, you can calculate either exact or approximate quantiles, cross-tabs, frequent item pairs",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:55:21 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cul\u003e\n\u003cli\u003eThere are a number of statistical functions available in the StatFunctions Package (accessible using stat as we see in the code block below).\u003c/li\u003e\n\u003cli\u003eThese are DataFrame methods that you can use to calculate a variety of different things. For instance, you can calculate either exact or approximate quantiles of your data using the approxQuantile method\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703785618_-717767764",
+      "id": "20180808-044945_813492401",
+      "dateCreated": "Aug 8, 2018 4:49:45 AM",
+      "dateStarted": "Aug 8, 2018 4:52:12 AM",
+      "dateFinished": "Aug 8, 2018 4:52:12 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val quantileProbs \u003d Array(0.5)\nval relError \u003d 0.05\n\ndf.stat.approxQuantile(\"UnitPrice\", quantileProbs, relError)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:54:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "quantileProbs: Array[Double] \u003d Array(0.5)\nrelError: Double \u003d 0.05\nres62: Array[Double] \u003d Array(2.51)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533703932763_1397951637",
+      "id": "20180808-045212_2046651678",
+      "dateCreated": "Aug 8, 2018 4:52:12 AM",
+      "dateStarted": "Aug 8, 2018 4:54:52 AM",
+      "dateFinished": "Aug 8, 2018 4:54:52 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.stat.crosstab(\"StockCode\", \"Quantity\").show()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:55:24 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n|StockCode_Quantity| -1|-10|-12| -2|-24| -3| -4| -5| -6| -7|  1| 10|100| 11| 12|120|128| 13| 14|144| 15| 16| 17| 18| 19|192|  2| 20|200| 21|216| 22| 23| 24| 25|252| 27| 28|288|  3| 30| 32| 33| 34| 36|384|  4| 40|432| 47| 48|480|  5| 50| 56|  6| 60|600| 64|  7| 70| 72|  8| 80|  9| 96|\n+------------------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n|             22578|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             21327|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  2|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22064|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             21080|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|\n|             22219|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  3|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             21908|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22818|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|           15056BL|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             72817|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22545|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22988|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|\n|             22274|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             20750|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  2|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|            82616C|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             21703|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22899|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  2|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|\n|             22379|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  2|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22422|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  2|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22769|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n|             22585|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|  1|  0|  0|  1|  0|  0|  0|  0|  0|  0|  0|  0|  0|  0|\n+------------------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533704010156_-482408183",
+      "id": "20180808-045330_2079500363",
+      "dateCreated": "Aug 8, 2018 4:53:30 AM",
+      "dateStarted": "Aug 8, 2018 4:55:24 AM",
+      "dateFinished": "Aug 8, 2018 4:55:32 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.stat.freqItems(Seq(\"StockCode\", \"Quantity\")).show()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:59:01 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+--------------------+\n| StockCode_freqItems|  Quantity_freqItems|\n+--------------------+--------------------+\n|[90214E, 20728, 2...|[200, 128, 23, 32...|\n+--------------------+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533704124613_308436342",
+      "id": "20180808-045524_341382899",
+      "dateCreated": "Aug 8, 2018 4:55:24 AM",
+      "dateStarted": "Aug 8, 2018 4:59:01 AM",
+      "dateFinished": "Aug 8, 2018 4:59:02 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#### we can also add a unique ID to each row by using the function monotonically_increasing_id. This function generates a unique value for each row, starting with 0",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:59:57 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533704383271_817442168",
+      "id": "20180808-045943_868444833",
+      "dateCreated": "Aug 8, 2018 4:59:43 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.monotonically_increasing_id\ndf.select(monotonically_increasing_id()).show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:59:20 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.monotonically_increasing_id\n+-----------------------------+\n|monotonically_increasing_id()|\n+-----------------------------+\n|                            0|\n|                            1|\n+-----------------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533704150476_-1820966575",
+      "id": "20180808-045550_395538635",
+      "dateCreated": "Aug 8, 2018 4:55:50 AM",
+      "dateStarted": "Aug 8, 2018 4:59:20 AM",
+      "dateFinished": "Aug 8, 2018 4:59:21 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "user": "anonymous",
       "config": {},
       "settings": {
@@ -399,9 +899,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1533701108903_1026652577",
-      "id": "20180808-040508_2089107573",
-      "dateCreated": "Aug 8, 2018 4:05:08 AM",
+      "jobName": "paragraph_1533704360903_-1786969109",
+      "id": "20180808-045920_1697200325",
+      "dateCreated": "Aug 8, 2018 4:59:20 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
