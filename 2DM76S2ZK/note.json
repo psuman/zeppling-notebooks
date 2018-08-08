@@ -77,7 +77,7 @@
     {
       "text": "val df \u003d spark.read.format(\"csv\")\n              .option(\"inferSchema\", true)\n              .option(\"header\", true)\n              .load(\"/tmp/2010-12-01.csv\")\n\ndf.printSchema()\ndf.createOrReplaceTempView(\"dfTable\")",
       "user": "anonymous",
-      "dateUpdated": "Aug 8, 2018 3:48:09 AM",
+      "dateUpdated": "Aug 8, 2018 5:19:05 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -105,8 +105,8 @@
       "jobName": "paragraph_1533699963705_-1664349105",
       "id": "20180808-034603_1257291904",
       "dateCreated": "Aug 8, 2018 3:46:03 AM",
-      "dateStarted": "Aug 8, 2018 3:48:09 AM",
-      "dateFinished": "Aug 8, 2018 3:49:59 AM",
+      "dateStarted": "Aug 8, 2018 5:19:05 PM",
+      "dateFinished": "Aug 8, 2018 5:19:34 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -892,6 +892,333 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\n### Working with Strings\n- String manipulation shows up in nearly every data flow.\n- You might be manipulating log files performing regular expression extraction or substitution, or checking for simple string existence, or making all strings uppercase or lowercase.\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:16:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eWorking with Strings\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eString manipulation shows up in nearly every data flow.\u003c/li\u003e\n\u003cli\u003eYou might be manipulating log files performing regular expression extraction or substitution, or checking for simple string existence, or making all strings uppercase or lowercase.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533704360903_-1786969109",
+      "id": "20180808-045920_1697200325",
+      "dateCreated": "Aug 8, 2018 4:59:20 AM",
+      "dateStarted": "Aug 8, 2018 5:16:39 PM",
+      "dateFinished": "Aug 8, 2018 5:16:41 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{initcap}\n\ndf.select(initcap(col(\"Description\"))).show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:22:07 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.initcap\n+--------------------+\n|initcap(Description)|\n+--------------------+\n|White Hanging Hea...|\n| White Metal Lantern|\n|Cream Cupid Heart...|\n|Knitted Union Fla...|\n|Red Woolly Hottie...|\n|Set 7 Babushka Ne...|\n|Glass Star Froste...|\n|Hand Warmer Union...|\n|Hand Warmer Red P...|\n|Assorted Colour B...|\n|Poppy\u0027s Playhouse...|\n|Poppy\u0027s Playhouse...|\n|Feltcraft Princes...|\n|Ivory Knitted Mug...|\n|Box Of 6 Assorted...|\n|Box Of Vintage Ji...|\n|Box Of Vintage Al...|\n|Home Building Blo...|\n|Love Building Blo...|\n|Recipe Box With M...|\n+--------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533748599079_1806988243",
+      "id": "20180808-171639_1766752602",
+      "dateCreated": "Aug 8, 2018 5:16:39 PM",
+      "dateStarted": "Aug 8, 2018 5:22:08 PM",
+      "dateFinished": "Aug 8, 2018 5:22:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{lower, upper}\n\ndf.select(col(\"Description\"), \n         lower(col(\"Description\")), \n         upper(col(\"Description\")))\n  .show(5)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:28:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{lower, upper}\n+--------------------+--------------------+--------------------+\n|         Description|  lower(Description)|  upper(Description)|\n+--------------------+--------------------+--------------------+\n|WHITE HANGING HEA...|white hanging hea...|WHITE HANGING HEA...|\n| WHITE METAL LANTERN| white metal lantern| WHITE METAL LANTERN|\n|CREAM CUPID HEART...|cream cupid heart...|CREAM CUPID HEART...|\n|KNITTED UNION FLA...|knitted union fla...|KNITTED UNION FLA...|\n|RED WOOLLY HOTTIE...|red woolly hottie...|RED WOOLLY HOTTIE...|\n+--------------------+--------------------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533748655725_-1396923117",
+      "id": "20180808-171735_1516067376",
+      "dateCreated": "Aug 8, 2018 5:17:35 PM",
+      "dateStarted": "Aug 8, 2018 5:28:39 PM",
+      "dateFinished": "Aug 8, 2018 5:28:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Regular Expressions\n- Spark takes advantage of the complete power of Java regular expressions. \n- There are two key functions in Spark that you’ll need in order to perform regular expression tasks: regexp_extract and regexp_replace. \n- These functions extract values and replace values, respectively.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:23:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eRegular Expressions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSpark takes advantage of the complete power of Java regular expressions.\u003c/li\u003e\n\u003cli\u003eThere are two key functions in Spark that you’ll need in order to perform regular expression tasks: regexp_extract and regexp_replace.\u003c/li\u003e\n\u003cli\u003eThese functions extract values and replace values, respectively.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533748894375_-237168983",
+      "id": "20180808-172134_644103233",
+      "dateCreated": "Aug 8, 2018 5:21:34 PM",
+      "dateStarted": "Aug 8, 2018 5:23:44 PM",
+      "dateFinished": "Aug 8, 2018 5:23:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.regexp_replace\n\nval simpleColors \u003d Seq(\"black\", \"white\", \"red\", \"green\", \"blue\")\n\nval regexString \u003d simpleColors.map(_.toUpperCase).mkString(\"|\")\n\n\ndf.select(regexp_replace(col(\"Description\"), regexString, \"COLOR\").alias(\"color_clean\"), col(\"Description\"))\n  .show(5)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:29:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.regexp_replace\nsimpleColors: Seq[String] \u003d List(black, white, red, green, blue)\nregexString: String \u003d BLACK|WHITE|RED|GREEN|BLUE\n+--------------------+--------------------+\n|         color_clean|         Description|\n+--------------------+--------------------+\n|COLOR HANGING HEA...|WHITE HANGING HEA...|\n| COLOR METAL LANTERN| WHITE METAL LANTERN|\n|CREAM CUPID HEART...|CREAM CUPID HEART...|\n|KNITTED UNION FLA...|KNITTED UNION FLA...|\n|COLOR WOOLLY HOTT...|RED WOOLLY HOTTIE...|\n+--------------------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533749024469_1326429766",
+      "id": "20180808-172344_1943299747",
+      "dateCreated": "Aug 8, 2018 5:23:44 PM",
+      "dateStarted": "Aug 8, 2018 5:29:09 PM",
+      "dateFinished": "Aug 8, 2018 5:29:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.regexp_extract\n\nval colors \u003d Seq(\"black\", \"white\", \"red\", \"green\", \"blue\")\n\nval regexString \u003d colors.map(_.toUpperCase).mkString(\"(\", \"|\", \")\")\n\ndf.select(regexp_extract(col(\"Description\"), regexString, 1).alias(\"color_clean\"), col(\"Description\"))\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:38:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.regexp_extract\ncolors: Seq[String] \u003d List(black, white, red, green, blue)\nregexString: String \u003d (BLACK|WHITE|RED|GREEN|BLUE)\n+-----------+--------------------+\n|color_clean|         Description|\n+-----------+--------------------+\n|      WHITE|WHITE HANGING HEA...|\n|      WHITE| WHITE METAL LANTERN|\n+-----------+--------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533749767504_1729903835",
+      "id": "20180808-173607_303721850",
+      "dateCreated": "Aug 8, 2018 5:36:07 PM",
+      "dateStarted": "Aug 8, 2018 5:38:38 PM",
+      "dateFinished": "Aug 8, 2018 5:38:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Translate\n- Replace given characters with other characters. Building this as a regular expression could be tedious, so Spark also provides the translate function to replace these values. \n- This is done at the character level and will replace all instances of a character with the indexed character in the replacement string:",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:32:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eTranslate\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eReplace given characters with other characters. Building this as a regular expression could be tedious, so Spark also provides the translate function to replace these values.\u003c/li\u003e\n\u003cli\u003eThis is done at the character level and will replace all instances of a character with the indexed character in the replacement string:\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533749302989_418236827",
+      "id": "20180808-172822_1310241818",
+      "dateCreated": "Aug 8, 2018 5:28:22 PM",
+      "dateStarted": "Aug 8, 2018 5:32:15 PM",
+      "dateFinished": "Aug 8, 2018 5:32:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.translate\n\ndf.select(translate(col(\"Description\"), \"LEET\", \"1337\"), col(\"Description\"))\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:35:17 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.translate\n+----------------------------------+--------------------+\n|translate(Description, LEET, 1337)|         Description|\n+----------------------------------+--------------------+\n|              WHI73 HANGING H3A...|WHITE HANGING HEA...|\n|               WHI73 M37A1 1AN73RN| WHITE METAL LANTERN|\n+----------------------------------+--------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533749535033_-597379321",
+      "id": "20180808-173215_1718544066",
+      "dateCreated": "Aug 8, 2018 5:32:15 PM",
+      "dateStarted": "Aug 8, 2018 5:35:17 PM",
+      "dateFinished": "Aug 8, 2018 5:35:18 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Sometimes, rather than extracting values, we simply want to check for their existence. We can do this with the contains method on each column. This will return a Boolean declaring whether the value you specify is in the column’s string\n\nval containsBlack \u003d col(\"Description\").contains(\"BLACK\")\nval containsWhite \u003d col(\"Description\").contains(\"WHITE\")\n\ndf.withColumn(\"hasSimpleColor\", containsBlack.or(containsWhite))\n  .where(\"hasSimpleColor\")\n  .select(\"Description\")\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:43:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "containsBlack: org.apache.spark.sql.Column \u003d contains(Description, BLACK)\ncontainsWhite: org.apache.spark.sql.Column \u003d contains(Description, WHITE)\n+--------------------+\n|         Description|\n+--------------------+\n|WHITE HANGING HEA...|\n| WHITE METAL LANTERN|\n+--------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533749971702_1342970679",
+      "id": "20180808-173931_678801730",
+      "dateCreated": "Aug 8, 2018 5:39:31 PM",
+      "dateStarted": "Aug 8, 2018 5:42:32 PM",
+      "dateFinished": "Aug 8, 2018 5:42:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "user": "anonymous",
       "config": {},
       "settings": {
@@ -899,9 +1226,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1533704360903_-1786969109",
-      "id": "20180808-045920_1697200325",
-      "dateCreated": "Aug 8, 2018 4:59:20 AM",
+      "jobName": "paragraph_1533750126134_-1117898086",
+      "id": "20180808-174206_594577046",
+      "dateCreated": "Aug 8, 2018 5:42:06 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
