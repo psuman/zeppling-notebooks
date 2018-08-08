@@ -930,9 +930,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "import org.apache.spark.sql.functions.{initcap}\n\ndf.select(initcap(col(\"Description\"))).show()\n",
+      "text": "import org.apache.spark.sql.functions.{initcap}\n\ndf.select(initcap(col(\"Description\")))\n  .show(2)\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 8, 2018 5:22:07 PM",
+      "dateUpdated": "Aug 8, 2018 5:44:41 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -952,7 +952,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.sql.functions.initcap\n+--------------------+\n|initcap(Description)|\n+--------------------+\n|White Hanging Hea...|\n| White Metal Lantern|\n|Cream Cupid Heart...|\n|Knitted Union Fla...|\n|Red Woolly Hottie...|\n|Set 7 Babushka Ne...|\n|Glass Star Froste...|\n|Hand Warmer Union...|\n|Hand Warmer Red P...|\n|Assorted Colour B...|\n|Poppy\u0027s Playhouse...|\n|Poppy\u0027s Playhouse...|\n|Feltcraft Princes...|\n|Ivory Knitted Mug...|\n|Box Of 6 Assorted...|\n|Box Of Vintage Ji...|\n|Box Of Vintage Al...|\n|Home Building Blo...|\n|Love Building Blo...|\n|Recipe Box With M...|\n+--------------------+\nonly showing top 20 rows\n\n"
+            "data": "import org.apache.spark.sql.functions.initcap\n+--------------------+\n|initcap(Description)|\n+--------------------+\n|White Hanging Hea...|\n| White Metal Lantern|\n+--------------------+\nonly showing top 2 rows\n\n"
           }
         ]
       },
@@ -960,8 +960,8 @@
       "jobName": "paragraph_1533748599079_1806988243",
       "id": "20180808-171639_1766752602",
       "dateCreated": "Aug 8, 2018 5:16:39 PM",
-      "dateStarted": "Aug 8, 2018 5:22:08 PM",
-      "dateFinished": "Aug 8, 2018 5:22:09 PM",
+      "dateStarted": "Aug 8, 2018 5:44:41 PM",
+      "dateFinished": "Aug 8, 2018 5:44:42 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -1219,6 +1219,1000 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\n\n### Working with Dates and Timestamps\n\n- Dates and times are a constant challenge in programming languages and databases. It’s always necessary to keep track of timezones and ensure that formats are correct and valid\n- Another common “gotcha” is that Spark’s TimestampType class supports only second-level precision, which means that if you’re going to be working with milliseconds or microseconds, you’ll need to work around this problem by potentially operating on them as longs.\n- Any more precision when coercing to a TimestampType will be removed.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:48:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eWorking with Dates and Timestamps\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eDates and times are a constant challenge in programming languages and databases. It’s always necessary to keep track of timezones and ensure that formats are correct and valid\u003c/li\u003e\n\u003cli\u003eAnother common “gotcha” is that Spark’s TimestampType class supports only second-level precision, which means that if you’re going to be working with milliseconds or microseconds, you’ll need to work around this problem by potentially operating on them as longs.\u003c/li\u003e\n\u003cli\u003eAny more precision when coercing to a TimestampType will be removed.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533750126134_-1117898086",
+      "id": "20180808-174206_594577046",
+      "dateCreated": "Aug 8, 2018 5:42:06 PM",
+      "dateStarted": "Aug 8, 2018 5:48:33 PM",
+      "dateFinished": "Aug 8, 2018 5:48:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{current_date, current_timestamp}\n\nval dateDF \u003d spark.range(10)\n                  .withColumn(\"today\", current_date())\n                  .withColumn(\"now\", current_timestamp())\n\ndateDF.show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:58:07 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{current_date, current_timestamp}\ndateDF: org.apache.spark.sql.DataFrame \u003d [id: bigint, today: date ... 1 more field]\n+---+----------+--------------------+\n| id|     today|                 now|\n+---+----------+--------------------+\n|  0|2018-08-08|2018-08-08 17:58:...|\n|  1|2018-08-08|2018-08-08 17:58:...|\n|  2|2018-08-08|2018-08-08 17:58:...|\n|  3|2018-08-08|2018-08-08 17:58:...|\n|  4|2018-08-08|2018-08-08 17:58:...|\n|  5|2018-08-08|2018-08-08 17:58:...|\n|  6|2018-08-08|2018-08-08 17:58:...|\n|  7|2018-08-08|2018-08-08 17:58:...|\n|  8|2018-08-08|2018-08-08 17:58:...|\n|  9|2018-08-08|2018-08-08 17:58:...|\n+---+----------+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533750513127_-49666574",
+      "id": "20180808-174833_20103431",
+      "dateCreated": "Aug 8, 2018 5:48:33 PM",
+      "dateStarted": "Aug 8, 2018 5:58:07 PM",
+      "dateFinished": "Aug 8, 2018 5:58:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{date_add, date_sub}\n\ndateDF.select(date_sub(col(\"today\"), 5), date_add(col(\"today\"), 5))\n      .show(1)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 5:59:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{date_add, date_sub}\n+------------------+------------------+\n|date_sub(today, 5)|date_add(today, 5)|\n+------------------+------------------+\n|        2018-08-03|        2018-08-13|\n+------------------+------------------+\nonly showing top 1 row\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751063617_-117785742",
+      "id": "20180808-175743_2069058742",
+      "dateCreated": "Aug 8, 2018 5:57:43 PM",
+      "dateStarted": "Aug 8, 2018 5:59:01 PM",
+      "dateFinished": "Aug 8, 2018 5:59:02 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{datediff, months_between, to_date}\n\ndateDF.withColumn(\"week_ago\", date_sub(col(\"today\"), 7))\n      .select(datediff(col(\"week_ago\"), col(\"today\")))\n      .show(1)\n      \ndateDF.select(to_date(lit(\"2016-01-01\")).alias(\"start\"), to_date(lit(\"2017-05-22\")).alias(\"end\"))\n      .select(months_between(col(\"start\"), col(\"end\"))).show(1)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:02:21 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{datediff, months_between, to_date}\n+-------------------------+\n|datediff(week_ago, today)|\n+-------------------------+\n|                       -7|\n+-------------------------+\nonly showing top 1 row\n\n+--------------------------+\n|months_between(start, end)|\n+--------------------------+\n|              -16.67741935|\n+--------------------------+\nonly showing top 1 row\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751141456_-1498362198",
+      "id": "20180808-175901_1081094711",
+      "dateCreated": "Aug 8, 2018 5:59:01 PM",
+      "dateStarted": "Aug 8, 2018 6:02:21 PM",
+      "dateFinished": "Aug 8, 2018 6:02:22 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.to_date\n\nval dateFormat \u003d \"yyyy-dd-MM\"\n\nval cleanDateDF \u003d spark.range(1).select(\n    to_date(lit(\"2017-12-11\"), dateFormat).alias(\"date\"),\n    to_date(lit(\"2017-20-12\"), dateFormat).alias(\"date2\"))\n\ncleanDateDF.show()\n\ncleanDateDF.select(to_timestamp(col(\"date\"), dateFormat)).show()\n\ncleanDateDF.filter(col(\"date2\") \u003e lit(\"2017-12-12\")).show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:04:46 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.to_date\ndateFormat: String \u003d yyyy-dd-MM\ncleanDateDF: org.apache.spark.sql.DataFrame \u003d [date: date, date2: date]\n+----------+----------+\n|      date|     date2|\n+----------+----------+\n|2017-11-12|2017-12-20|\n+----------+----------+\n\n+----------------------------------+\n|to_timestamp(`date`, \u0027yyyy-dd-MM\u0027)|\n+----------------------------------+\n|               2017-11-12 00:00:00|\n+----------------------------------+\n\n+----------+----------+\n|      date|     date2|\n+----------+----------+\n|2017-11-12|2017-12-20|\n+----------+----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751341219_-993127240",
+      "id": "20180808-180221_1830107198",
+      "dateCreated": "Aug 8, 2018 6:02:21 PM",
+      "dateStarted": "Aug 8, 2018 6:04:46 PM",
+      "dateFinished": "Aug 8, 2018 6:04:47 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Working with Nulls in Data\n\n- As a best practice, you should always use nulls to represent missing or empty data in your DataFrames. \n- Spark can optimize working with null values more than it can if you use empty strings or other values. \n- The primary way of interacting with null values, at DataFrame scale, is to use the .na subpackage on a DataFrame\n- There are two things you can do with null values: you can explicitly drop nulls or you can fill them with a value (globally or on a per-column basis)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:07:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eWorking with Nulls in Data\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eAs a best practice, you should always use nulls to represent missing or empty data in your DataFrames.\u003c/li\u003e\n\u003cli\u003eSpark can optimize working with null values more than it can if you use empty strings or other values.\u003c/li\u003e\n\u003cli\u003eThe primary way of interacting with null values, at DataFrame scale, is to use the .na subpackage on a DataFrame\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751414733_-1703065582",
+      "id": "20180808-180334_1884825442",
+      "dateCreated": "Aug 8, 2018 6:03:34 PM",
+      "dateStarted": "Aug 8, 2018 6:06:38 PM",
+      "dateFinished": "Aug 8, 2018 6:06:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Coalesce\n- Spark includes a function to allow you to select the first non-null value from a set of columns by using the coalesce function.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:07:53 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eCoalesce\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSpark includes a function to allow you to select the first non-null value from a set of columns by using the coalesce function.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751598243_477350763",
+      "id": "20180808-180638_1842534143",
+      "dateCreated": "Aug 8, 2018 6:06:38 PM",
+      "dateStarted": "Aug 8, 2018 6:07:53 PM",
+      "dateFinished": "Aug 8, 2018 6:07:54 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.coalesce\n\ndf.select(coalesce(col(\"Description\"), col(\"CustomerId\")))\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:08:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.coalesce\n+---------------------------------+\n|coalesce(Description, CustomerId)|\n+---------------------------------+\n|             WHITE HANGING HEA...|\n|              WHITE METAL LANTERN|\n+---------------------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751673775_135632443",
+      "id": "20180808-180753_1888946655",
+      "dateCreated": "Aug 8, 2018 6:07:53 PM",
+      "dateStarted": "Aug 8, 2018 6:08:43 PM",
+      "dateFinished": "Aug 8, 2018 6:08:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### drop\n\n- The simplest function is drop, which removes rows that contain nulls. The default is to drop any row in which any value is null:",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:09:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003edrop\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eThe simplest function is drop, which removes rows that contain nulls. The default is to drop any row in which any value is null:\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751713402_-2076258335",
+      "id": "20180808-180833_273067693",
+      "dateCreated": "Aug 8, 2018 6:08:33 PM",
+      "dateStarted": "Aug 8, 2018 6:09:19 PM",
+      "dateFinished": "Aug 8, 2018 6:09:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\ndf.na.drop()\n\ndf.na.drop(\"any\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:13:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res94: Long \u003d 3108\nres96: org.apache.spark.sql.DataFrame \u003d [InvoiceNo: string, StockCode: string ... 6 more fields]\nres98: Long \u003d 3108\nres100: org.apache.spark.sql.DataFrame \u003d [InvoiceNo: string, StockCode: string ... 6 more fields]\n+---------+---------+--------------------+--------+-------------------+---------+----------+--------------+\n|InvoiceNo|StockCode|         Description|Quantity|        InvoiceDate|UnitPrice|CustomerID|       Country|\n+---------+---------+--------------------+--------+-------------------+---------+----------+--------------+\n|   536365|   85123A|WHITE HANGING HEA...|       6|2010-12-01 08:26:00|     2.55|   17850.0|United Kingdom|\n|   536365|    71053| WHITE METAL LANTERN|       6|2010-12-01 08:26:00|     3.39|   17850.0|United Kingdom|\n|   536365|   84406B|CREAM CUPID HEART...|       8|2010-12-01 08:26:00|     2.75|   17850.0|United Kingdom|\n|   536365|   84029G|KNITTED UNION FLA...|       6|2010-12-01 08:26:00|     3.39|   17850.0|United Kingdom|\n|   536365|   84029E|RED WOOLLY HOTTIE...|       6|2010-12-01 08:26:00|     3.39|   17850.0|United Kingdom|\n|   536365|    22752|SET 7 BABUSHKA NE...|       2|2010-12-01 08:26:00|     7.65|   17850.0|United Kingdom|\n|   536365|    21730|GLASS STAR FROSTE...|       6|2010-12-01 08:26:00|     4.25|   17850.0|United Kingdom|\n|   536366|    22633|HAND WARMER UNION...|       6|2010-12-01 08:28:00|     1.85|   17850.0|United Kingdom|\n|   536366|    22632|HAND WARMER RED P...|       6|2010-12-01 08:28:00|     1.85|   17850.0|United Kingdom|\n|   536367|    84879|ASSORTED COLOUR B...|      32|2010-12-01 08:34:00|     1.69|   13047.0|United Kingdom|\n|   536367|    22745|POPPY\u0027S PLAYHOUSE...|       6|2010-12-01 08:34:00|      2.1|   13047.0|United Kingdom|\n|   536367|    22748|POPPY\u0027S PLAYHOUSE...|       6|2010-12-01 08:34:00|      2.1|   13047.0|United Kingdom|\n|   536367|    22749|FELTCRAFT PRINCES...|       8|2010-12-01 08:34:00|     3.75|   13047.0|United Kingdom|\n|   536367|    22310|IVORY KNITTED MUG...|       6|2010-12-01 08:34:00|     1.65|   13047.0|United Kingdom|\n|   536367|    84969|BOX OF 6 ASSORTED...|       6|2010-12-01 08:34:00|     4.25|   13047.0|United Kingdom|\n|   536367|    22623|BOX OF VINTAGE JI...|       3|2010-12-01 08:34:00|     4.95|   13047.0|United Kingdom|\n|   536367|    22622|BOX OF VINTAGE AL...|       2|2010-12-01 08:34:00|     9.95|   13047.0|United Kingdom|\n|   536367|    21754|HOME BUILDING BLO...|       3|2010-12-01 08:34:00|     5.95|   13047.0|United Kingdom|\n|   536367|    21755|LOVE BUILDING BLO...|       3|2010-12-01 08:34:00|     5.95|   13047.0|United Kingdom|\n|   536367|    21777|RECIPE BOX WITH M...|       4|2010-12-01 08:34:00|     7.95|   13047.0|United Kingdom|\n+---------+---------+--------------------+--------+-------------------+---------+----------+--------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751759421_-994451697",
+      "id": "20180808-180919_896116768",
+      "dateCreated": "Aug 8, 2018 6:09:19 PM",
+      "dateStarted": "Aug 8, 2018 6:10:08 PM",
+      "dateFinished": "Aug 8, 2018 6:10:11 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### fill\n- Using the fill function, you can fill one or more columns with a set of values. This can be done by specifying a map—that is a particular value and a set of columns.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:11:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003efill\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eUsing the fill function, you can fill one or more columns with a set of values. This can be done by specifying a map—that is a particular value and a set of columns.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751772839_-631218087",
+      "id": "20180808-180932_344151389",
+      "dateCreated": "Aug 8, 2018 6:09:32 PM",
+      "dateStarted": "Aug 8, 2018 6:11:20 PM",
+      "dateFinished": "Aug 8, 2018 6:11:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.na.fill(\"All Null values become this string\")\n\ndf.na.fill(5, Seq(\"StockCode\", \"InvoiceNo\"))\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:13:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res103: org.apache.spark.sql.DataFrame \u003d [InvoiceNo: string, StockCode: string ... 6 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751880071_758615889",
+      "id": "20180808-181120_1257710302",
+      "dateCreated": "Aug 8, 2018 6:11:20 PM",
+      "dateStarted": "Aug 8, 2018 6:11:23 PM",
+      "dateFinished": "Aug 8, 2018 6:11:24 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val fillColValues \u003d Map(\"StockCode\" -\u003e 5, \"Description\" -\u003e \"No Value\")\ndf.na.fill(fillColValues)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:14:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "fillColValues: scala.collection.immutable.Map[String,Any] \u003d Map(StockCode -\u003e 5, Description -\u003e No Value)\nres104: org.apache.spark.sql.DataFrame \u003d [InvoiceNo: string, StockCode: string ... 6 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533751883791_-2111241481",
+      "id": "20180808-181123_803185772",
+      "dateCreated": "Aug 8, 2018 6:11:23 PM",
+      "dateStarted": "Aug 8, 2018 6:14:24 PM",
+      "dateFinished": "Aug 8, 2018 6:14:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### replace\n\n- In addition to replacing null values like we did with drop and fill, there are more flexible options that you can use with more than just null values. \n- Probably the most common use case is to replace all values in a certain column according to their current value",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:15:22 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003ereplace\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eIn addition to replacing null values like we did with drop and fill, there are more flexible options that you can use with more than just null values.\u003c/li\u003e\n\u003cli\u003eProbably the most common use case is to replace all values in a certain column according to their current value\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752063938_1276966247",
+      "id": "20180808-181423_430408989",
+      "dateCreated": "Aug 8, 2018 6:14:23 PM",
+      "dateStarted": "Aug 8, 2018 6:15:22 PM",
+      "dateFinished": "Aug 8, 2018 6:15:22 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.na.replace(\"Description\", Map(\"\" -\u003e \"UNKNOWN\"))",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:16:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res105: org.apache.spark.sql.DataFrame \u003d [InvoiceNo: string, StockCode: string ... 6 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752122581_1190044168",
+      "id": "20180808-181522_1423954258",
+      "dateCreated": "Aug 8, 2018 6:15:22 PM",
+      "dateStarted": "Aug 8, 2018 6:16:25 PM",
+      "dateFinished": "Aug 8, 2018 6:16:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Working with Complex Types\n\n- Complex types can help you organize and structure your data in ways that make more sense for the problem that you are hoping to solve. \n- There are three kinds of complex types: structs, arrays, and maps.\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:16:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eWorking with Complex Types\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eComplex types can help you organize and structure your data in ways that make more sense for the problem that you are hoping to solve.\u003c/li\u003e\n\u003cli\u003eThere are three kinds of complex types: structs, arrays, and maps.\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752185144_301567012",
+      "id": "20180808-181625_1764604166",
+      "dateCreated": "Aug 8, 2018 6:16:25 PM",
+      "dateStarted": "Aug 8, 2018 6:16:59 PM",
+      "dateFinished": "Aug 8, 2018 6:16:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.struct\n\nval complexDF \u003d df.select(struct(\"Description\", \"InvoiceNo\").alias(\"complex\"))\ncomplexDF.show(5)\n\ncomplexDF.select(\"complex.Description\")\n         .show(2)\n         \ncomplexDF.select(col(\"complex\").getField(\"Description\"))\n         .show(2)\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:18:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.struct\ncomplexDF: org.apache.spark.sql.DataFrame \u003d [complex: struct\u003cDescription: string, InvoiceNo: string\u003e]\n+--------------------+\n|             complex|\n+--------------------+\n|[WHITE HANGING HE...|\n|[WHITE METAL LANT...|\n|[CREAM CUPID HEAR...|\n|[KNITTED UNION FL...|\n|[RED WOOLLY HOTTI...|\n+--------------------+\nonly showing top 5 rows\n\n+--------------------+\n|         Description|\n+--------------------+\n|WHITE HANGING HEA...|\n| WHITE METAL LANTERN|\n+--------------------+\nonly showing top 2 rows\n\n+--------------------+\n| complex.Description|\n+--------------------+\n|WHITE HANGING HEA...|\n| WHITE METAL LANTERN|\n+--------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752219258_-134307519",
+      "id": "20180808-181659_1875397982",
+      "dateCreated": "Aug 8, 2018 6:16:59 PM",
+      "dateStarted": "Aug 8, 2018 6:18:28 PM",
+      "dateFinished": "Aug 8, 2018 6:18:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Arrays\n\ndf.select(split(col(\"Description\"), \" \").alias(\"array_col\"))\n  .selectExpr(\"array_col[0]\")\n  .show(2)\n \n// Array length\n\nimport org.apache.spark.sql.functions.size\n\ndf.select(size(split(col(\"Description\"), \" \"))).show(2) // shows 5 and 3\n\n// Array Contains\n\nimport org.apache.spark.sql.functions.array_contains\n\ndf.select(array_contains(split(col(\"Description\"), \" \"), \"WHITE\"))\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:21:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------+\n|array_col[0]|\n+------------+\n|       WHITE|\n|       WHITE|\n+------------+\nonly showing top 2 rows\n\nimport org.apache.spark.sql.functions.size\n+---------------------------+\n|size(split(Description,  ))|\n+---------------------------+\n|                          5|\n|                          3|\n+---------------------------+\nonly showing top 2 rows\n\nimport org.apache.spark.sql.functions.array_contains\n+--------------------------------------------+\n|array_contains(split(Description,  ), WHITE)|\n+--------------------------------------------+\n|                                        true|\n|                                        true|\n+--------------------------------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752262331_1037899786",
+      "id": "20180808-181742_375816969",
+      "dateCreated": "Aug 8, 2018 6:17:42 PM",
+      "dateStarted": "Aug 8, 2018 6:21:02 PM",
+      "dateFinished": "Aug 8, 2018 6:21:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### explode\n- The explode function takes a column that consists of arrays and creates one row (with the rest of the values duplicated) per value in the array\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43856464-3c546a28-9b66-11e8-96f2-f03b46c9d9d3.png)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:23:40 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eexplode\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eThe explode function takes a column that consists of arrays and creates one row (with the rest of the values duplicated) per value in the array\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43856464-3c546a28-9b66-11e8-96f2-f03b46c9d9d3.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752370663_949007466",
+      "id": "20180808-181930_795261618",
+      "dateCreated": "Aug 8, 2018 6:19:30 PM",
+      "dateStarted": "Aug 8, 2018 6:23:40 PM",
+      "dateFinished": "Aug 8, 2018 6:23:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{split, explode}\n\ndf.withColumn(\"splitted\", split(col(\"Description\"), \" \"))\n  .withColumn(\"exploded\", explode(col(\"splitted\")))\n  .select(\"Description\", \"InvoiceNo\", \"exploded\")\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:24:31 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{split, explode}\n+--------------------+---------+--------+\n|         Description|InvoiceNo|exploded|\n+--------------------+---------+--------+\n|WHITE HANGING HEA...|   536365|   WHITE|\n|WHITE HANGING HEA...|   536365| HANGING|\n+--------------------+---------+--------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752620593_2145144179",
+      "id": "20180808-182340_1380356564",
+      "dateCreated": "Aug 8, 2018 6:23:40 PM",
+      "dateStarted": "Aug 8, 2018 6:24:31 PM",
+      "dateFinished": "Aug 8, 2018 6:24:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Maps\n\n- Maps are created by using the map function and key-value pairs of columns. \n- You then can select them just like you might select from an array:",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:25:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eMaps\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eMaps are created by using the map function and key-value pairs of columns.\u003c/li\u003e\n\u003cli\u003eYou then can select them just like you might select from an array:\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752671316_419758256",
+      "id": "20180808-182431_771260482",
+      "dateCreated": "Aug 8, 2018 6:24:31 PM",
+      "dateStarted": "Aug 8, 2018 6:25:15 PM",
+      "dateFinished": "Aug 8, 2018 6:25:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.map\n\ndf.select(map(col(\"Description\"), col(\"InvoiceNo\")).alias(\"complex_map\"))\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:25:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.map\n+--------------------+\n|         complex_map|\n+--------------------+\n|[WHITE HANGING HE...|\n|[WHITE METAL LANT...|\n+--------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752715540_814788108",
+      "id": "20180808-182515_42352513",
+      "dateCreated": "Aug 8, 2018 6:25:15 PM",
+      "dateStarted": "Aug 8, 2018 6:25:25 PM",
+      "dateFinished": "Aug 8, 2018 6:25:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.select(map(col(\"Description\"), col(\"InvoiceNo\")).alias(\"complex_map\"))\n  .selectExpr(\"complex_map[\u0027WHITE METAL LANTERN\u0027]\")\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:25:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------------------+\n|complex_map[WHITE METAL LANTERN]|\n+--------------------------------+\n|                            null|\n|                          536365|\n+--------------------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752725508_-1653760835",
+      "id": "20180808-182525_1267036351",
+      "dateCreated": "Aug 8, 2018 6:25:25 PM",
+      "dateStarted": "Aug 8, 2018 6:25:59 PM",
+      "dateFinished": "Aug 8, 2018 6:26:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.select(map(col(\"Description\"), col(\"InvoiceNo\")).alias(\"complex_map\"))\n  .selectExpr(\"explode(complex_map)\")\n  .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:39:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+------+\n|                 key| value|\n+--------------------+------+\n|WHITE HANGING HEA...|536365|\n| WHITE METAL LANTERN|536365|\n+--------------------+------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752759516_-1742591859",
+      "id": "20180808-182559_1132766071",
+      "dateCreated": "Aug 8, 2018 6:25:59 PM",
+      "dateStarted": "Aug 8, 2018 6:39:59 PM",
+      "dateFinished": "Aug 8, 2018 6:40:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### User-Defined Functions\n- One of the most powerful things that you can do in Spark is define your own functions. \n- These user-defined functions (UDFs) make it possible for you to write your own custom transformations using Python or Scala and even use external libraries. \n- UDFs can take and return one or more columns as input. \n- Spark UDFs are incredibly powerful because you can write them in several different programming languages; you do not need to create them in an esoteric format or domain-specific language. \n- They’re just functions that operate on the data, record by record. \n- By default, these functions are registered as temporary functions to be used in that specific SparkSession or Context.\n\n\n#### Although you can write UDFs in Scala, Python, or Java, there are performance considerations that you should be aware of.\n\n- we need to register them with Spark so that we can use them on all of our worker machines.\n- Spark will serialize the function on the driver and transfer it over the network to all executor processes. This happens regardless of language.\n- When you use the function, there are essentially two different things that occur. If the function is written in Scala or Java, you can use it within the Java Virtual Machine (JVM). \n- This means that there will be little performance penalty aside from the fact that you can’t take advantage of code generation capabilities that Spark has for built-in functions\n\n- If the function is written in Python, something quite different happens. \n- Spark starts a Python process on the worker, serializes all of the data to a format that Python can understand (remember, it was in the JVM earlier), executes the function row by row on that data in the Python process, and then finally returns the results of the row operations to the JVM and Spark\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43856959-9398a38e-9b67-11e8-9efb-2896f449832e.png)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:33:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eUser-Defined Functions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eOne of the most powerful things that you can do in Spark is define your own functions.\u003c/li\u003e\n\u003cli\u003eThese user-defined functions (UDFs) make it possible for you to write your own custom transformations using Python or Scala and even use external libraries.\u003c/li\u003e\n\u003cli\u003eUDFs can take and return one or more columns as input.\u003c/li\u003e\n\u003cli\u003eSpark UDFs are incredibly powerful because you can write them in several different programming languages; you do not need to create them in an esoteric format or domain-specific language.\u003c/li\u003e\n\u003cli\u003eThey’re just functions that operate on the data, record by record.\u003c/li\u003e\n\u003cli\u003eBy default, these functions are registered as temporary functions to be used in that specific SparkSession or Context.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch5\u003eAlthough you can write UDFs in Scala, Python, or Java, there are performance considerations that you should be aware of.\u003c/h5\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cp\u003ewe need to register them with Spark so that we can use them on all of our worker machines.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eSpark will serialize the function on the driver and transfer it over the network to all executor processes. This happens regardless of language.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eWhen you use the function, there are essentially two different things that occur. If the function is written in Scala or Java, you can use it within the Java Virtual Machine (JVM).\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThis means that there will be little performance penalty aside from the fact that you can’t take advantage of code generation capabilities that Spark has for built-in functions\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eIf the function is written in Python, something quite different happens.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eSpark starts a Python process on the worker, serializes all of the data to a format that Python can understand (remember, it was in the JVM earlier), executes the function row by row on that data in the Python process, and then finally returns the results of the row operations to the JVM and Spark\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43856959-9398a38e-9b67-11e8-9efb-2896f449832e.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533752782662_-361096476",
+      "id": "20180808-182622_633582405",
+      "dateCreated": "Aug 8, 2018 6:26:22 PM",
+      "dateStarted": "Aug 8, 2018 6:33:15 PM",
+      "dateFinished": "Aug 8, 2018 6:33:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.udf\n\nval udfExampleDF \u003d spark.range(5).toDF(\"num\")\n\ndef power3(number:Double):Double \u003d number * number * number\n\npower3(2.0)\n\nval power3udf \u003d udf(power3(_:Double):Double)\n\nudfExampleDF.select(power3udf(col(\"num\"))).show()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:34:37 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533753019704_-247859351",
+      "id": "20180808-183019_2012627590",
+      "dateCreated": "Aug 8, 2018 6:30:19 PM",
+      "dateStarted": "Aug 8, 2018 6:34:37 PM",
+      "dateFinished": "Aug 8, 2018 6:34:56 PM",
+      "status": "ABORT",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- At this juncture, we can use this only as a DataFrame function. \n- That is to say, we can’t use it within a string expression, only on an expression.\n- However, we can also register this UDF as a Spark SQL function. This is valuable because it makes it simple to use this function within SQL as well as across languages.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:36:06 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533753348759_1789858957",
+      "id": "20180808-183548_1545292187",
+      "dateCreated": "Aug 8, 2018 6:35:48 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.udf.register(\"power3\", power3(_:Double):Double)\nudfExampleDF.selectExpr(\"power3(num)\").show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 6:36:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533753277161_1944219886",
+      "id": "20180808-183437_550719054",
+      "dateCreated": "Aug 8, 2018 6:34:37 PM",
+      "dateStarted": "Aug 8, 2018 6:36:14 PM",
+      "dateFinished": "Aug 8, 2018 6:36:20 PM",
+      "status": "ABORT",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "user": "anonymous",
       "config": {},
       "settings": {
@@ -1226,9 +2220,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1533750126134_-1117898086",
-      "id": "20180808-174206_594577046",
-      "dateCreated": "Aug 8, 2018 5:42:06 PM",
+      "jobName": "paragraph_1533753374404_-610742673",
+      "id": "20180808-183614_1371248162",
+      "dateCreated": "Aug 8, 2018 6:36:14 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
