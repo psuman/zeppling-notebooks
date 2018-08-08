@@ -1,0 +1,423 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n### Today we are going to cover building expressions\n- which are the bread and butter of Spark’s structured operations. \n- We also review working with a variety of different kinds of data\n           - Booleans\n           - Numbers\n           - Strings\n           - Dates\n           - timestamps\n           - Handling null\n           - Complex types\n           - User-defined functions\n\n#### API Links\n\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spa\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Column\n\n#### SQL functions\n\n- org.apache.spark.sql.functions contains a variety of functions for a range of different data types.\n- http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:42:32 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eToday we are going to cover building expressions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003ewhich are the bread and butter of Spark’s structured operations.\u003c/li\u003e\n\u003cli\u003eWe also review working with a variety of different kinds of data\u003cpre\u003e\u003ccode\u003e   - Booleans\n   - Numbers\n   - Strings\n   - Dates\n   - timestamps\n   - Handling null\n   - Complex types\n   - User-defined functions\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eAPI Links\u003c/h4\u003e\n\u003cul\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spa\u003c/li\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Column\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eSQL functions\u003c/h4\u003e\n\u003cul\u003e\n\u003cli\u003eorg.apache.spark.sql.functions contains a variety of functions for a range of different data types.\u003c/li\u003e\n\u003cli\u003ehttp://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.functions\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533699503335_291883990",
+      "id": "20180808-033823_1744307158",
+      "dateCreated": "Aug 8, 2018 3:38:23 AM",
+      "dateStarted": "Aug 8, 2018 3:42:32 AM",
+      "dateFinished": "Aug 8, 2018 3:42:32 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nif [ -e /tmp/2010-12-01.csv ]\nthen\n    rm -f /tmp/2010-12-01.csv\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/retail-data/by-day/2010-12-01.csv -O /tmp/2010-12-01.csv\n\nhdfs dfs -rm -f /tmp/2010-12-01.csv\n\n# Move downloaded JSON file from local storage to HDFS\nhdfs dfs -put /tmp/2010-12-01.csv /tmp",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:46:03 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2018-08-08 03:46:04--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/retail-data/by-day/2010-12-01.csv\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 275001 (269K) [text/plain]\nSaving to: ‘/tmp/2010-12-01.csv’\n\n     0K .......... .......... .......... .......... .......... 18% 1.57M 0s\n    50K .......... .......... .......... .......... .......... 37% 3.52M 0s\n   100K .......... .......... .......... .......... .......... 55% 11.4M 0s\n   150K .......... .......... .......... .......... .......... 74% 4.35M 0s\n   200K .......... .......... .......... .......... .......... 93% 13.2M 0s\n   250K .......... ........                                   100% 14.3M\u003d0.07s\n\n2018-08-08 03:46:05 (4.00 MB/s) - ‘/tmp/2010-12-01.csv’ saved [275001/275001]\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533699601496_-18269596",
+      "id": "20180808-034001_1314893295",
+      "dateCreated": "Aug 8, 2018 3:40:01 AM",
+      "dateStarted": "Aug 8, 2018 3:46:03 AM",
+      "dateFinished": "Aug 8, 2018 3:46:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val df \u003d spark.read.format(\"csv\")\n              .option(\"inferSchema\", true)\n              .option(\"header\", true)\n              .load(\"/tmp/2010-12-01.csv\")\n\ndf.printSchema()\ndf.createOrReplaceTempView(\"dfTable\")",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:48:09 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "df: org.apache.spark.sql.DataFrame \u003d [InvoiceNo: string, StockCode: string ... 6 more fields]\nroot\n |-- InvoiceNo: string (nullable \u003d true)\n |-- StockCode: string (nullable \u003d true)\n |-- Description: string (nullable \u003d true)\n |-- Quantity: integer (nullable \u003d true)\n |-- InvoiceDate: timestamp (nullable \u003d true)\n |-- UnitPrice: double (nullable \u003d true)\n |-- CustomerID: double (nullable \u003d true)\n |-- Country: string (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533699963705_-1664349105",
+      "id": "20180808-034603_1257291904",
+      "dateCreated": "Aug 8, 2018 3:46:03 AM",
+      "dateStarted": "Aug 8, 2018 3:48:09 AM",
+      "dateFinished": "Aug 8, 2018 3:49:59 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Working with Booleans\n\n- Booleans are essential when it comes to data analysis because they are the foundation for all filtering. \n- Boolean statements consist of four elements\n               - and\n               - or\n               - true\n               - false ",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:52:10 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eWorking with Booleans\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eBooleans are essential when it comes to data analysis because they are the foundation for all filtering.\u003c/li\u003e\n\u003cli\u003eBoolean statements consist of four elements\u003cpre\u003e\u003ccode\u003e       - and\n       - or\n       - true\n       - false\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533700089664_-1252066850",
+      "id": "20180808-034809_96701658",
+      "dateCreated": "Aug 8, 2018 3:48:09 AM",
+      "dateStarted": "Aug 8, 2018 3:52:10 AM",
+      "dateFinished": "Aug 8, 2018 3:52:10 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.where(col(\"InvoiceNo\").equalTo(536365))\n  .select(\"InvoiceNo\", \"Description\")\n  .show(5)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:54:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+--------------------+\n|InvoiceNo|         Description|\n+---------+--------------------+\n|   536365|WHITE HANGING HEA...|\n|   536365| WHITE METAL LANTERN|\n|   536365|CREAM CUPID HEART...|\n|   536365|KNITTED UNION FLA...|\n|   536365|RED WOOLLY HOTTIE...|\n+---------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533700329708_748748380",
+      "id": "20180808-035209_683229902",
+      "dateCreated": "Aug 8, 2018 3:52:09 AM",
+      "dateStarted": "Aug 8, 2018 3:53:53 AM",
+      "dateFinished": "Aug 8, 2018 3:53:55 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.where(col(\"InvoiceNo\") \u003d\u003d\u003d 536365)\n  .select(\"InvoiceNo\", \"Description\")\n  .show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:55:28 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+--------------------+\n|InvoiceNo|         Description|\n+---------+--------------------+\n|   536365|WHITE HANGING HEA...|\n|   536365| WHITE METAL LANTERN|\n|   536365|CREAM CUPID HEART...|\n|   536365|KNITTED UNION FLA...|\n|   536365|RED WOOLLY HOTTIE...|\n+---------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533700432083_-1047858773",
+      "id": "20180808-035352_177115352",
+      "dateCreated": "Aug 8, 2018 3:53:52 AM",
+      "dateStarted": "Aug 8, 2018 3:55:28 AM",
+      "dateFinished": "Aug 8, 2018 3:55:29 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.where(\"InvoiceNo \u003d 536365\")\n  .select(\"InvoiceNo\", \"Description\")\n  .show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:56:25 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+--------------------+\n|InvoiceNo|         Description|\n+---------+--------------------+\n|   536365|WHITE HANGING HEA...|\n|   536365| WHITE METAL LANTERN|\n|   536365|CREAM CUPID HEART...|\n|   536365|KNITTED UNION FLA...|\n|   536365|RED WOOLLY HOTTIE...|\n+---------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533700510524_1120075396",
+      "id": "20180808-035510_1965763827",
+      "dateCreated": "Aug 8, 2018 3:55:10 AM",
+      "dateStarted": "Aug 8, 2018 3:56:26 AM",
+      "dateFinished": "Aug 8, 2018 3:56:27 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.where(\"InvoiceNo \u003c\u003e 536365\")\n  .select(\"InvoiceNo\", \"Description\")\n  .show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 3:57:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+--------------------+\n|InvoiceNo|         Description|\n+---------+--------------------+\n|   536366|HAND WARMER UNION...|\n|   536366|HAND WARMER RED P...|\n|   536367|ASSORTED COLOUR B...|\n|   536367|POPPY\u0027S PLAYHOUSE...|\n|   536367|POPPY\u0027S PLAYHOUSE...|\n+---------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533700585920_-1566333369",
+      "id": "20180808-035625_160960952",
+      "dateCreated": "Aug 8, 2018 3:56:25 AM",
+      "dateStarted": "Aug 8, 2018 3:57:07 AM",
+      "dateFinished": "Aug 8, 2018 3:57:08 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val priceFilter \u003d col(\"UnitPrice\") \u003e 600\n\nval descFilter \u003d col(\"Description\").contains(\"POSTAGE\")\n\ndf.where(col(\"StockCode\").isin(\"DOT\"))\n  .where(priceFilter.or(descFilter))\n  .show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:00:42 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "priceFilter: org.apache.spark.sql.Column \u003d (UnitPrice \u003e 600)\ndescFilter: org.apache.spark.sql.Column \u003d contains(Description, POSTAGE)\n+---------+---------+--------------+--------+-------------------+---------+----------+--------------+\n|InvoiceNo|StockCode|   Description|Quantity|        InvoiceDate|UnitPrice|CustomerID|       Country|\n+---------+---------+--------------+--------+-------------------+---------+----------+--------------+\n|   536544|      DOT|DOTCOM POSTAGE|       1|2010-12-01 14:32:00|   569.77|      null|United Kingdom|\n|   536592|      DOT|DOTCOM POSTAGE|       1|2010-12-01 17:06:00|   607.49|      null|United Kingdom|\n+---------+---------+--------------+--------+-------------------+---------+----------+--------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533700596412_-1925658194",
+      "id": "20180808-035636_985458280",
+      "dateCreated": "Aug 8, 2018 3:56:36 AM",
+      "dateStarted": "Aug 8, 2018 4:00:42 AM",
+      "dateFinished": "Aug 8, 2018 4:00:44 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val dotCodeFilter \u003d col(\"StockCode\") \u003d\u003d\u003d \"DOT\"\n\nval priceFilter \u003d col(\"UnitPrice\") \u003e 600\n\nval descFilter \u003d col(\"Description\").contains(\"POSTAGE\")\n\ndf.withColumn(\"isExpensive\", dotCodeFilter.and(priceFilter.or(descFilter)))\n  .where(\"isExpensive\")\n  .select(\"unitPrice\", \"isExpensive\")\n  .show(5)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:03:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "dotCodeFilter: org.apache.spark.sql.Column \u003d (StockCode \u003d DOT)\npriceFilter: org.apache.spark.sql.Column \u003d (UnitPrice \u003e 600)\ndescFilter: org.apache.spark.sql.Column \u003d contains(Description, POSTAGE)\n+---------+-----------+\n|unitPrice|isExpensive|\n+---------+-----------+\n|   569.77|       true|\n|   607.49|       true|\n+---------+-----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533700825687_-618532075",
+      "id": "20180808-040025_1110802486",
+      "dateCreated": "Aug 8, 2018 4:00:25 AM",
+      "dateStarted": "Aug 8, 2018 4:03:51 AM",
+      "dateFinished": "Aug 8, 2018 4:03:52 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{expr, not, col}\n\ndf.withColumn(\"isExpensive\", not(col(\"UnitPrice\").leq(250)))\n  .filter(\"isExpensive\")\n  .select(\"Description\", \"UnitPrice\")\n  .show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 8, 2018 4:05:25 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{expr, not, col}\n+--------------+---------+\n|   Description|UnitPrice|\n+--------------+---------+\n|DOTCOM POSTAGE|   569.77|\n|DOTCOM POSTAGE|   607.49|\n+--------------+---------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533701030904_-862387901",
+      "id": "20180808-040350_2087761205",
+      "dateCreated": "Aug 8, 2018 4:03:50 AM",
+      "dateStarted": "Aug 8, 2018 4:05:25 AM",
+      "dateFinished": "Aug 8, 2018 4:05:26 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533701108903_1026652577",
+      "id": "20180808-040508_2089107573",
+      "dateCreated": "Aug 8, 2018 4:05:08 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "working_with_different_types_of_data",
+  "id": "2DM76S2ZK",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
