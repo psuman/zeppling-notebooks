@@ -2137,7 +2137,7 @@
     {
       "text": "import org.apache.spark.sql.functions.udf\n\nval udfExampleDF \u003d spark.range(5).toDF(\"num\")\n\ndef power3(number:Double):Double \u003d number * number * number\n\npower3(2.0)\n\nval power3udf \u003d udf(power3(_:Double):Double)\n\nudfExampleDF.select(power3udf(col(\"num\"))).show()\n\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 8, 2018 6:34:37 PM",
+      "dateUpdated": "Aug 8, 2018 6:40:51 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -2152,13 +2152,22 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.udf\nudfExampleDF: org.apache.spark.sql.DataFrame \u003d [num: bigint]\npower3: (number: Double)Double\nres152: Double \u003d 8.0\npower3udf: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction1\u003e,DoubleType,Some(List(DoubleType)))\n+--------+\n|UDF(num)|\n+--------+\n|     0.0|\n|     1.0|\n|     8.0|\n|    27.0|\n|    64.0|\n+--------+\n\n"
+          }
+        ]
+      },
       "apps": [],
       "jobName": "paragraph_1533753019704_-247859351",
       "id": "20180808-183019_2012627590",
       "dateCreated": "Aug 8, 2018 6:30:19 PM",
-      "dateStarted": "Aug 8, 2018 6:34:37 PM",
-      "dateFinished": "Aug 8, 2018 6:34:56 PM",
-      "status": "ABORT",
+      "dateStarted": "Aug 8, 2018 6:40:51 PM",
+      "dateFinished": "Aug 8, 2018 6:41:21 PM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -2189,7 +2198,7 @@
     {
       "text": "spark.udf.register(\"power3\", power3(_:Double):Double)\nudfExampleDF.selectExpr(\"power3(num)\").show(2)\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 8, 2018 6:36:14 PM",
+      "dateUpdated": "Aug 8, 2018 6:42:25 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -2203,13 +2212,22 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res156: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction1\u003e,DoubleType,Some(List(DoubleType)))\n+-------------------------------+\n|UDF:power3(cast(num as double))|\n+-------------------------------+\n|                            0.0|\n|                            1.0|\n+-------------------------------+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
       "apps": [],
       "jobName": "paragraph_1533753277161_1944219886",
       "id": "20180808-183437_550719054",
       "dateCreated": "Aug 8, 2018 6:34:37 PM",
-      "dateStarted": "Aug 8, 2018 6:36:14 PM",
-      "dateFinished": "Aug 8, 2018 6:36:20 PM",
-      "status": "ABORT",
+      "dateStarted": "Aug 8, 2018 6:42:25 PM",
+      "dateFinished": "Aug 8, 2018 6:42:29 PM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
