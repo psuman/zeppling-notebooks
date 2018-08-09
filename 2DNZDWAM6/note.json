@@ -655,9 +655,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n\n### Window Functions\n\n",
+      "text": "%md\n\n### Window Functions\n\n- You can also use window functions to carry out some unique aggregations by either computing some aggregation on a specific “window” of data, which you define by using a reference to the current data. \n- This window specification determines which rows will be passed in to this function. \n- A group-by takes data, and every row can go only into one grouping.\n- A window function calculates a return value for every input row of a table based on a group of rows, called a frame. \n- Each row can fall into one or more frames. A common use case is to take a look at a rolling average of some value for which each row represents one day. \n- If you were to do this, each row would end up in seven different frames.\n- Spark supports three kinds of window functions: ranking functions, analytic functions, and aggregate functions.\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43879622-8a9c2e80-9bc2-11e8-80cb-a46b0644cc22.png))\n\n\n### What are Window Functions?\n\n- Before 1.4, there were two kinds of functions supported by Spark SQL that could be used to calculate a single return value. \n- Built-in functions or UDFs, such as substr or round, take values from a single row as input, and they generate a single return value for every input row.\n- Aggregate functions, such as SUM or MAX, operate on a group of rows and calculate a single return value for every group.\n- While these are both very useful in practice, there is still a wide range of operations that cannot be expressed using these types of functions alone. \n- Specifically, there was no way to both operate on a group of rows while still returning a single value for every input row. \n- This limitation makes it hard to conduct various data processing tasks like calculating a moving average, calculating a cumulative sum, or accessing the values of a row appearing before the current row. Fortunately for users of Spark SQL, window functions fill this gap.\n- At its core, a window function calculates a return value for every input row of a table based on a group of rows, called the Frame.\n- Every input row can have a unique frame associated with it.\n- This characteristic of window functions makes them more powerful than other functions and allows users to express various data processing tasks that are hard (if not impossible) to be expressed without window functions in a concise way. ",
       "user": "anonymous",
-      "dateUpdated": "Aug 9, 2018 5:20:26 AM",
+      "dateUpdated": "Aug 9, 2018 5:39:05 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -666,16 +666,79 @@
           "language": "markdown",
           "editOnDblClick": true
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eWindow Functions\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eYou can also use window functions to carry out some unique aggregations by either computing some aggregation on a specific “window” of data, which you define by using a reference to the current data.\u003c/li\u003e\n\u003cli\u003eThis window specification determines which rows will be passed in to this function.\u003c/li\u003e\n\u003cli\u003eA group-by takes data, and every row can go only into one grouping.\u003c/li\u003e\n\u003cli\u003eA window function calculates a return value for every input row of a table based on a group of rows, called a frame.\u003c/li\u003e\n\u003cli\u003eEach row can fall into one or more frames. A common use case is to take a look at a rolling average of some value for which each row represents one day.\u003c/li\u003e\n\u003cli\u003eIf you were to do this, each row would end up in seven different frames.\u003c/li\u003e\n\u003cli\u003eSpark supports three kinds of window functions: ranking functions, analytic functions, and aggregate functions.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43879622-8a9c2e80-9bc2-11e8-80cb-a46b0644cc22.png\" alt\u003d\"sv-image\" /\u003e)\u003c/p\u003e\n"
+          }
+        ]
+      },
       "apps": [],
       "jobName": "paragraph_1533791807921_-79650226",
       "id": "20180809-051647_467376410",
       "dateCreated": "Aug 9, 2018 5:16:47 AM",
+      "dateStarted": "Aug 9, 2018 5:24:21 AM",
+      "dateFinished": "Aug 9, 2018 5:24:25 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.{col, to_date}\nimport org.apache.spark.sql.expressions.Window\nimport org.apache.spark.sql.functions.col\nimport org.apache.spark.sql.functions.max\nimport org.apache.spark.sql.functions.{dense_rank, rank}\nimport org.apache.spark.sql.functions.col\n\n\nval dfWithDate \u003d df.withColumn(\"date\", to_date(col(\"InvoiceDate\"),  \"MM/d/yyyy H:mm\"))\n\n\nval windowSpec \u003d Window.partitionBy(\"CustomerId\", \"date\")\n                       .orderBy(col(\"Quantity\").desc)\n                       .rowsBetween(Window.unboundedPreceding, Window.currentRow)\n                       \nval maxPurchaseQuantity \u003d max(col(\"Quantity\")).over(windowSpec)\nval purchaseDenseRank \u003d dense_rank().over(windowSpec)\nval purchaseRank \u003d rank().over(windowSpec)\n\n\ndfWithDate.where(\"CustomerId IS NOT NULL\").orderBy(\"CustomerId\")\n          .select(col(\"CustomerId\"),\n                  col(\"date\"),\n                  col(\"Quantity\"),\n                  purchaseRank.alias(\"quantityRank\"),\n                  purchaseDenseRank.alias(\"quantityDenseRank\"),\n                  maxPurchaseQuantity.alias(\"maxPurchaseQuantity\"))\n          .show()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:40:37 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{col, to_date}\nimport org.apache.spark.sql.expressions.Window\nimport org.apache.spark.sql.functions.col\nimport org.apache.spark.sql.functions.max\nimport org.apache.spark.sql.functions.{dense_rank, rank}\nimport org.apache.spark.sql.functions.col\ndfWithDate: org.apache.spark.sql.DataFrame \u003d [InvoiceNo: string, StockCode: string ... 7 more fields]\nwindowSpec: org.apache.spark.sql.expressions.WindowSpec \u003d org.apache.spark.sql.expressions.WindowSpec@3b744d83\nmaxPurchaseQuantity: org.apache.spark.sql.Column \u003d max(Quantity) OVER (PARTITION BY CustomerId, date ORDER BY Quantity DESC NULLS LAST ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)\npurchaseDenseRank: org.apache.spark.sql.Column \u003d DENSE_RANK() OVER (PARTITION BY CustomerId, date ORDER BY Quantity DESC NULLS LAST ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)\npurchaseRank: org.apache.spark.sql.Column \u003d RANK() OVER (PARTITION BY CustomerId, date ORDER BY Quantity DESC NULLS LAST ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)\n+----------+----------+--------+------------+-----------------+-------------------+\n|CustomerId|      date|Quantity|quantityRank|quantityDenseRank|maxPurchaseQuantity|\n+----------+----------+--------+------------+-----------------+-------------------+\n|     12346|2011-01-18|   74215|           1|                1|              74215|\n|     12346|2011-01-18|  -74215|           2|                2|              74215|\n|     12347|2010-12-07|      36|           1|                1|                 36|\n|     12347|2010-12-07|      30|           2|                2|                 36|\n|     12347|2010-12-07|      24|           3|                3|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|      12|           4|                4|                 36|\n|     12347|2010-12-07|       6|          17|                5|                 36|\n|     12347|2010-12-07|       6|          17|                5|                 36|\n+----------+----------+--------+------------+-----------------+-------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533792261588_433819869",
+      "id": "20180809-052421_121046393",
+      "dateCreated": "Aug 9, 2018 5:24:21 AM",
+      "dateStarted": "Aug 9, 2018 5:40:38 AM",
+      "dateFinished": "Aug 9, 2018 5:41:27 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533793237821_357479243",
+      "id": "20180809-054037_948971086",
+      "dateCreated": "Aug 9, 2018 5:40:37 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
