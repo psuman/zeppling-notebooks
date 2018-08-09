@@ -206,9 +206,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "// Approximate count distinct\n\nimport org.apache.spark.sql.functions.approx_count_distinct\n\ndf.select(approx_count_distinct(\"StockCode\", 0.001))\n  .show() ",
+      "text": "// Approximate count distinct\n\nimport org.apache.spark.sql.functions.approx_count_distinct\n\ndf.select(approx_count_distinct(\"StockCode\", 0.01))\n  .show() ",
       "user": "anonymous",
-      "dateUpdated": "Aug 9, 2018 4:57:09 AM",
+      "dateUpdated": "Aug 9, 2018 5:03:06 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -221,20 +221,29 @@
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.approx_count_distinct\n+--------------------------------+\n|approx_count_distinct(StockCode)|\n+--------------------------------+\n|                            4079|\n+--------------------------------+\n\n"
+          }
+        ]
       },
       "apps": [],
       "jobName": "paragraph_1533790565215_-2040119371",
       "id": "20180809-045605_943229395",
       "dateCreated": "Aug 9, 2018 4:56:05 AM",
-      "dateStarted": "Aug 9, 2018 4:57:09 AM",
-      "status": "RUNNING",
-      "errorMessage": "",
+      "dateStarted": "Aug 9, 2018 5:03:08 AM",
+      "dateFinished": "Aug 9, 2018 5:04:04 AM",
+      "status": "ABORT",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// first and last\n\nimport org.apache.spark.sql.functions.{first, last}\n\ndf.select(first(\"StockCode\"), last(\"StockCode\"))\n  .show()\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 9, 2018 4:59:02 AM",
+      "dateUpdated": "Aug 9, 2018 5:05:20 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -247,18 +256,29 @@
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{first, last}\n+-----------------------+----------------------+\n|first(StockCode, false)|last(StockCode, false)|\n+-----------------------+----------------------+\n|                 85123A|                 22138|\n+-----------------------+----------------------+\n\n"
+          }
+        ]
       },
       "apps": [],
       "jobName": "paragraph_1533790629327_758082758",
       "id": "20180809-045709_1552211103",
       "dateCreated": "Aug 9, 2018 4:57:09 AM",
-      "status": "READY",
+      "dateStarted": "Aug 9, 2018 5:05:20 AM",
+      "dateFinished": "Aug 9, 2018 5:05:23 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// min and max\n\nimport org.apache.spark.sql.functions.{min, max}\n\ndf.select(min(\"Quantity\"), max(\"Quantity\"))\n  .show()",
       "user": "anonymous",
-      "dateUpdated": "Aug 9, 2018 5:00:55 AM",
+      "dateUpdated": "Aug 9, 2018 5:05:25 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -271,18 +291,29 @@
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{min, max}\n+-------------+-------------+\n|min(Quantity)|max(Quantity)|\n+-------------+-------------+\n|       -80995|        80995|\n+-------------+-------------+\n\n"
+          }
+        ]
       },
       "apps": [],
       "jobName": "paragraph_1533790709577_1600187542",
       "id": "20180809-045829_2010220777",
       "dateCreated": "Aug 9, 2018 4:58:29 AM",
-      "status": "READY",
+      "dateStarted": "Aug 9, 2018 5:05:25 AM",
+      "dateFinished": "Aug 9, 2018 5:05:26 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// sum\n\nimport org.apache.spark.sql.functions.sum\n\ndf.select(sum(\"Quantity\"))\n  .show() ",
       "user": "anonymous",
-      "dateUpdated": "Aug 9, 2018 5:01:45 AM",
+      "dateUpdated": "Aug 9, 2018 5:05:28 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -296,17 +327,28 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.sum\n+-------------+\n|sum(Quantity)|\n+-------------+\n|      5176450|\n+-------------+\n\n"
+          }
+        ]
+      },
       "apps": [],
       "jobName": "paragraph_1533790854038_-930673754",
       "id": "20180809-050054_1839605745",
       "dateCreated": "Aug 9, 2018 5:00:54 AM",
-      "status": "READY",
+      "dateStarted": "Aug 9, 2018 5:05:28 AM",
+      "dateFinished": "Aug 9, 2018 5:05:30 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "// sum distinct\n\nimport org.apache.spark.sql.functions.sumDistinct\n\ndf.select(sumDistinct(\"Quantity\"))\n  .show()",
       "user": "anonymous",
-      "dateUpdated": "Aug 9, 2018 5:01:51 AM",
+      "dateUpdated": "Aug 9, 2018 5:05:32 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -317,24 +359,323 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.sumDistinct\n+----------------------+\n|sum(DISTINCT Quantity)|\n+----------------------+\n|                 29310|\n+----------------------+\n\n"
+          }
+        ]
+      },
       "apps": [],
       "jobName": "paragraph_1533790901985_309833321",
       "id": "20180809-050141_858140344",
       "dateCreated": "Aug 9, 2018 5:01:41 AM",
-      "status": "READY",
+      "dateStarted": "Aug 9, 2018 5:05:32 AM",
+      "dateFinished": "Aug 9, 2018 5:05:43 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "// avg\n\nimport org.apache.spark.sql.functions.{sum, count, avg, expr}\n\ndf.select(count(\"Quantity\").alias(\"total_transactions\"),    \n          sum(\"Quantity\").alias(\"total_purchases\"),    \n          avg(\"Quantity\").alias(\"avg_purchases\"),    \n          expr(\"mean(Quantity)\").alias(\"mean_purchases\"))\n    .selectExpr(\"total_purchases/total_transactions\",    \n              \"avg_purchases\",    \n              \"mean_purchases\")\n    .show()\n  \n  \n",
       "user": "anonymous",
-      "config": {},
+      "dateUpdated": "Aug 9, 2018 5:09:22 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{sum, count, avg, expr}\n+--------------------------------------+----------------+----------------+\n|(total_purchases / total_transactions)|   avg_purchases|  mean_purchases|\n+--------------------------------------+----------------+----------------+\n|                      9.55224954743324|9.55224954743324|9.55224954743324|\n+--------------------------------------+----------------+----------------+\n\n"
+          }
+        ]
       },
       "apps": [],
       "jobName": "paragraph_1533790892995_-327710931",
       "id": "20180809-050132_178067035",
       "dateCreated": "Aug 9, 2018 5:01:32 AM",
+      "dateStarted": "Aug 9, 2018 5:09:22 AM",
+      "dateFinished": "Aug 9, 2018 5:09:23 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Variance and Standard deviation. Spark has both the formula for the sample standard deviation as well as the formula for the population standard deviation\n\nimport org.apache.spark.sql.functions.{var_pop, stddev_pop}\nimport org.apache.spark.sql.functions.{var_samp, stddev_samp}\n\ndf.select(var_pop(\"Quantity\"), var_samp(\"Quantity\"),  stddev_pop(\"Quantity\"), stddev_samp(\"Quantity\"))\n  .show()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:11:36 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{var_pop, stddev_pop}\nimport org.apache.spark.sql.functions.{var_samp, stddev_samp}\n+------------------+------------------+--------------------+---------------------+\n| var_pop(Quantity)|var_samp(Quantity)|stddev_pop(Quantity)|stddev_samp(Quantity)|\n+------------------+------------------+--------------------+---------------------+\n|47559.303646609354| 47559.39140929905|  218.08095663447864|   218.08115785023486|\n+------------------+------------------+--------------------+---------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791145459_-819255272",
+      "id": "20180809-050545_1993194406",
+      "dateCreated": "Aug 9, 2018 5:05:45 AM",
+      "dateStarted": "Aug 9, 2018 5:11:36 AM",
+      "dateFinished": "Aug 9, 2018 5:11:37 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// skewness and kurtosis. \n// Skewness measures the asymmetry of the values in your data around the mean, whereas kurtosis is a measure of the tail of data. These are both relevant specifically when modeling your data as a probability distribution of a random variable\n\nimport org.apache.spark.sql.functions.{skewness, kurtosis}\n\ndf.select(skewness(\"Quantity\"), kurtosis(\"Quantity\"))\n  .show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:12:28 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{skewness, kurtosis}\n+--------------------+------------------+\n|  skewness(Quantity)|kurtosis(Quantity)|\n+--------------------+------------------+\n|-0.26407557610527843|119768.05495536518|\n+--------------------+------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791496102_-843621979",
+      "id": "20180809-051136_1319555178",
+      "dateCreated": "Aug 9, 2018 5:11:36 AM",
+      "dateStarted": "Aug 9, 2018 5:12:28 AM",
+      "dateFinished": "Aug 9, 2018 5:12:30 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Covariance and Correlation\n\n//Correlation measures the Pearson correlation coefficient, which is scaled between –1 and +1. The covariance is scaled according to the inputs in the data.Like the var function, covariance can be calculated either as the sample covariance or the population covariance\n\nimport org.apache.spark.sql.functions.{corr, covar_pop, covar_samp}\n\ndf.select(corr(\"InvoiceNo\", \"Quantity\"), covar_samp(\"InvoiceNo\", \"Quantity\"), covar_pop(\"InvoiceNo\", \"Quantity\"))\n  .show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:13:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{corr, covar_pop, covar_samp}\n+-------------------------+-------------------------------+------------------------------+\n|corr(InvoiceNo, Quantity)|covar_samp(InvoiceNo, Quantity)|covar_pop(InvoiceNo, Quantity)|\n+-------------------------+-------------------------------+------------------------------+\n|     4.912186085637639E-4|             1052.7280543913773|            1052.7260778752732|\n+-------------------------+-------------------------------+------------------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791548614_-2022615203",
+      "id": "20180809-051228_678206087",
+      "dateCreated": "Aug 9, 2018 5:12:28 AM",
+      "dateStarted": "Aug 9, 2018 5:13:07 AM",
+      "dateFinished": "Aug 9, 2018 5:13:10 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Aggregating to Complex TypesIn Spark, you can perform aggregations not just of numerical values using formulas, you can also perform them on complex types. For example, we can collect a list of values present in a given column or only the unique values by collecting to a set\n// and perform aggregation on top of that\n\nimport org.apache.spark.sql.functions.{collect_set, collect_list}\n\ndf.agg(collect_set(\"Country\"), collect_list(\"Country\"))\n  .show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:14:10 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.{collect_set, collect_list}\n+--------------------+---------------------+\n|collect_set(Country)|collect_list(Country)|\n+--------------------+---------------------+\n|[Portugal, Italy,...| [United Kingdom, ...|\n+--------------------+---------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791587110_2053692125",
+      "id": "20180809-051307_453906030",
+      "dateCreated": "Aug 9, 2018 5:13:07 AM",
+      "dateStarted": "Aug 9, 2018 5:14:10 AM",
+      "dateFinished": "Aug 9, 2018 5:14:14 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Grouping\n\ndf.groupBy(\"InvoiceNo\", \"CustomerId\").count().show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:14:44 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+----------+-----+\n|InvoiceNo|CustomerId|count|\n+---------+----------+-----+\n|   563017|     13198|   32|\n|   563214|     16370|   71|\n|   563372|     15653|    4|\n|   563714|     14565|   31|\n|   564666|     12492|    9|\n|  C565313|     14527|    1|\n|   565318|     12921|   23|\n|  C565962|     14410|   11|\n|   566023|     12955|   18|\n|   566079|     17593|   37|\n|   566904|     15660|   19|\n|   567476|     14859|   32|\n|  C567643|     12409|    1|\n|   568330|     16468|    2|\n|   568509|     16422|    4|\n|  C568911|     15050|    1|\n|   569105|     16729|   49|\n|   569211|     15774|   25|\n|   569388|     14031|    1|\n|   570179|     17509|   54|\n+---------+----------+-----+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791650846_430729319",
+      "id": "20180809-051410_2110200065",
+      "dateCreated": "Aug 9, 2018 5:14:10 AM",
+      "dateStarted": "Aug 9, 2018 5:14:44 AM",
+      "dateFinished": "Aug 9, 2018 5:14:47 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.count\n\ndf.groupBy(\"InvoiceNo\").agg(\n  count(\"Quantity\").alias(\"quan\"),\n  expr(\"count(Quantity)\")).show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:16:11 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions.count\n+---------+----+---------------+\n|InvoiceNo|quan|count(Quantity)|\n+---------+----+---------------+\n|   563020|  24|             24|\n|   565747|  10|             10|\n|   566248|   8|              8|\n|   566431|  18|             18|\n|   567163|  14|             14|\n|   567695|   1|              1|\n|   567879|  29|             29|\n|   568222|  11|             11|\n|   568711|   4|              4|\n|   569020|  48|             48|\n|   569560|  16|             16|\n|   569823|  69|             69|\n|   570234|  36|             36|\n|   570264|   1|              1|\n|   570281|   3|              3|\n|   570592|  73|             73|\n|   571010|   1|              1|\n|   571906|   1|              1|\n|   572049|  20|             20|\n|   572458|  26|             26|\n+---------+----+---------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791684231_556972931",
+      "id": "20180809-051444_176247557",
+      "dateCreated": "Aug 9, 2018 5:14:44 AM",
+      "dateStarted": "Aug 9, 2018 5:16:12 AM",
+      "dateFinished": "Aug 9, 2018 5:16:16 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Grouping with maps\n\ndf.groupBy(\"InvoiceNo\").agg(\"Quantity\"-\u003e\"avg\", \"Quantity\"-\u003e\"stddev_pop\")\n  .show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:16:47 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+------------------+--------------------+\n|InvoiceNo|     avg(Quantity)|stddev_pop(Quantity)|\n+---------+------------------+--------------------+\n|   563020|16.041666666666668|  10.212244148841895|\n|   565747|              10.3|   3.163858403911275|\n|   566248|               9.0|   8.703447592764606|\n|   566431| 14.11111111111111|   6.911254017815104|\n|   567163|              14.5|  11.280514172678478|\n|   567695|             -42.0|                 0.0|\n|   567879|10.206896551724139|  6.4774372877616235|\n|   568222|10.636363636363637|   2.705977466570403|\n|   568711|             15.25|   9.575359001102779|\n|   569020|11.541666666666666|   8.467974800518848|\n|   569560|            10.625|  3.7893765978060294|\n|   569823|1.4782608695652173|  0.9869980199409517|\n|   570234|3.5833333333333335|   2.542691050398726|\n|   570264|             -22.0|                 0.0|\n|   570281|              48.0|                 0.0|\n|   570592| 7.438356164383562|  11.910610328345681|\n|   571010|             -16.0|                 0.0|\n|   571906|               3.0|                 0.0|\n|   572049|              8.05|   7.559596550081228|\n|   572458|14.038461538461538|   10.04022972933147|\n+---------+------------------+--------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791771982_-389434387",
+      "id": "20180809-051611_68862371",
+      "dateCreated": "Aug 9, 2018 5:16:11 AM",
+      "dateStarted": "Aug 9, 2018 5:16:47 AM",
+      "dateFinished": "Aug 9, 2018 5:16:51 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Window Functions\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 9, 2018 5:20:26 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1533791807921_-79650226",
+      "id": "20180809-051647_467376410",
+      "dateCreated": "Aug 9, 2018 5:16:47 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
