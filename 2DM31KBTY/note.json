@@ -1,0 +1,543 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n### Datasets\n\n- Datasets are the foundational type of the Structured APIs. \n- We already worked with DataFrames, which are Datasets of type Row, and are available across Spark’s different languages. \n- Datasets are a strictly Java Virtual Machine (JVM) language feature that work only with Scala and Java.\n- Using Datasets, you can define the object that each row in your Dataset will consist of.\n- When you use the DataFrame API, you do not create strings or integers, but Spark manipulates the data for you by manipulating the Row object. \n- If you use Scala or Java, all “DataFrames” are actually Datasets of type Row. To efficiently support domain-specific objects, a special concept called an “Encoder” is required. \n- The encoder maps the domain-specific type T to Spark’s internal type system.\n- Encoder directs Spark to generate code at runtime to serialize the object into a binary structure\n- When you use the Dataset API, for every row it touches, this domain specifies type, Spark converts the Spark Row format to the object you specified (a case class or Java class). This conversion slows down your operations but can provide more flexibility.\n\n### When to Use Datasets\n\n- When the operation(s) you would like to perform cannot be expressed using DataFrame manipulations\n- When you want or need type-safety, and you’re willing to accept the cost of performance to achieve it\n- you might have a large set of business logic that you’d like to encode in one specific function instead of in SQL or DataFrames. \n- This is an appropriate use for Datasets. Additionally, the Dataset API is type-safe. Operations that are not valid for their types, say subtracting two string types, will fail at compilation time not at runtime. \n- If correctness and bulletproof code is your highest priority, at the cost of some performance, this can be a great choice for you\n- one advantage of using Datasets is that if you define all of your data and transformations as accepting case classes it is trivial to reuse them for both distributed and local workloads\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:20:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eDatasets\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eDatasets are the foundational type of the Structured APIs.\u003c/li\u003e\n\u003cli\u003eWe already worked with DataFrames, which are Datasets of type Row, and are available across Spark’s different languages.\u003c/li\u003e\n\u003cli\u003eDatasets are a strictly Java Virtual Machine (JVM) language feature that work only with Scala and Java.\u003c/li\u003e\n\u003cli\u003eUsing Datasets, you can define the object that each row in your Dataset will consist of.\u003c/li\u003e\n\u003cli\u003eWhen you use the DataFrame API, you do not create strings or integers, but Spark manipulates the data for you by manipulating the Row object.\u003c/li\u003e\n\u003cli\u003eIf you use Scala or Java, all “DataFrames” are actually Datasets of type Row. To efficiently support domain-specific objects, a special concept called an “Encoder” is required.\u003c/li\u003e\n\u003cli\u003eThe encoder maps the domain-specific type T to Spark’s internal type system.\u003c/li\u003e\n\u003cli\u003eEncoder directs Spark to generate code at runtime to serialize the object into a binary structure\u003c/li\u003e\n\u003cli\u003eWhen you use the Dataset API, for every row it touches, this domain specifies type, Spark converts the Spark Row format to the object you specified (a case class or Java class). This conversion slows down your operations but can provide more flexibility.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eWhen to Use Datasets\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eWhen the operation(s) you would like to perform cannot be expressed using DataFrame manipulations\u003c/li\u003e\n\u003cli\u003eWhen you want or need type-safety, and you’re willing to accept the cost of performance to achieve it\u003c/li\u003e\n\u003cli\u003eyou might have a large set of business logic that you’d like to encode in one specific function instead of in SQL or DataFrames.\u003c/li\u003e\n\u003cli\u003eThis is an appropriate use for Datasets. Additionally, the Dataset API is type-safe. Operations that are not valid for their types, say subtracting two string types, will fail at compilation time not at runtime.\u003c/li\u003e\n\u003cli\u003eIf correctness and bulletproof code is your highest priority, at the cost of some performance, this can be a great choice for you\u003c/li\u003e\n\u003cli\u003eone advantage of using Datasets is that if you define all of your data and transformations as accepting case classes it is trivial to reuse them for both distributed and local workloads\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534090489242_-1278185915",
+      "id": "20180812-161449_1134868526",
+      "dateCreated": "Aug 12, 2018 4:14:49 PM",
+      "dateStarted": "Aug 12, 2018 4:20:18 PM",
+      "dateFinished": "Aug 12, 2018 4:20:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nif [ -e /tmp/2015-summary.json ]\nthen\n    rm -f /tmp/2015-summary.json\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/json/2015-summary.json -O /tmp/2015-summary.json\n\nhdfs dfs -rm -f /tmp/2015-summary.json\n\n# Move downloaded JSON file from local storage to HDFS\nhdfs dfs -put /tmp/2015-summary.json /tmp\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:24:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2018-08-12 16:24:53--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/json/2015-summary.json\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 21368 (21K) [text/plain]\nSaving to: ‘/tmp/2015-summary.json’\n\n     0K .......... ..........                                 100% 1.10M\u003d0.02s\n\n2018-08-12 16:24:55 (1.10 MB/s) - ‘/tmp/2015-summary.json’ saved [21368/21368]\n\n18/08/12 16:24:59 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.json\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/2015-summary.json\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534090818189_831431175",
+      "id": "20180812-162018_623212492",
+      "dateCreated": "Aug 12, 2018 4:20:18 PM",
+      "dateStarted": "Aug 12, 2018 4:24:43 PM",
+      "dateFinished": "Aug 12, 2018 4:25:02 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Case classes\n\n- To create Datasets in Scala, you define a Scala case class. \n- A case class is a regular class that has the following characteristics:\n        - Immutable\n        - Decomposable through pattern matching\n        - Allows for comparison based on structure instead of reference\n        - Easy to use and manipulate\n\n- These traits make it rather valuable for data analysis because it is quite easy to reason about a case class. \n- Probably the most important feature is that case classes are immutable and allow for comparison by structure instead of value.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:29:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091341908_1108401122",
+      "id": "20180812-162901_306826610",
+      "dateCreated": "Aug 12, 2018 4:29:01 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.Encoders;\n\ncase class Flight(DEST_COUNTRY_NAME: String, ORIGIN_COUNTRY_NAME: String, count: BigInt)\n\nval flightsDF \u003d spark.read\n                     .json(\"/tmp/2015-summary.json\")\n\nval flights \u003d flightsDF.as[Flight]\n\nflights.show(2)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:30:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.Encoders\ndefined class Flight\nflightsDF: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\nflights: org.apache.spark.sql.Dataset[Flight] \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091083568_-801860198",
+      "id": "20180812-162443_1415197969",
+      "dateCreated": "Aug 12, 2018 4:24:43 PM",
+      "dateStarted": "Aug 12, 2018 4:30:15 PM",
+      "dateFinished": "Aug 12, 2018 4:30:56 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// when we actually go to access one of the case classes, we don’t need to do any type coercion, we simply specify the named attribute of the case class and get back, not just the expected value but the expected type, as well\n\nflights.first.DEST_COUNTRY_NAME // United States\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:30:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res39: String \u003d United States\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091173896_1347316509",
+      "id": "20180812-162613_1823389691",
+      "dateCreated": "Aug 12, 2018 4:26:13 PM",
+      "dateStarted": "Aug 12, 2018 4:30:59 PM",
+      "dateFinished": "Aug 12, 2018 4:31:01 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Transformations\n\n- Transformations on Datasets are the same as those that we saw on DataFrames. \n- In addition to those transformations, Datasets allow us to specify more complex and strongly typed transformations\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:32:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091459659_-791134846",
+      "id": "20180812-163059_1168237277",
+      "dateCreated": "Aug 12, 2018 4:30:59 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// flitering\n\n// This function does not need to execute in Spark code at all. we can use it and test it on data on our local machines before using it within Spark\n\ndef originIsDestination(flight_row: Flight): Boolean \u003d { \n    return flight_row.ORIGIN_COUNTRY_NAME \u003d\u003d flight_row.DEST_COUNTRY_NAME\n}\n\nflights.filter(flight_row \u003d\u003e originIsDestination(flight_row)).first()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:34:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "originIsDestination: (flight_row: Flight)Boolean\nres43: Flight \u003d Flight(United States,United States,370002)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091575787_-583554330",
+      "id": "20180812-163255_202368645",
+      "dateCreated": "Aug 12, 2018 4:32:55 PM",
+      "dateStarted": "Aug 12, 2018 4:34:03 PM",
+      "dateFinished": "Aug 12, 2018 4:34:16 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// mapping\n\nval destinations \u003d flights.map(f \u003d\u003e f.DEST_COUNTRY_NAME)\n\nval localDestinations \u003d destinations.take(5)   // we ended up with dataset of type string because spark already knows type via dataset",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:36:06 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "destinations: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nlocalDestinations: Array[String] \u003d Array(United States, United States, United States, Egypt, United States)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091643372_-208180610",
+      "id": "20180812-163403_571671877",
+      "dateCreated": "Aug 12, 2018 4:34:03 PM",
+      "dateStarted": "Aug 12, 2018 4:35:15 PM",
+      "dateFinished": "Aug 12, 2018 4:35:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Joins\n\ncase class FlightMetadata(count: BigInt, randomData: BigInt)\n\nval flightsMeta \u003d spark.range(500)\n                       .map(x \u003d\u003e (x, scala.util.Random.nextLong))\n                       .withColumnRenamed(\"_1\", \"count\")\n                       .withColumnRenamed(\"_2\", \"randomData\")\n                       .as[FlightMetadata]\n                       \nval flights2 \u003d flights.joinWith(flightsMeta, flights.col(\"count\") \u003d\u003d\u003d flightsMeta.col(\"count\"))\n\nflights2.take(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:38:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "defined class FlightMetadata\nflightsMeta: org.apache.spark.sql.Dataset[FlightMetadata] \u003d [count: bigint, randomData: bigint]\nflights2: org.apache.spark.sql.Dataset[(Flight, FlightMetadata)] \u003d [_1: struct\u003cDEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field\u003e, _2: struct\u003ccount: bigint, randomData: bigint\u003e]\nres52: Array[(Flight, FlightMetadata)] \u003d Array((Flight(United States,Romania,15),FlightMetadata(15,7497717849945295851)), (Flight(United States,Croatia,1),FlightMetadata(1,-6815972475197854076)))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091715350_-607241841",
+      "id": "20180812-163515_1870513849",
+      "dateCreated": "Aug 12, 2018 4:35:15 PM",
+      "dateStarted": "Aug 12, 2018 4:38:24 PM",
+      "dateFinished": "Aug 12, 2018 4:38:34 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "flights2.selectExpr(\"_1.DEST_COUNTRY_NAME\")",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:38:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res53: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091903877_1002130810",
+      "id": "20180812-163823_395220431",
+      "dateCreated": "Aug 12, 2018 4:38:23 PM",
+      "dateStarted": "Aug 12, 2018 4:38:42 PM",
+      "dateFinished": "Aug 12, 2018 4:38:43 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Of course, a “regular” join would work quite well, too, although you’ll notice in this case that we end up with a DataFrame (and thus lose our JVM type information).\n\nval flights2 \u003d flights.join(flightsMeta.toDF(), Seq(\"count\"))",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:39:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "flights2: org.apache.spark.sql.DataFrame \u003d [count: bigint, DEST_COUNTRY_NAME: string ... 2 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091922390_-1345775544",
+      "id": "20180812-163842_776664467",
+      "dateCreated": "Aug 12, 2018 4:38:42 PM",
+      "dateStarted": "Aug 12, 2018 4:39:23 PM",
+      "dateFinished": "Aug 12, 2018 4:39:24 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Grouping and aggregations. these return DataFrames instead of Datasets\n\nflights.groupBy(\"DEST_COUNTRY_NAME\").count()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:40:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res58: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, count: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534091963544_-198393027",
+      "id": "20180812-163923_186736201",
+      "dateCreated": "Aug 12, 2018 4:39:23 PM",
+      "dateStarted": "Aug 12, 2018 4:40:10 PM",
+      "dateFinished": "Aug 12, 2018 4:40:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": " // if you want to keep type information around there are other groupings and aggregations that you can perform. An excellent example is the groupByKey method. This allows you to group by a specific key in the Dataset and get a typed Dataset in return.\n \n flights.groupByKey(x \u003d\u003e x.DEST_COUNTRY_NAME).count()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:41:56 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res67: org.apache.spark.sql.Dataset[(String, Long)] \u003d [value: string, count(1): bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534092010281_694886649",
+      "id": "20180812-164010_1367280660",
+      "dateCreated": "Aug 12, 2018 4:40:10 PM",
+      "dateStarted": "Aug 12, 2018 4:41:56 PM",
+      "dateFinished": "Aug 12, 2018 4:41:56 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// After we perform a grouping with a key on a Dataset, we can operate on the Key Value Dataset with functions that will manipulate the groupings as raw objects:\n\ndef grpSum(countryName:String, values: Iterator[Flight]) \u003d { \n    values.dropWhile(_.count \u003c 5).map(x \u003d\u003e (countryName, x))\n    \n}\n\nflights.groupByKey(x \u003d\u003e x.DEST_COUNTRY_NAME).flatMapGroups(grpSum).show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:43:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "grpSum: (countryName: String, values: Iterator[Flight])Iterator[(String, Flight)]\n+--------+--------------------+\n|      _1|                  _2|\n+--------+--------------------+\n|Anguilla|[Anguilla, United...|\n|Paraguay|[Paraguay, United...|\n|  Russia|[Russia, United S...|\n| Senegal|[Senegal, United ...|\n|  Sweden|[Sweden, United S...|\n+--------+--------------------+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534092055833_-1891918124",
+      "id": "20180812-164055_1768093213",
+      "dateCreated": "Aug 12, 2018 4:40:55 PM",
+      "dateStarted": "Aug 12, 2018 4:43:01 PM",
+      "dateFinished": "Aug 12, 2018 4:43:24 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "def grpSum2(f:Flight):Integer \u003d {  \n    1\n}\n\nflights.groupByKey(x \u003d\u003e x.DEST_COUNTRY_NAME).mapValues(grpSum2).count().take(5)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 4:43:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "grpSum2: (f: Flight)Integer\nres73: Array[(String, Long)] \u003d Array((Anguilla,1), (Russia,1), (Paraguay,1), (Senegal,1), (Sweden,1))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534092181018_1897809281",
+      "id": "20180812-164301_1789403112",
+      "dateCreated": "Aug 12, 2018 4:43:01 PM",
+      "dateStarted": "Aug 12, 2018 4:43:42 PM",
+      "dateFinished": "Aug 12, 2018 4:44:01 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534092222651_1615296319",
+      "id": "20180812-164342_824709964",
+      "dateCreated": "Aug 12, 2018 4:43:42 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "spark_datasets",
+  "id": "2DM31KBTY",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
