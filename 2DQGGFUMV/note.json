@@ -1,0 +1,72 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n### Performance Tuning\n\n- There are a variety of different parts of Spark jobs that you might want to optimize, and it’s valuable to be specific. \n- Following are some of the areas\n            - Code-level design choices (e.g., RDDs versus DataFrames)\n            - Data at rest\n            - Joins\n            - Aggregations\n            - Data in flight\n            - Individual application properties\n            - Inside of the Java Virtual Machine (JVM) of an executor\n            - Worker nodes\n            - Cluster\n            - deployment properties\n\n\n#### Scala versus Java versus Python versus R\n\n- if you want to perform some single-node machine learning after performing a large ETL job, we might recommend running your Extract, Transform, and Load (ETL) code as SparkR code and then using R’s massive machine learning ecosystem to run your single-node machine learning algorithms. \n- This gives you the best of both worlds and takes advantage of the strength of R as well as the strength of Spark without sacrifices. \n- when you need to include custom transformations that cannot be created in the Structured APIs. These might manifest themselves as RDD transformations or user-defined functions (UDFs). \n- If you’re going to do this, R and Python are not necessarily the best choice simply because of how this is actually executed. It’s also more difficult to provide stricter guarantees of types and manipulations when you’re defining functions that jump across languages\n- We find that using Python for the majority of the application, and porting some of it to Scala or writing specific UDFs in Scala as your application evolves, is a powerful technique—it allows for a nice balance between overall usability, maintainability, and performance.\n \n\n#### DataFrames versus SQL versus Datasets versus RDDs\n\n- Across all languages, DataFrames, Datasets, and SQL are equivalent in speed. This means that if you’re using DataFrames in any of these languages, performance is equal.\n- However, if you’re going to be defining UDFs, you’ll take a performance hit writing those in Python or R, and to some extent a lesser performance hit in Java and Scala. \n- Although all DataFrame, SQL, and Dataset code compiles down to RDDs, Spark’s optimization engine will write “better” RDD code than you can manually and certainly do it with orders of magnitude less effort.\n- Additionally, you will lose out on new optimizations that are added to Spark’s SQL engine every release.Lastly, \n- if you want to use RDDs, we definitely recommend using Scala or Java. when Python runs RDD code, it’s serializes a lot of data to and from the Python process. This is very expensive to run over very big data and can also decrease stability.\n\n#### Object Serialization in RDDs\n\n- When you’re working with custom data types, you’re going to want to serialize them using Kryo because it’s both more compact and much more efficient than Java serialization. \n- However, this does come at the inconvenience of registering the classes that you will be using in your application.\n- You can use Kryo serialization by setting spark.serializer to org.apache.spark.serializer.KryoSerializer. \n- You will also need to explicitly register the classes that you would like to register with the Kryo serializer via the spark.kryo.classesToRegister configuration.\n\n#### Cluster/application sizing and sharing\n\n- This somewhat comes down to a resource sharing and scheduling problem; however, there are a lot of options for how you want to share resources at the cluster level or at the application level.\n- Dynamic allocationSpark provides a mechanism to dynamically adjust the resources your application occupies based on the workload. \n- This means that your application can give resources back to the cluster if they are no longer used, and request them again later when there is demand.\n- This feature is particularly useful if multiple applications share resources in your Spark cluster. \n- setting spark.scheduler.mode to FAIR to allow better sharing of resources across multiple users, or setting --max-executor-cores, which specifies the maximum number of executor cores that your application will need. \n- Specifying this value can ensure that your application does not take up all the resources on the cluster.\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 9:45:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003ePerformance Tuning\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eThere are a variety of different parts of Spark jobs that you might want to optimize, and it’s valuable to be specific.\u003c/li\u003e\n\u003cli\u003eFollowing are some of the areas\u003cpre\u003e\u003ccode\u003e    - Code-level design choices (e.g., RDDs versus DataFrames)\n    - Data at rest\n    - Joins\n    - Aggregations\n    - Data in flight\n    - Individual application properties\n    - Inside of the Java Virtual Machine (JVM) of an executor\n    - Worker nodes\n    - Cluster\n    - deployment properties\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534064794725_-154108336",
+      "id": "20180812-090634_1427838345",
+      "dateCreated": "Aug 12, 2018 9:06:34 AM",
+      "dateStarted": "Aug 12, 2018 9:37:38 AM",
+      "dateFinished": "Aug 12, 2018 9:37:38 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 9:37:38 AM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534066658337_648940884",
+      "id": "20180812-093738_642930717",
+      "dateCreated": "Aug 12, 2018 9:37:38 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "spark_performance_tuning",
+  "id": "2DQGGFUMV",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
