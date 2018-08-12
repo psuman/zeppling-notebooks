@@ -105,18 +105,18 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "\n",
+      "text": "%md\n\n### Application Scheduling\n\n#### Static allocation\n\n- Each application is given a maximum amount of resources that it can use, and holds onto those resources for the entire duration. \n- In spark-submit there are a number of properties that you can set to control the resource allocation of a particular application.\n\n#### Dynamic allocation\n\n- let applications scale up and down dynamically based on their current number of pending tasks\n- Spark provides a mechanism to dynamically adjust the resources your application occupies based on the workload. \n- his means that your application can give resources back to the cluster if they are no longer used, and request them again later when there is demand. \n- This feature is particularly useful if multiple applications share resources in your Spark cluster.\n- There are two requirements for using this feature. \n        - First, your application must set spark.dynamicAllocation.enabled to true. \n        - Second, you must set up an external shuffle service on each worker node in the same cluster and set spark.shuffle.service.enabled to true in your application. \n        - The purpose of the external shuffle service is to allow executors to be removed without deleting shuffle files written by them\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 12, 2018 7:53:28 AM",
+      "dateUpdated": "Aug 12, 2018 9:00:40 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false
+          "language": "markdown",
+          "editOnDblClick": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/markdown"
       },
       "settings": {
         "params": {},
@@ -127,6 +127,22 @@
       "id": "20180812-073504_998005059",
       "dateCreated": "Aug 12, 2018 7:35:04 AM",
       "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 9:00:40 AM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534064440641_-1095899191",
+      "id": "20180812-090040_1074887529",
+      "dateCreated": "Aug 12, 2018 9:00:40 AM",
+      "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
