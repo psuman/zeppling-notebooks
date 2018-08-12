@@ -1,0 +1,144 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n### Developing in Scala\n\n#### build.sbt\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43999971-a9e94eca-9e34-11e8-8e5b-ddb007c4e120.png)\n\n\n#### Project Structure\n\n![sv-image](https://user-images.githubusercontent.com/1182329/43999972-acdb826a-9e34-11e8-85c6-ebe00128ee80.png)\n\n#### Scala Main class\n```\nobject DataFrameExample extends Serializable {  \n\n  def main(args: Array[String]) \u003d {    \n    \n      val pathToDataFolder \u003d args(0)    // start up the SparkSession    // along with explicitly setting a given config    \n      val spark \u003d SparkSession.builder().appName(\"Spark Example\")\n                                        .config(\"spark.sql.warehouse.dir\", \"/user/hive/warehouse\")      \n                                        .getOrCreate()    // udf registration    \n      spark.udf.register(\"myUDF\", someUDF(_:String):String)    \n      val df \u003d spark.read.json(pathToDataFolder + \"data.json\")    \n      val manipulated \u003d df.groupBy(expr(\"myUDF(group)\"))\n                          .sum()\n                          .collect()\n                          .foreach(x \u003d\u003e println(x))  \n      \n  }\n    \n}\n\n```\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 8:17:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eDeveloping in Scala\u003c/h3\u003e\n\u003ch4\u003ebuild.sbt\u003c/h4\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43999971-a9e94eca-9e34-11e8-8e5b-ddb007c4e120.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003ch4\u003eProject Structure\u003c/h4\u003e\n\u003cp\u003e\u003cimg src\u003d\"https://user-images.githubusercontent.com/1182329/43999972-acdb826a-9e34-11e8-85c6-ebe00128ee80.png\" alt\u003d\"sv-image\" /\u003e\u003c/p\u003e\n\u003ch4\u003eScala Main class\u003c/h4\u003e\n\u003cpre\u003e\u003ccode\u003eobject DataFrameExample extends Serializable {  \n\n  def main(args: Array[String]) \u003d {    \n\n      val pathToDataFolder \u003d args(0)    // start up the SparkSession    // along with explicitly setting a given config    \n      val spark \u003d SparkSession.builder().appName(\"Spark Example\")\n                                        .config(\"spark.sql.warehouse.dir\", \"/user/hive/warehouse\")      \n                                        .getOrCreate()    // udf registration    \n      spark.udf.register(\"myUDF\", someUDF(_:String):String)    \n      val df \u003d spark.read.json(pathToDataFolder + \"data.json\")    \n      val manipulated \u003d df.groupBy(expr(\"myUDF(group)\"))\n                          .sum()\n                          .collect()\n                          .foreach(x \u003d\u0026gt; println(x))  \n\n  }\n\n}\n\u003c/code\u003e\u003c/pre\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534060899608_896694582",
+      "id": "20180812-080139_402771728",
+      "dateCreated": "Aug 12, 2018 8:01:39 AM",
+      "dateStarted": "Aug 12, 2018 8:17:28 AM",
+      "dateFinished": "Aug 12, 2018 8:17:28 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Developing in java\n\n#### pom.xml\n\n![sv-image](https://user-images.githubusercontent.com/1182329/44000066-842d3974-9e36-11e8-862f-0f5f526d3fcc.png)\n\n#### java Main Class\n\n```\nimport org.apache.spark.sql.SparkSession;\npublic class SimpleExample {\n    public static void main(String[] args) {\n        SparkSession spark \u003d SparkSession\n                .builder()\n                .getOrCreate();\n        spark.range(1, 2000).count();\n    }\n}\n\n```",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 8:19:37 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534061858874_-1194271195",
+      "id": "20180812-081738_469169444",
+      "dateCreated": "Aug 12, 2018 8:17:38 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#### Submitting Spark Application\n\n```\n./bin/spark-submit  --class \u003cmain-class\u003e  \\\n                    --master \u003cmaster-url\u003e  \\\n                    --executor-memory \\\n                    --total-executor-cores \\\n                    --deploy-mode \u003cdeploy-mode\u003e  \\\n                    --conf \u003ckey\u003e\u003d\u003cvalue\u003e  \\\n                    ... # other options  \\\n                    \u003capplication-jar-or-script\u003e \\\n                    [application-arguments] \\\n\n```\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 8:20:49 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003eSubmitting Spark Application\u003c/h4\u003e\n\u003cpre\u003e\u003ccode\u003e./bin/spark-submit  --class \u0026lt;main-class\u0026gt;  \\\n                    --master \u0026lt;master-url\u0026gt;  \\\n                    --executor-memory \\\n                    --total-executor-cores \\\n                    --deploy-mode \u0026lt;deploy-mode\u0026gt;  \\\n                    --conf \u0026lt;key\u0026gt;\u003d\u0026lt;value\u0026gt;  \\\n                    ... # other options  \\\n                    \u0026lt;application-jar-or-script\u0026gt; \\\n                    [application-arguments] \\\n\u003c/code\u003e\u003c/pre\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534061848346_-98506327",
+      "id": "20180812-081728_1829438457",
+      "dateCreated": "Aug 12, 2018 8:17:28 AM",
+      "dateStarted": "Aug 12, 2018 8:20:49 AM",
+      "dateFinished": "Aug 12, 2018 8:20:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### The SparkConf\n\n- The SparkConf manages all of our application configurations. \n- You create one via the import statement, as shown in the example that follows. \n- After you create it, the SparkConf is immutable for that specific Spark Application.\n\n\n```\nimport org.apache.spark.SparkConf\n\nval conf \u003d new SparkConf().setMaster(\"local[2]\")\n                          .setAppName(\"DefinitiveGuide\")\n                          .set(\"some.conf\", \"to.some.value\")\n\n```\n\n- These Spark properties control how the Spark Application runs and how the cluster is configured\n\n\n### Application Properties\n\n- Application properties are those that you set either from spark-submit or when you create your Spark Application. \n- They define basic application metadata as well as some execution characteristics\n            - spark.app.name\n            - spark.driver.cores\n            - spark.driver.maxResultSize\n            - spark.driver.memory\n            - spark.executor.memory\n            - spark.extraListeners\n            - spark.master\n            - spark.logConf\n            - spark.submit.deployMode\n            - spark.log.callerContext\n            - spark.driver.supervise\n\n### Runtime Properties\n\n- These properties allow you to configure extra classpaths and python paths for both drivers and executors, Python worker configurations, as well as miscellaneous logging properties.\n\n- http://spark.apache.org/docs/latest/configuration.html#runtime-environment\n\n### Execution Properties\n\n- These configurations are some of the most relevant for you to configure because they give you finer-grained control on actual execution\n- The most common configurations to change are spark.executor.cores (to control the number of available cores) and spark.files.maxPartitionBytes (maximum partition size when reading files).\n\n- http://spark.apache.org/docs/latest/configuration.html#execution-behavior\n\n### Configuring Memory Management\n\n- There are times when you might need to manually manage the memory options to try and optimize your applications\n\n- http://spark.apache.org/docs/latest/configuration.html#memory-management\n\n### Configuring Shuffle Behavior\n\n- We’ve emphasized how shuffles can be a bottleneck in Spark jobs because of their high communication overhead. Therefore there are a number of low-level configurations for controlling shuffle behavior\n\n- http://spark.apache.org/docs/latest/configuration.html#shuffle-behavior\n\n### Environmental Variables\n\n- You can configure certain Spark settings through environment variables, which are read from the conf/spark-env.sh script in the directory where Spark is installed (or conf/spark-env.cmd on Windows).\n\n### Job Scheduling Within an Application\n\n- Within a given Spark Application, multiple parallel jobs can run simultaneously if they were submitted from separate threads. \n- By job, in this section, we mean a Spark action and any tasks that need to run to evaluate that action. \n- Spark’s scheduler is fully thread-safe and supports this use case to enable applications that serve multiple requests (e.g., queries for multiple users).\n- By default, Spark’s scheduler runs jobs in FIFO fashion. If the jobs at the head of the queue don’t need to use the entire cluster, later jobs can begin to run right away, but if the jobs at the head of the queue are large, later jobs might be delayed significantly.\n- It is also possible to configure fair sharing between jobs. \n- Under fair sharing, Spark assigns tasks between jobs in a round-robin fashion so that all jobs get a roughly equal share of cluster resources. \n- This means that short jobs submitted while a long job is running can begin receiving resources right away and still achieve good response times without waiting for the long job to finish. This mode is best for multiuser settings.\n- To enable the fair scheduler, set the spark.scheduler.mode property to FAIR when configuring a SparkContext.\n- The fair scheduler also supports grouping jobs into pools, and setting different scheduling options, or weights, for each pool. \n- This can be useful to create a high-priority pool for more important jobs or to group the jobs of each user together and give users equal shares regardless of how many concurrent jobs they have instead of giving jobs equal shares. This approach is modeled after the Hadoop Fair Scheduler.\n- Without any intervention, newly submitted jobs go into a default pool, but jobs pools can be set by adding the spark.scheduler.pool local property to the SparkContext in the thread that’s submitting them. \n\n```\nsc.setLocalProperty(\"spark.scheduler.pool\", \"pool1\")\n\n```\n\n- After setting this local property, all jobs submitted within this thread will use this pool name. \n- The setting is per-thread to make it easy to have a thread run multiple jobs on behalf of the same user. \n- If you’d like to clear the pool that a thread is associated with, set it to null.",
+      "user": "anonymous",
+      "dateUpdated": "Aug 12, 2018 8:36:30 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534062049308_1235093013",
+      "id": "20180812-082049_1855558351",
+      "dateCreated": "Aug 12, 2018 8:20:49 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Developing Spark Applications",
+  "id": "2DMDNW1R2",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
