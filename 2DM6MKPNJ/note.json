@@ -53,7 +53,7 @@
     {
       "text": "%sh\n\nif [ -e /tmp/2015-summary.json ]\nthen\n    rm -f /tmp/2015-summary.json\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/json/2015-summary.json -O /tmp/2015-summary.json\n\nhdfs dfs -rm -f /tmp/2015-summary.json\n\n# Move downloaded JSON file from local storage to HDFS\nhdfs dfs -put /tmp/2015-summary.json /tmp\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 15, 2018 6:51:51 AM",
+      "dateUpdated": "Aug 15, 2018 8:32:49 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -73,7 +73,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "--2018-08-15 06:51:52--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/json/2015-summary.json\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 21368 (21K) [text/plain]\nSaving to: ‘/tmp/2015-summary.json’\n\n     0K .......... ..........                                 100% 26.2M\u003d0.001s\n\n2018-08-15 06:51:53 (26.2 MB/s) - ‘/tmp/2015-summary.json’ saved [21368/21368]\n\n18/08/15 06:51:58 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.json\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/2015-summary.json1534315918597\n"
+            "data": "--2018-08-15 08:32:49--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/json/2015-summary.json\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 21368 (21K) [text/plain]\nSaving to: ‘/tmp/2015-summary.json’\n\n     0K .......... ..........                                 100% 1.41M\u003d0.01s\n\n2018-08-15 08:32:49 (1.41 MB/s) - ‘/tmp/2015-summary.json’ saved [21368/21368]\n\n18/08/15 08:32:54 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.json\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/2015-summary.json1534321974441\n"
           }
         ]
       },
@@ -81,15 +81,15 @@
       "jobName": "paragraph_1534315880091_-1281980223",
       "id": "20180815-065120_1803207107",
       "dateCreated": "Aug 15, 2018 6:51:20 AM",
-      "dateStarted": "Aug 15, 2018 6:51:51 AM",
-      "dateFinished": "Aug 15, 2018 6:52:02 AM",
+      "dateStarted": "Aug 15, 2018 8:32:49 AM",
+      "dateFinished": "Aug 15, 2018 8:32:59 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "spark.read\n     .json(\"/tmp/2015-summary.json\")  \n     .createOrReplaceTempView(\"flight_data_sql_view\") // DF \u003d\u003e SQL\n\nspark.sql(\"\"\"SELECT DEST_COUNTRY_NAME, sum(count) FROM flight_data_sql_view GROUP BY DEST_COUNTRY_NAME\"\"\")\n     .where(\"DEST_COUNTRY_NAME like \u0027S%\u0027\")\n     .where(\"`sum(count)` \u003e 10\")\n     .count() // SQL \u003d\u003e DF\n\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 15, 2018 6:55:56 AM",
+      "dateUpdated": "Aug 15, 2018 8:32:59 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -105,11 +105,11 @@
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
             "type": "TEXT",
-            "data": "res6: Long \u003d 12\n"
+            "data": "java.lang.NullPointerException\n  at org.apache.spark.storage.BlockManagerMaster.updateBlockInfo(BlockManagerMaster.scala:76)\n  at org.apache.spark.storage.BlockManager.org$apache$spark$storage$BlockManager$$tryToReportBlockStatus(BlockManager.scala:464)\n  at org.apache.spark.storage.BlockManager.org$apache$spark$storage$BlockManager$$reportBlockStatus(BlockManager.scala:443)\n  at org.apache.spark.storage.BlockManager.removeBlockInternal(BlockManager.scala:1517)\n  at org.apache.spark.storage.BlockManager.doPut(BlockManager.scala:1045)\n  at org.apache.spark.storage.BlockManager.doPutBytes(BlockManager.scala:906)\n  at org.apache.spark.storage.BlockManager.putBytes(BlockManager.scala:882)\n  at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$writeBlocks$1.apply(TorrentBroadcast.scala:137)\n  at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$writeBlocks$1.apply(TorrentBroadcast.scala:131)\n  at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)\n  at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)\n  at org.apache.spark.broadcast.TorrentBroadcast.writeBlocks(TorrentBroadcast.scala:131)\n  at org.apache.spark.broadcast.TorrentBroadcast.\u003cinit\u003e(TorrentBroadcast.scala:88)\n  at org.apache.spark.broadcast.TorrentBroadcastFactory.newBroadcast(TorrentBroadcastFactory.scala:34)\n  at org.apache.spark.broadcast.BroadcastManager.newBroadcast(BroadcastManager.scala:62)\n  at org.apache.spark.SparkContext.broadcast(SparkContext.scala:1482)\n  at org.apache.spark.sql.execution.datasources.text.TextFileFormat.buildReader(TextFileFormat.scala:114)\n  at org.apache.spark.sql.execution.datasources.FileFormat$class.buildReaderWithPartitionValues(FileFormat.scala:129)\n  at org.apache.spark.sql.execution.datasources.TextBasedFileFormat.buildReaderWithPartitionValues(FileFormat.scala:160)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD$lzycompute(DataSourceScanExec.scala:295)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD(DataSourceScanExec.scala:293)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDDs(DataSourceScanExec.scala:313)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec.doExecute(WholeStageCodegenExec.scala:605)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:131)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:155)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:80)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:80)\n  at org.apache.spark.sql.execution.datasources.json.TextInputJsonDataSource$.inferFromDataset(JsonDataSource.scala:101)\n  at org.apache.spark.sql.execution.datasources.json.TextInputJsonDataSource$.infer(JsonDataSource.scala:96)\n  at org.apache.spark.sql.execution.datasources.json.JsonDataSource.inferSchema(JsonDataSource.scala:63)\n  at org.apache.spark.sql.execution.datasources.json.JsonFileFormat.inferSchema(JsonFileFormat.scala:57)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$8.apply(DataSource.scala:202)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$8.apply(DataSource.scala:202)\n  at scala.Option.orElse(Option.scala:289)\n  at org.apache.spark.sql.execution.datasources.DataSource.getOrInferFileFormatSchema(DataSource.scala:201)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:392)\n  at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:239)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:227)\n  at org.apache.spark.sql.DataFrameReader.json(DataFrameReader.scala:397)\n  at org.apache.spark.sql.DataFrameReader.json(DataFrameReader.scala:340)\n  ... 47 elided\n"
           }
         ]
       },
@@ -117,9 +117,9 @@
       "jobName": "paragraph_1534315911173_-468190326",
       "id": "20180815-065151_17016029",
       "dateCreated": "Aug 15, 2018 6:51:51 AM",
-      "dateStarted": "Aug 15, 2018 6:56:02 AM",
-      "dateFinished": "Aug 15, 2018 6:56:41 AM",
-      "status": "FINISHED",
+      "dateStarted": "Aug 15, 2018 8:32:59 AM",
+      "dateFinished": "Aug 15, 2018 8:33:00 AM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -150,7 +150,7 @@
     {
       "text": "spark.sql(\"DROP TABLE IF EXISTS flights\")\n\nspark.sql(\"\"\"CREATE TABLE flights (DEST_COUNTRY_NAME STRING, \n                      ORIGIN_COUNTRY_NAME STRING, \n                      count LONG)\n             USING JSON OPTIONS (path \u0027/tmp/2015-summary.json\u0027)\"\"\")\n             \n\nspark.sql(\"select count(*) from flights\").show()\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 15, 2018 7:28:32 AM",
+      "dateUpdated": "Aug 15, 2018 8:32:20 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -166,11 +166,11 @@
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
             "type": "TEXT",
-            "data": "res17: org.apache.spark.sql.DataFrame \u003d []\nres19: org.apache.spark.sql.DataFrame \u003d []\n+--------+\n|count(1)|\n+--------+\n|     256|\n+--------+\n\n"
+            "data": "res167: org.apache.spark.sql.DataFrame \u003d []\nres169: org.apache.spark.sql.DataFrame \u003d []\norg.apache.spark.sql.catalyst.errors.package$TreeNodeException: execute, tree:\nExchange SinglePartition\n+- *(1) HashAggregate(keys\u003d[], functions\u003d[partial_count(1)], output\u003d[count#528L])\n   +- *(1) FileScan json default.flights[] Batched: false, Format: JSON, Location: InMemoryFileIndex[hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.json], PartitionFilters: [], PushedFilters: [], ReadSchema: struct\u003c\u003e\n\n  at org.apache.spark.sql.catalyst.errors.package$.attachTree(package.scala:56)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec.doExecute(ShuffleExchangeExec.scala:119)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:131)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:155)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.InputAdapter.inputRDDs(WholeStageCodegenExec.scala:371)\n  at org.apache.spark.sql.execution.aggregate.HashAggregateExec.inputRDDs(HashAggregateExec.scala:150)\n  at org.apache.spark.sql.execution.BaseLimitExec$class.inputRDDs(limit.scala:62)\n  at org.apache.spark.sql.execution.LocalLimitExec.inputRDDs(limit.scala:97)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec.doExecute(WholeStageCodegenExec.scala:605)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:131)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:155)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan.getByteArrayRdd(SparkPlan.scala:247)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:337)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:3272)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset$$anonfun$52.apply(Dataset.scala:3253)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:77)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:3252)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2698)\n  at org.apache.spark.sql.Dataset.showString(Dataset.scala:254)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:723)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:682)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:691)\n  ... 47 elided\nCaused by: java.lang.NullPointerException\n  at org.apache.spark.storage.BlockManagerMaster.updateBlockInfo(BlockManagerMaster.scala:76)\n  at org.apache.spark.storage.BlockManager.org$apache$spark$storage$BlockManager$$tryToReportBlockStatus(BlockManager.scala:464)\n  at org.apache.spark.storage.BlockManager.org$apache$spark$storage$BlockManager$$reportBlockStatus(BlockManager.scala:443)\n  at org.apache.spark.storage.BlockManager.removeBlockInternal(BlockManager.scala:1517)\n  at org.apache.spark.storage.BlockManager.doPut(BlockManager.scala:1045)\n  at org.apache.spark.storage.BlockManager.doPutBytes(BlockManager.scala:906)\n  at org.apache.spark.storage.BlockManager.putBytes(BlockManager.scala:882)\n  at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$writeBlocks$1.apply(TorrentBroadcast.scala:137)\n  at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$writeBlocks$1.apply(TorrentBroadcast.scala:131)\n  at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)\n  at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)\n  at org.apache.spark.broadcast.TorrentBroadcast.writeBlocks(TorrentBroadcast.scala:131)\n  at org.apache.spark.broadcast.TorrentBroadcast.\u003cinit\u003e(TorrentBroadcast.scala:88)\n  at org.apache.spark.broadcast.TorrentBroadcastFactory.newBroadcast(TorrentBroadcastFactory.scala:34)\n  at org.apache.spark.broadcast.BroadcastManager.newBroadcast(BroadcastManager.scala:62)\n  at org.apache.spark.SparkContext.broadcast(SparkContext.scala:1482)\n  at org.apache.spark.sql.execution.datasources.json.JsonFileFormat.buildReader(JsonFileFormat.scala:98)\n  at org.apache.spark.sql.execution.datasources.FileFormat$class.buildReaderWithPartitionValues(FileFormat.scala:129)\n  at org.apache.spark.sql.execution.datasources.TextBasedFileFormat.buildReaderWithPartitionValues(FileFormat.scala:160)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD$lzycompute(DataSourceScanExec.scala:295)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD(DataSourceScanExec.scala:293)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDDs(DataSourceScanExec.scala:313)\n  at org.apache.spark.sql.execution.aggregate.HashAggregateExec.inputRDDs(HashAggregateExec.scala:150)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec.doExecute(WholeStageCodegenExec.scala:605)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:131)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:155)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec.prepareShuffleDependency(ShuffleExchangeExec.scala:92)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec$$anonfun$doExecute$1.apply(ShuffleExchangeExec.scala:128)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec$$anonfun$doExecute$1.apply(ShuffleExchangeExec.scala:119)\n  at org.apache.spark.sql.catalyst.errors.package$.attachTree(package.scala:52)\n  ... 80 more\n"
           }
         ]
       },
@@ -178,9 +178,9 @@
       "jobName": "paragraph_1534317666668_-709131270",
       "id": "20180815-072106_1147125089",
       "dateCreated": "Aug 15, 2018 7:21:06 AM",
-      "dateStarted": "Aug 15, 2018 7:28:32 AM",
-      "dateFinished": "Aug 15, 2018 7:28:38 AM",
-      "status": "FINISHED",
+      "dateStarted": "Aug 15, 2018 8:32:20 AM",
+      "dateFinished": "Aug 15, 2018 8:32:21 AM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -222,7 +222,7 @@
     {
       "text": "spark.sql(\"\"\"CREATE TABLE flights_csv (  DEST_COUNTRY_NAME STRING,  \n                            ORIGIN_COUNTRY_NAME STRING COMMENT \"remember, the US will be most prevalent\",  \n                            count LONG)\n             USING csv OPTIONS (header true, path \u0027/tmp/2015-summary.csv\u0027)\"\"\")\n\n\nspark.sql(\"DESCRIBE TABLE flights_csv\").show()            \n\nspark.sql(\"select count(*) from flights_csv\").show()\n\n",
       "user": "anonymous",
-      "dateUpdated": "Aug 15, 2018 7:30:27 AM",
+      "dateUpdated": "Aug 15, 2018 8:32:14 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -238,11 +238,11 @@
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
             "type": "TEXT",
-            "data": "res23: org.apache.spark.sql.DataFrame \u003d []\n+-------------------+---------+--------------------+\n|           col_name|data_type|             comment|\n+-------------------+---------+--------------------+\n|  DEST_COUNTRY_NAME|   string|                null|\n|ORIGIN_COUNTRY_NAME|   string|remember, the US ...|\n|              count|   bigint|                null|\n+-------------------+---------+--------------------+\n\n+--------+\n|count(1)|\n+--------+\n|     256|\n+--------+\n\n"
+            "data": "res161: org.apache.spark.sql.DataFrame \u003d []\n+-------------------+---------+--------------------+\n|           col_name|data_type|             comment|\n+-------------------+---------+--------------------+\n|  DEST_COUNTRY_NAME|   string|                null|\n|ORIGIN_COUNTRY_NAME|   string|remember, the US ...|\n|              count|   bigint|                null|\n+-------------------+---------+--------------------+\n\norg.apache.spark.sql.catalyst.errors.package$TreeNodeException: execute, tree:\nExchange SinglePartition\n+- *(1) HashAggregate(keys\u003d[], functions\u003d[partial_count(1)], output\u003d[count#515L])\n   +- *(1) FileScan csv default.flights_csv[] Batched: false, Format: CSV, Location: InMemoryFileIndex[hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.csv], PartitionFilters: [], PushedFilters: [], ReadSchema: struct\u003c\u003e\n\n  at org.apache.spark.sql.catalyst.errors.package$.attachTree(package.scala:56)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec.doExecute(ShuffleExchangeExec.scala:119)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:131)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:155)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.InputAdapter.inputRDDs(WholeStageCodegenExec.scala:371)\n  at org.apache.spark.sql.execution.aggregate.HashAggregateExec.inputRDDs(HashAggregateExec.scala:150)\n  at org.apache.spark.sql.execution.BaseLimitExec$class.inputRDDs(limit.scala:62)\n  at org.apache.spark.sql.execution.LocalLimitExec.inputRDDs(limit.scala:97)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec.doExecute(WholeStageCodegenExec.scala:605)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:131)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:155)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan.getByteArrayRdd(SparkPlan.scala:247)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:337)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:3272)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset$$anonfun$52.apply(Dataset.scala:3253)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:77)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:3252)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2698)\n  at org.apache.spark.sql.Dataset.showString(Dataset.scala:254)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:723)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:682)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:691)\n  ... 47 elided\nCaused by: java.lang.NullPointerException\n  at org.apache.spark.storage.BlockManagerMaster.updateBlockInfo(BlockManagerMaster.scala:76)\n  at org.apache.spark.storage.BlockManager.org$apache$spark$storage$BlockManager$$tryToReportBlockStatus(BlockManager.scala:464)\n  at org.apache.spark.storage.BlockManager.org$apache$spark$storage$BlockManager$$reportBlockStatus(BlockManager.scala:443)\n  at org.apache.spark.storage.BlockManager.removeBlockInternal(BlockManager.scala:1517)\n  at org.apache.spark.storage.BlockManager.doPut(BlockManager.scala:1045)\n  at org.apache.spark.storage.BlockManager.doPutBytes(BlockManager.scala:906)\n  at org.apache.spark.storage.BlockManager.putBytes(BlockManager.scala:882)\n  at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$writeBlocks$1.apply(TorrentBroadcast.scala:137)\n  at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$writeBlocks$1.apply(TorrentBroadcast.scala:131)\n  at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)\n  at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)\n  at org.apache.spark.broadcast.TorrentBroadcast.writeBlocks(TorrentBroadcast.scala:131)\n  at org.apache.spark.broadcast.TorrentBroadcast.\u003cinit\u003e(TorrentBroadcast.scala:88)\n  at org.apache.spark.broadcast.TorrentBroadcastFactory.newBroadcast(TorrentBroadcastFactory.scala:34)\n  at org.apache.spark.broadcast.BroadcastManager.newBroadcast(BroadcastManager.scala:62)\n  at org.apache.spark.SparkContext.broadcast(SparkContext.scala:1482)\n  at org.apache.spark.sql.execution.datasources.csv.CSVFileFormat.buildReader(CSVFileFormat.scala:96)\n  at org.apache.spark.sql.execution.datasources.FileFormat$class.buildReaderWithPartitionValues(FileFormat.scala:129)\n  at org.apache.spark.sql.execution.datasources.TextBasedFileFormat.buildReaderWithPartitionValues(FileFormat.scala:160)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD$lzycompute(DataSourceScanExec.scala:295)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDD(DataSourceScanExec.scala:293)\n  at org.apache.spark.sql.execution.FileSourceScanExec.inputRDDs(DataSourceScanExec.scala:313)\n  at org.apache.spark.sql.execution.aggregate.HashAggregateExec.inputRDDs(HashAggregateExec.scala:150)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec.doExecute(WholeStageCodegenExec.scala:605)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:131)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:155)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec.prepareShuffleDependency(ShuffleExchangeExec.scala:92)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec$$anonfun$doExecute$1.apply(ShuffleExchangeExec.scala:128)\n  at org.apache.spark.sql.execution.exchange.ShuffleExchangeExec$$anonfun$doExecute$1.apply(ShuffleExchangeExec.scala:119)\n  at org.apache.spark.sql.catalyst.errors.package$.attachTree(package.scala:52)\n  ... 80 more\n"
           }
         ]
       },
@@ -250,9 +250,9 @@
       "jobName": "paragraph_1534317894886_2014427928",
       "id": "20180815-072454_503973519",
       "dateCreated": "Aug 15, 2018 7:24:54 AM",
-      "dateStarted": "Aug 15, 2018 7:30:27 AM",
-      "dateFinished": "Aug 15, 2018 7:30:31 AM",
-      "status": "FINISHED",
+      "dateStarted": "Aug 15, 2018 8:32:14 AM",
+      "dateFinished": "Aug 15, 2018 8:32:15 AM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -326,9 +326,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "// you can control the layout of the data by writing out a partitioned dataset\n\nspark.sql(\"CREATE TABLE partitioned_flights USING parquet PARTITIONED BY (DEST_COUNTRY_NAME)AS SELECT DEST_COUNTRY_NAME, ORIGIN_COUNTRY_NAME, count FROM flights LIMIT 5\")\n\n// These tables will be available in Spark even through sessions; temporary tables do not currently exist in Spark. You must create a temporary view.",
+      "text": "// you can control the layout of the data by writing out a partitioned dataset\n\nspark.sql(\"DROP TABLE IF EXISTS partitioned_flights\")\n\nspark.sql(\"CREATE TABLE partitioned_flights USING parquet PARTITIONED BY (DEST_COUNTRY_NAME)AS SELECT DEST_COUNTRY_NAME, ORIGIN_COUNTRY_NAME, count FROM flights LIMIT 5\")\n\nspark.sql(\"DESCRIBE TABLE partitioned_flights\").show()\n\n// These tables will be available in Spark even through sessions; temporary tables do not currently exist in Spark. You must create a temporary view.",
       "user": "anonymous",
-      "dateUpdated": "Aug 15, 2018 7:35:47 AM",
+      "dateUpdated": "Aug 15, 2018 7:49:52 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -347,7 +347,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "res45: org.apache.spark.sql.DataFrame \u003d []\n"
+            "data": "res54: org.apache.spark.sql.DataFrame \u003d []\nres56: org.apache.spark.sql.DataFrame \u003d []\n+--------------------+---------+-------+\n|            col_name|data_type|comment|\n+--------------------+---------+-------+\n| ORIGIN_COUNTRY_NAME|   string|   null|\n|               count|   bigint|   null|\n|   DEST_COUNTRY_NAME|   string|   null|\n|# Partition Infor...|         |       |\n|          # col_name|data_type|comment|\n|   DEST_COUNTRY_NAME|   string|   null|\n+--------------------+---------+-------+\n\n"
           }
         ]
       },
@@ -355,9 +355,533 @@
       "jobName": "paragraph_1534318457541_-718643845",
       "id": "20180815-073417_1653606136",
       "dateCreated": "Aug 15, 2018 7:34:17 AM",
-      "dateStarted": "Aug 15, 2018 7:35:47 AM",
-      "dateFinished": "Aug 15, 2018 7:35:53 AM",
+      "dateStarted": "Aug 15, 2018 7:49:53 AM",
+      "dateFinished": "Aug 15, 2018 7:50:06 AM",
       "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Creating External Tables\n\n- we are creating an unmanaged table. Spark will manage the table’s metadata; however, the files are not managed by Spark at all. You create this table by using the CREATE EXTERNAL TABLE statement.\n\n```\nCREATE EXTERNAL TABLE hive_flights (  DEST_COUNTRY_NAME STRING, ORIGIN_COUNTRY_NAME STRING, count LONG)\n                ROW FORMAT DELIMITED FIELDS TERMINATED BY \u0027,\u0027 LOCATION \u0027/data/flight-data-hive/\u0027\n\n```\n\n- You can also create an external table from a select clause\n\n```\nCREATE EXTERNAL TABLE hive_flights_2\n                ROW FORMAT DELIMITED FIELDS TERMINATED BY \u0027,\u0027 LOCATION \u0027/data/flight-data-hive/\u0027 AS SELECT * FROM flights\n\n```\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 7:54:05 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534318547126_1262583128",
+      "id": "20180815-073547_1813769626",
+      "dateCreated": "Aug 15, 2018 7:35:47 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.sql(\"DROP TABLE IF EXISTS default.hive_flights\")\n\n\nspark.sql(\"\"\" CREATE EXTERNAL TABLE hive_flights (  DEST_COUNTRY_NAME STRING, ORIGIN_COUNTRY_NAME STRING, count LONG)\n                ROW FORMAT DELIMITED FIELDS TERMINATED BY \u0027,\u0027 LOCATION \u0027/data/flight-data-hive/\u0027\"\"\")\n\nspark.sql(\"DESCRIBE TABLE hive_flights\").show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 7:57:18 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res69: org.apache.spark.sql.DataFrame \u003d []\nres72: org.apache.spark.sql.DataFrame \u003d []\n+-------------------+---------+-------+\n|           col_name|data_type|comment|\n+-------------------+---------+-------+\n|  DEST_COUNTRY_NAME|   string|   null|\n|ORIGIN_COUNTRY_NAME|   string|   null|\n|              count|   bigint|   null|\n+-------------------+---------+-------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534319644591_-2047251839",
+      "id": "20180815-075404_1663806805",
+      "dateCreated": "Aug 15, 2018 7:54:04 AM",
+      "dateStarted": "Aug 15, 2018 7:57:18 AM",
+      "dateFinished": "Aug 15, 2018 7:57:22 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.sql(\"DROP TABLE IF EXISTS default.hive_flights_2\")\n\nspark.sql(\"\"\" CREATE EXTERNAL TABLE hive_flights_2\n                     ROW FORMAT DELIMITED FIELDS TERMINATED BY \u0027,\u0027 LOCATION \u0027/data/flight-data-hive/\u0027 AS SELECT * FROM flights \"\"\")\n\nspark.sql(\"DESCRIBE TABLE hive_flights_2\").show()\n\nspark.sql(\"select count(*) from hive_flights_2\").show()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 7:57:33 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res75: org.apache.spark.sql.DataFrame \u003d []\nres77: org.apache.spark.sql.DataFrame \u003d []\n+-------------------+---------+-------+\n|           col_name|data_type|comment|\n+-------------------+---------+-------+\n|  DEST_COUNTRY_NAME|   string|   null|\n|ORIGIN_COUNTRY_NAME|   string|   null|\n|              count|   bigint|   null|\n+-------------------+---------+-------+\n\n+--------+\n|count(1)|\n+--------+\n|     256|\n+--------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534319675985_1803528047",
+      "id": "20180815-075435_837988710",
+      "dateCreated": "Aug 15, 2018 7:54:35 AM",
+      "dateStarted": "Aug 15, 2018 7:57:33 AM",
+      "dateFinished": "Aug 15, 2018 7:57:41 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.sql(\"DROP TABLE IF EXISTS flights_from_select\")\nspark.sql(\"CREATE TABLE flights_from_select USING parquet AS SELECT * FROM flights\")\nspark.sql(\"INSERT INTO flights_from_select  SELECT DEST_COUNTRY_NAME, ORIGIN_COUNTRY_NAME, count FROM flights LIMIT 20\")",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:09:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res95: org.apache.spark.sql.DataFrame \u003d []\nres96: org.apache.spark.sql.DataFrame \u003d []\nres97: org.apache.spark.sql.DataFrame \u003d []\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534320444547_1541604870",
+      "id": "20180815-080724_1092541876",
+      "dateCreated": "Aug 15, 2018 8:07:24 AM",
+      "dateStarted": "Aug 15, 2018 8:09:45 AM",
+      "dateFinished": "Aug 15, 2018 8:09:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// You can optionally provide a partition specification if you want to write only into a certain partition\n\nspark.sql(\"DROP TABLE IF EXISTS partitioned_flights\")\n\nspark.sql(\"CREATE TABLE partitioned_flights USING parquet PARTITIONED BY (DEST_COUNTRY_NAME)AS SELECT DEST_COUNTRY_NAME, ORIGIN_COUNTRY_NAME, count FROM flights LIMIT 5\")\n\nspark.sql(\"\"\" INSERT INTO partitioned_flights  PARTITION (DEST_COUNTRY_NAME\u003d\"UNITED STATES\")  SELECT count, ORIGIN_COUNTRY_NAME FROM flights  WHERE DEST_COUNTRY_NAME\u003d\u0027UNITED STATES\u0027 LIMIT 12 \"\"\")\n\nspark.sql(\"select * from partitioned_flights\").take(5)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:12:10 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res107: org.apache.spark.sql.DataFrame \u003d []\nres108: Array[org.apache.spark.sql.Row] \u003d Array([Romania,15,United States], [Croatia,1,United States], [Ireland,344,United States], [India,62,United States], [United States,15,Egypt])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534319731505_-571634183",
+      "id": "20180815-075531_178370451",
+      "dateCreated": "Aug 15, 2018 7:55:31 AM",
+      "dateStarted": "Aug 15, 2018 8:11:26 AM",
+      "dateFinished": "Aug 15, 2018 8:11:29 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Show partitions\n\nspark.sql(\"SHOW PARTITIONS partitioned_flights\").show()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:13:10 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|           partition|\n+--------------------+\n|DEST_COUNTRY_NAME...|\n|DEST_COUNTRY_NAME...|\n+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534320417104_146104761",
+      "id": "20180815-080657_1700754041",
+      "dateCreated": "Aug 15, 2018 8:06:57 AM",
+      "dateStarted": "Aug 15, 2018 8:13:10 AM",
+      "dateFinished": "Aug 15, 2018 8:13:11 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// refresh metadata. Maintaining table metadata is an important task to ensure that you’re reading from the most recent set of data\n\nspark.sql(\"REFRESH table partitioned_flights\")",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:14:01 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534320790458_-2022817854",
+      "id": "20180815-081310_1707194516",
+      "dateCreated": "Aug 15, 2018 8:13:10 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//  refreshes the partitions maintained in the catalog for that given table. This command’s focus is on collecting new partition information—an example might be writing out a new partition manually and the need to repair the table accordingly\n\nspark.sql(\"MSCK REPAIR TABLE partitioned_flights\")",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:15:14 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res114: org.apache.spark.sql.DataFrame \u003d []\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534320843090_1145482069",
+      "id": "20180815-081403_1635599650",
+      "dateCreated": "Aug 15, 2018 8:14:03 AM",
+      "dateStarted": "Aug 15, 2018 8:15:14 AM",
+      "dateFinished": "Aug 15, 2018 8:15:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#### Dropping unmanaged tables\n\n- If you are dropping an unmanaged table (e.g., hive_flights), no data will be removed but you will no longer be able to refer to this data by the table name",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:15:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534320914587_917634099",
+      "id": "20180815-081514_377694647",
+      "dateCreated": "Aug 15, 2018 8:15:14 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Just like DataFrames, you can cache and uncache tables.\n\nspark.sql(\"CACHE TABLE flights\")\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:16:49 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res117: org.apache.spark.sql.DataFrame \u003d []\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534320960741_1469055894",
+      "id": "20180815-081600_424380801",
+      "dateCreated": "Aug 15, 2018 8:16:00 AM",
+      "dateStarted": "Aug 15, 2018 8:16:49 AM",
+      "dateFinished": "Aug 15, 2018 8:16:52 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.sql(\"UNCACHE TABLE flights\")",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:16:55 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res118: org.apache.spark.sql.DataFrame \u003d []\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534320993461_811717593",
+      "id": "20180815-081633_1096984340",
+      "dateCreated": "Aug 15, 2018 8:16:33 AM",
+      "dateStarted": "Aug 15, 2018 8:16:55 AM",
+      "dateFinished": "Aug 15, 2018 8:16:55 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Views\n\n- A view specifies a set of transformations on top of an existing table—\n- basically just saved query plans, which can be convenient for organizing or reusing your query logic. \n- Spark has several different notions of views. \n        - Global\n        - Database\n        - per Session\n\n- To an end user, views are displayed as tables, except rather than rewriting all of the data to a new location, they simply perform a transformation on the source data at query time. \n- This might be a filter, select, or potentially an even larger GROUP BY or ROLLUP. ",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:18:46 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534321015114_1591234189",
+      "id": "20180815-081655_712259030",
+      "dateCreated": "Aug 15, 2018 8:16:55 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// A view is effectively a transformation and Spark will perform it only at query time. This means that it will only apply that filter after you actually go to query the table (and not earlier).\n// Effectively, views are equivalent to creating a new DataFrame from an existing DataFrame.\n\nspark.sql(\"CREATE OR REPLACE VIEW just_usa_view AS  SELECT * FROM flights WHERE dest_country_name \u003d \u0027United States\u0027\")\n\nspark.sql(\"select dest_country_name from just_usa_view\").show()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:22:29 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res122: org.apache.spark.sql.DataFrame \u003d []\n+-----------------+\n|dest_country_name|\n+-----------------+\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n+-----------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534321089756_1740055393",
+      "id": "20180815-081809_192828628",
+      "dateCreated": "Aug 15, 2018 8:18:09 AM",
+      "dateStarted": "Aug 15, 2018 8:21:44 AM",
+      "dateFinished": "Aug 15, 2018 8:21:46 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// you can create temporary views that are available only during the current session and are not registered to a database:\n\nspark.sql(\"CREATE OR REPLACE TEMP VIEW just_usa_view_temp AS  SELECT * FROM flights WHERE dest_country_name \u003d \u0027United States\u0027\")\n\n\nspark.sql(\"select dest_country_name from just_usa_view_temp\").show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:23:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res136: org.apache.spark.sql.DataFrame \u003d []\n+-----------------+\n|dest_country_name|\n+-----------------+\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n|    United States|\n+-----------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534321188805_250847286",
+      "id": "20180815-081948_944200231",
+      "dateCreated": "Aug 15, 2018 8:19:48 AM",
+      "dateStarted": "Aug 15, 2018 8:23:50 AM",
+      "dateFinished": "Aug 15, 2018 8:23:51 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.sql(\"CREATE GLOBAL TEMP VIEW just_usa_global_view_temp AS  SELECT * FROM flights WHERE dest_country_name \u003d \u0027United States\u0027\")\n\nspark.sql(\"select just_usa_global_view_temp from just_usa_view_temp\").show()\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:31:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.spark.sql.AnalysisException: Table or view not found: flights; line 1 pos 68\n  at org.apache.spark.sql.catalyst.analysis.package$AnalysisErrorAt.failAnalysis(package.scala:42)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.org$apache$spark$sql$catalyst$analysis$Analyzer$ResolveRelations$$lookupTableFromCatalog(Analyzer.scala:665)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.resolveRelation(Analyzer.scala:617)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$$anonfun$apply$8.applyOrElse(Analyzer.scala:647)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$$anonfun$apply$8.applyOrElse(Analyzer.scala:640)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:289)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:289)\n  at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformUp(TreeNode.scala:288)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$3.apply(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$3.apply(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:306)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:304)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformUp(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$3.apply(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$3.apply(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:306)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:304)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformUp(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.apply(Analyzer.scala:640)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.apply(Analyzer.scala:586)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:87)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:84)\n  at scala.collection.LinearSeqOptimized$class.foldLeft(LinearSeqOptimized.scala:124)\n  at scala.collection.immutable.List.foldLeft(List.scala:84)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:84)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:76)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:76)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:124)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:118)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:103)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:57)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:55)\n  at org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:47)\n  at org.apache.spark.sql.execution.command.CreateViewCommand.run(views.scala:129)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:70)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:68)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.executeCollect(commands.scala:79)\n  at org.apache.spark.sql.Dataset$$anonfun$6.apply(Dataset.scala:190)\n  at org.apache.spark.sql.Dataset$$anonfun$6.apply(Dataset.scala:190)\n  at org.apache.spark.sql.Dataset$$anonfun$52.apply(Dataset.scala:3253)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:77)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:3252)\n  at org.apache.spark.sql.Dataset.\u003cinit\u003e(Dataset.scala:190)\n  at org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:75)\n  at org.apache.spark.sql.SparkSession.sql(SparkSession.scala:638)\n  ... 47 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534321870162_1217697202",
+      "id": "20180815-083110_2058014370",
+      "dateCreated": "Aug 15, 2018 8:31:10 AM",
+      "dateStarted": "Aug 15, 2018 8:31:45 AM",
+      "dateFinished": "Aug 15, 2018 8:31:46 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 8:33:28 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\nspark: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@14020395\nRegular view\norg.apache.spark.sql.AnalysisException: Table or view not found: just_usa_view; line 1 pos 30\n  at org.apache.spark.sql.catalyst.analysis.package$AnalysisErrorAt.failAnalysis(package.scala:42)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.org$apache$spark$sql$catalyst$analysis$Analyzer$ResolveRelations$$lookupTableFromCatalog(Analyzer.scala:665)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.resolveRelation(Analyzer.scala:617)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$$anonfun$apply$8.applyOrElse(Analyzer.scala:647)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$$anonfun$apply$8.applyOrElse(Analyzer.scala:640)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:289)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:289)\n  at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformUp(TreeNode.scala:288)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$3.apply(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$3.apply(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:306)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapChildren(TreeNode.scala:304)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformUp(TreeNode.scala:286)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.apply(Analyzer.scala:640)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveRelations$.apply(Analyzer.scala:586)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:87)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:84)\n  at scala.collection.LinearSeqOptimized$class.foldLeft(LinearSeqOptimized.scala:124)\n  at scala.collection.immutable.List.foldLeft(List.scala:84)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:84)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:76)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:76)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.org$apache$spark$sql$catalyst$analysis$Analyzer$$executeSameContext(Analyzer.scala:124)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.execute(Analyzer.scala:118)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:103)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:57)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:55)\n  at org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:47)\n  at org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:74)\n  at org.apache.spark.sql.SparkSession.sql(SparkSession.scala:638)\n  ... 47 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1534321396312_-308102565",
+      "id": "20180815-082316_404308110",
+      "dateCreated": "Aug 15, 2018 8:23:16 AM",
+      "dateStarted": "Aug 15, 2018 8:29:46 AM",
+      "dateFinished": "Aug 15, 2018 8:30:11 AM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -368,9 +892,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1534318547126_1262583128",
-      "id": "20180815-073547_1813769626",
-      "dateCreated": "Aug 15, 2018 7:35:47 AM",
+      "jobName": "paragraph_1534321436826_274284677",
+      "id": "20180815-082356_287804193",
+      "dateCreated": "Aug 15, 2018 8:23:56 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
