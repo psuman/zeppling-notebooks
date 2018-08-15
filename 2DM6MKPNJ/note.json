@@ -1,0 +1,43 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n### Spark SQL\n\n- with Spark SQL you can run SQL queries against views or tables organized into databases. \n- You also can use system functions or define user functions and analyze query plans in order to optimize their workloads. \n- This integrates directly into the DataFrame and Dataset API\n- You can choose to express some of your data manipulations in SQL and others in DataFrames and they will compile to the same underlying code.\n- Spark implements a subset of ANSI SQL:2003. \n- This SQL standard is one that is available in the majority of SQL databases and this support means that Spark successfully runs the popular benchmark TPC-DS",
+      "user": "anonymous",
+      "dateUpdated": "Aug 15, 2018 6:39:16 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534315039709_-1338161785",
+      "id": "20180815-063719_1400808385",
+      "dateCreated": "Aug 15, 2018 6:37:19 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "spark_sql",
+  "id": "2DM6MKPNJ",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
