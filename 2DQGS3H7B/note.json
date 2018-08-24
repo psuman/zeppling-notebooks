@@ -528,6 +528,103 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\n\n#### ORC Files (Optimized Row Columnar)\n\n- ORC is a self-describing, type-aware columnar file format designed for Hadoop workloads. \n- It is optimized for large streaming reads, but with integrated support for finding required rows quickly. \n- ORC actually has no options for reading in data because Spark understands the file format quite well. \n- For the most part, ORC and Parquet quite similar; the fundamental difference is that Parquet is further optimized for use with Spark, whereas ORC is further optimized for Hive.\n- For more Info : https://www.semantikoz.com/blog/orc-intelligent-big-data-file-format-hadoop-hive/",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 8:08:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535097552361_-1040193944",
+      "id": "20180824-075912_674034031",
+      "dateCreated": "Aug 24, 2018 7:59:12 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nif [ -e  /tmp/2015-summary.orc ]\nthen\n    rm -f  /tmp/2015-summary.orc\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/orc/2010-summary.orc/part-r-00000-2c4f7d96-e703-4de3-af1b-1441d172c80f.snappy.orc -O /tmp/2015-summary.orc\n\nhdfs dfs -rm -f  /tmp/2015-summary.orc\n\n# Move downloaded parquet file from local storage to HDFS\nhdfs dfs -put  /tmp/2015-summary.orc /tmp\n\nhdfs dfs -rm -r /tmp/my_temp.orc\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 8:11:08 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2018-08-24 08:11:08--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/orc/2010-summary.orc/part-r-00000-2c4f7d96-e703-4de3-af1b-1441d172c80f.snappy.orc\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.192.133, 151.101.128.133, 151.101.64.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.192.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 3852 (3.8K) [application/octet-stream]\nSaving to: ‘/tmp/2015-summary.orc’\n\n     0K ...                                                   100% 18.7M\u003d0s\n\n2018-08-24 08:11:09 (18.7 MB/s) - ‘/tmp/2015-summary.orc’ saved [3852/3852]\n\n18/08/24 08:11:12 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.orc\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/2015-summary.orc\n18/08/24 08:11:21 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/my_temp.orc\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/my_temp.orc\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535098121659_-986485629",
+      "id": "20180824-080841_238536465",
+      "dateCreated": "Aug 24, 2018 8:08:41 AM",
+      "dateStarted": "Aug 24, 2018 8:11:08 AM",
+      "dateFinished": "Aug 24, 2018 8:11:22 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val orcFile \u003d spark.read.format(\"orc\")\n                            .load(\"/tmp/2015-summary.orc\")\n          \n          \norcFile.show(2)\n\norcFile.write.format(\"orc\")\n                 .option(\"mode\", \"overwrite\")\n                 .save(\"/tmp/my_temp.orc\")\n                 \n\nspark.read.format(\"orc\")\n          .load(\"/tmp/my_temp.orc\")\n          .show(2)\n          ",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 8:11:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "orcFile: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|    1|\n|    United States|            Ireland|  264|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|    1|\n|    United States|            Ireland|  264|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535098192920_-1322063290",
+      "id": "20180824-080952_1856735584",
+      "dateCreated": "Aug 24, 2018 8:09:52 AM",
+      "dateStarted": "Aug 24, 2018 8:11:45 AM",
+      "dateFinished": "Aug 24, 2018 8:11:47 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "%md\n\n- Parquet datasource read options\n     - https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameReader.html#parquet(java.lang.String...)\n- Parquet datasource write options\n     - https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameWriter.html#parquet(java.lang.String)",
       "user": "anonymous",
       "dateUpdated": "Aug 24, 2018 7:53:23 AM",
