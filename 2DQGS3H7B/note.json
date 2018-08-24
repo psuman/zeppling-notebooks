@@ -1,0 +1,595 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n \n - Spark has six “core” data sources and hundreds of external data sources written by the community. \n - The ability to read and write from all different kinds of data sources and for the community to create its own contributions is arguably one of Spark’s greatest strengths. \n - Following are Spark’s core data sources:\n        - CSV\n        - JSON\n        - Parquet\n        - ORC\n        - JDBC/ODBC connections\n        - Plain-text files\n    \n - As mentioned, Spark has numerous community-created data sources. Here’s just a small sample:\n        - Cassandra\n        - HBase\n        - MongoDB\n        - AWS Redshift\n        - XML\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 6:39:03 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535092552531_1704867986",
+      "id": "20180824-063552_1924197896",
+      "dateCreated": "Aug 24, 2018 6:35:52 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n### Datasource API\n\n##### Read API Structure\nDataFrameWriter.format(...).option(...).partitionBy(...).bucketBy(...).sortBy(  ...).save()\n```\nDataFrameReader.format(...).option(\"key\", \"value\").schema(...).load()\n\n```\n\n- format is optional because spark by default uses Parquet format\n- schema is also optinal because we can infer schema\n\n\n```\nspark.read.format(\"csv\")\n          .option(\"mode\", \"FAILFAST\")\n          .option(\"inferSchema\", \"true\")\n          .option(\"path\", \"path/to/file(s)\")\n          .schema(someSchema)\n          .load()\n\n```\n\n#### Read Modes\n\n- Reading data from an external source naturally entails encountering malformed data, especially when working with only semi-structured data sources.\n- Read modes specify what will happen when Spark does come across malformed record\n- Spark Read Modes\n      - Permissive\n      - dropMalformed\n      - failFast\n     \n- Permissive\n    - Sets all fields to null when it encounters a corrupted record and places all corrupted records in a string column called _corrupt_record\n    \n- dropMalformed\n    - drop malformed records\n    \n- failFast\n    - fail fast when spark encountered malformed records\n\n- Default Read mode is Permissive\n\n\n##### Write API structure\n\n```\nDataFrameWriter.format(...).option(...).partitionBy(...).bucketBy(...).sortBy(  ...).save()\n\n```\n- PartitionBy, bucketBy, and sortBy work only for file-based data sources; you can use them to control the specific layout of files at the destination.\n\n\n```\ndataframe.write.format(\"csv\")\n         .option(\"mode\", \"OVERWRITE\")\n         .option(\"dateFormat\", \"yyyy-MM-dd\")\n         .option(\"path\", \"path/to/file(s)\")\n         .save()\n\n\n```\n\n##### Save Modes\n\n- Following are different save modes that spark supports\n      - Append\n      - Overwrite\n      - errorIfExists\n      - ignore\n\n- Append \n    - Appends the output files to the list of files that already exist at that location\n    \n- Overwrite\n    - Will completely overwrite any data that already exists there\n\n- errorIfExists\n    -  Throws an error and fails the write if data or files already exist at the specified location\n\n- ignore\n    - If data or files exist at the location, do nothing with the current DataFrame\n\n- The default is errorIfExists. This means that if Spark finds data at the location to which you’re writing, it will fail the write immediately.\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 6:57:36 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch3\u003eDatasource API\u003c/h3\u003e\n\u003ch5\u003eRead API Structure\u003c/h5\u003e\n\u003cp\u003eDataFrameWriter.format(\u0026hellip;).option(\u0026hellip;).partitionBy(\u0026hellip;).bucketBy(\u0026hellip;).sortBy(  \u0026hellip;).save()\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eDataFrameReader.format(...).option(\"key\", \"value\").schema(...).load()\n\u003c/code\u003e\u003c/pre\u003e\n\u003cul\u003e\n\u003cli\u003eformat is optional because spark by default uses Parquet format\u003c/li\u003e\n\u003cli\u003eschema is also optinal because we can infer schema\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode\u003espark.read.format(\"csv\")\n          .option(\"mode\", \"FAILFAST\")\n          .option(\"inferSchema\", \"true\")\n          .option(\"path\", \"path/to/file(s)\")\n          .schema(someSchema)\n          .load()\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch4\u003eRead Modes\u003c/h4\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cp\u003eReading data from an external source naturally entails encountering malformed data, especially when working with only semi-structured data sources.\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eRead modes specify what will happen when Spark does come across malformed record\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eSpark Read Modes\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e- Permissive\n- dropMalformed\n- failFast\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003ePermissive\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eSets all fields to null when it encounters a corrupted record and places all corrupted records in a string column called _corrupt_record\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003edropMalformed\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003edrop malformed records\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003efailFast\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003efail fast when spark encountered malformed records\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eDefault Read mode is Permissive\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch5\u003eWrite API structure\u003c/h5\u003e\n\u003cpre\u003e\u003ccode\u003eDataFrameWriter.format(...).option(...).partitionBy(...).bucketBy(...).sortBy(  ...).save()\n\u003c/code\u003e\u003c/pre\u003e\n\u003cul\u003e\n\u003cli\u003ePartitionBy, bucketBy, and sortBy work only for file-based data sources; you can use them to control the specific layout of files at the destination.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode\u003edataframe.write.format(\"csv\")\n         .option(\"mode\", \"OVERWRITE\")\n         .option(\"dateFormat\", \"yyyy-MM-dd\")\n         .option(\"path\", \"path/to/file(s)\")\n         .save()\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch5\u003eSave Modes\u003c/h5\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cp\u003eFollowing are different save modes that spark supports\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eAppend\u003c/li\u003e\n\u003cli\u003eOverwrite\u003c/li\u003e\n\u003cli\u003eerrorIfExists\u003c/li\u003e\n\u003cli\u003eignore\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eAppend\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eAppends the output files to the list of files that already exist at that location\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eOverwrite\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eWill completely overwrite any data that already exists there\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eerrorIfExists\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eThrows an error and fails the write if data or files already exist at the specified location\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eignore\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eIf data or files exist at the location, do nothing with the current DataFrame\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003eThe default is errorIfExists. This means that if Spark finds data at the location to which you’re writing, it will fail the write immediately.\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535092760787_1042420680",
+      "id": "20180824-063920_2024598609",
+      "dateCreated": "Aug 24, 2018 6:39:20 AM",
+      "dateStarted": "Aug 24, 2018 6:56:25 AM",
+      "dateFinished": "Aug 24, 2018 6:56:26 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nif [ -e /tmp/2015-summary.csv ]\nthen\n    rm -f /tmp/2015-summary.csv\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/csv/2015-summary.csv -O /tmp/2015-summary.csv\n\nhdfs dfs -rm -f /tmp/2015-summary.csv\n\n# Move downloaded JSON file from local storage to HDFS\nhdfs dfs -put /tmp/2015-summary.csv /tmp",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:03:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2018-08-24 07:03:10--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/csv/2015-summary.csv\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.192.133, 151.101.128.133, 151.101.64.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.192.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 7080 (6.9K) [text/plain]\nSaving to: ‘/tmp/2015-summary.csv’\n\n     0K ......                                                100% 23.5M\u003d0s\n\n2018-08-24 07:03:11 (23.5 MB/s) - ‘/tmp/2015-summary.csv’ saved [7080/7080]\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535094019250_1427007593",
+      "id": "20180824-070019_1526605866",
+      "dateCreated": "Aug 24, 2018 7:00:19 AM",
+      "dateStarted": "Aug 24, 2018 7:03:07 AM",
+      "dateFinished": "Aug 24, 2018 7:03:22 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.read.format(\"csv\")\n          .option(\"header\", \"true\")\n          .option(\"mode\", \"FAILFAST\")\n          .option(\"inferSchema\", \"true\")\n          .load(\"/tmp/2015-summary.csv\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:03:25 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535094026387_-1318945308",
+      "id": "20180824-070026_1031817779",
+      "dateCreated": "Aug 24, 2018 7:00:26 AM",
+      "dateStarted": "Aug 24, 2018 7:03:25 AM",
+      "dateFinished": "Aug 24, 2018 7:06:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// with schema \n\nimport org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\n\nval myManualSchema \u003d new StructType(Array(  new StructField(\"DEST_COUNTRY_NAME\", StringType, true),  \n                                            new StructField(\"ORIGIN_COUNTRY_NAME\", StringType, true),  \n                                            new StructField(\"count\", LongType, false)))\n\nspark.read.format(\"csv\")\n          .option(\"header\", \"true\")\n          .option(\"mode\", \"FAILFAST\")\n          .schema(myManualSchema)\n          .load(\"/tmp/2015-summary.csv\")\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:07:22 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\nmyManualSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(DEST_COUNTRY_NAME,StringType,true), StructField(ORIGIN_COUNTRY_NAME,StringType,true), StructField(count,LongType,false))\nres5: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535094248145_-742284972",
+      "id": "20180824-070408_1505414625",
+      "dateCreated": "Aug 24, 2018 7:04:08 AM",
+      "dateStarted": "Aug 24, 2018 7:07:22 AM",
+      "dateFinished": "Aug 24, 2018 7:07:25 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// when schema doesn\u0027t match spark job fails at run time when it tries to read data \n\nimport org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\n\nval myManualSchema \u003d new StructType(Array(  new StructField(\"DEST_COUNTRY_NAME\", StringType, true),  \n                                            new StructField(\"ORIGIN_COUNTRY_NAME\", LongType, true),  \n                                            new StructField(\"count\", LongType, false)))\n\nspark.read.format(\"csv\")\n          .option(\"header\", \"true\")\n          .option(\"mode\", \"FAILFAST\")\n          .schema(myManualSchema)\n          .load(\"/tmp/2015-summary.csv\")\n          .show(5)\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:07:53 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\nmyManualSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(DEST_COUNTRY_NAME,StringType,true), StructField(ORIGIN_COUNTRY_NAME,LongType,true), StructField(count,LongType,false))\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 2.0 failed 4 times, most recent failure: Lost task 0.3 in stage 2.0 (TID 5, sandbox-hdp.hortonworks.com, executor 1): org.apache.spark.SparkException: Malformed records are detected in record parsing. Parse Mode: FAILFAST.\n\tat org.apache.spark.sql.execution.datasources.FailureSafeParser.parse(FailureSafeParser.scala:69)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$parseIterator$1.apply(UnivocityParser.scala:313)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$parseIterator$1.apply(UnivocityParser.scala:313)\n\tat scala.collection.Iterator$$anon$12.nextCur(Iterator.scala:434)\n\tat scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:440)\n\tat scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n\tat org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.hasNext(FileScanRDD.scala:109)\n\tat org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.nextIterator(FileScanRDD.scala:186)\n\tat org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.hasNext(FileScanRDD.scala:109)\n\tat org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)\n\tat org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n\tat org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$10$$anon$1.hasNext(WholeStageCodegenExec.scala:614)\n\tat org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:253)\n\tat org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:247)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:830)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:830)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:324)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:288)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:324)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:288)\n\tat org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:87)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:109)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:345)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\nCaused by: java.lang.NumberFormatException: For input string: \"Romania\"\n\tat java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)\n\tat java.lang.Long.parseLong(Long.java:589)\n\tat java.lang.Long.parseLong(Long.java:631)\n\tat scala.collection.immutable.StringLike$class.toLong(StringLike.scala:276)\n\tat scala.collection.immutable.StringOps.toLong(StringOps.scala:29)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4$$anonfun$apply$8.apply(UnivocityParser.scala:107)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4$$anonfun$apply$8.apply(UnivocityParser.scala:107)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser.org$apache$spark$sql$execution$datasources$csv$UnivocityParser$$nullSafeDatum(UnivocityParser.scala:179)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4.apply(UnivocityParser.scala:107)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4.apply(UnivocityParser.scala:106)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser.org$apache$spark$sql$execution$datasources$csv$UnivocityParser$$convert(UnivocityParser.scala:217)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser.parse(UnivocityParser.scala:187)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$5.apply(UnivocityParser.scala:309)\n\tat org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$5.apply(UnivocityParser.scala:309)\n\tat org.apache.spark.sql.execution.datasources.FailureSafeParser.parse(FailureSafeParser.scala:61)\n\t... 27 more\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1599)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1587)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1586)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1586)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:831)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:831)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:831)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1820)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1769)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1758)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:642)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2034)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2055)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2074)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:363)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:3272)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset$$anonfun$52.apply(Dataset.scala:3253)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:77)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:3252)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2484)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2698)\n  at org.apache.spark.sql.Dataset.showString(Dataset.scala:254)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:723)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:682)\n  ... 48 elided\nCaused by: org.apache.spark.SparkException: Malformed records are detected in record parsing. Parse Mode: FAILFAST.\n  at org.apache.spark.sql.execution.datasources.FailureSafeParser.parse(FailureSafeParser.scala:69)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$parseIterator$1.apply(UnivocityParser.scala:313)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$parseIterator$1.apply(UnivocityParser.scala:313)\n  at scala.collection.Iterator$$anon$12.nextCur(Iterator.scala:434)\n  at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:440)\n  at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n  at org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.hasNext(FileScanRDD.scala:109)\n  at org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.nextIterator(FileScanRDD.scala:186)\n  at org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.hasNext(FileScanRDD.scala:109)\n  at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)\n  at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$10$$anon$1.hasNext(WholeStageCodegenExec.scala:614)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:253)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:247)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:830)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:830)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:324)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:288)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:324)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:288)\n  at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:87)\n  at org.apache.spark.scheduler.Task.run(Task.scala:109)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:345)\n  ... 3 more\nCaused by: java.lang.NumberFormatException: For input string: \"Romania\"\n  at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)\n  at java.lang.Long.parseLong(Long.java:589)\n  at java.lang.Long.parseLong(Long.java:631)\n  at scala.collection.immutable.StringLike$class.toLong(StringLike.scala:276)\n  at scala.collection.immutable.StringOps.toLong(StringOps.scala:29)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4$$anonfun$apply$8.apply(UnivocityParser.scala:107)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4$$anonfun$apply$8.apply(UnivocityParser.scala:107)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser.org$apache$spark$sql$execution$datasources$csv$UnivocityParser$$nullSafeDatum(UnivocityParser.scala:179)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4.apply(UnivocityParser.scala:107)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$makeConverter$4.apply(UnivocityParser.scala:106)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser.org$apache$spark$sql$execution$datasources$csv$UnivocityParser$$convert(UnivocityParser.scala:217)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser.parse(UnivocityParser.scala:187)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$5.apply(UnivocityParser.scala:309)\n  at org.apache.spark.sql.execution.datasources.csv.UnivocityParser$$anonfun$5.apply(UnivocityParser.scala:309)\n  at org.apache.spark.sql.execution.datasources.FailureSafeParser.parse(FailureSafeParser.scala:61)\n  ... 27 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535094380726_-134042409",
+      "id": "20180824-070620_1311065658",
+      "dateCreated": "Aug 24, 2018 7:06:20 AM",
+      "dateStarted": "Aug 24, 2018 7:07:53 AM",
+      "dateFinished": "Aug 24, 2018 7:07:56 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n##### Spark read CSV options \n- https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameReader.html#csv(scala.collection.Seq)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:14:46 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535094766196_-438979721",
+      "id": "20180824-071246_319096324",
+      "dateCreated": "Aug 24, 2018 7:12:46 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#### Writing CSV file\n\n- Just as with reading data, there are a variety of options for writing data when we write CSV files\n- https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameWriter.html#csv(java.lang.String)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:15:56 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535094809716_-436209858",
+      "id": "20180824-071329_381173771",
+      "dateCreated": "Aug 24, 2018 7:13:29 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nhdfs dfs -rm -r /tmp/my_temp.csv\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:25:48 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "18/08/24 07:25:52 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/my_temp.csv\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/my_temp.csv1535095552443\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535095251448_-1483099580",
+      "id": "20180824-072051_1632421581",
+      "dateCreated": "Aug 24, 2018 7:20:51 AM",
+      "dateStarted": "Aug 24, 2018 7:25:48 AM",
+      "dateFinished": "Aug 24, 2018 7:25:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\n// with schema \n\nimport org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\n\nval myManualSchema \u003d new StructType(Array(  new StructField(\"DEST_COUNTRY_NAME\", StringType, true),  \n                                            new StructField(\"ORIGIN_COUNTRY_NAME\", StringType, true),  \n                                            new StructField(\"count\", LongType, false)))\nval csvFile \u003d spark.read.format(\"csv\")\n                        .option(\"header\", \"true\")\n                        .option(\"mode\", \"FAILFAST\")\n                        .schema(myManualSchema)\n                        .load(\"/tmp/2015-summary.csv\")\n\ncsvFile.write.format(\"csv\")\n             .mode(\"overwrite\")\n             .save(\"/tmp/my_temp.csv\")\n             \n\nspark.read.format(\"csv\")\n          .option(\"header\", \"true\")\n          .load(\"/tmp/my_temp.csv\")\n          .show(5)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:25:39 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\nmyManualSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(DEST_COUNTRY_NAME,StringType,true), StructField(ORIGIN_COUNTRY_NAME,StringType,true), StructField(count,LongType,false))\ncsvFile: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n+-------------+-------------+---+\n|United States|      Romania| 15|\n+-------------+-------------+---+\n|United States|      Croatia|  1|\n|United States|      Ireland|344|\n|        Egypt|United States| 15|\n|United States|        India| 62|\n|United States|    Singapore|  1|\n+-------------+-------------+---+\nonly showing top 5 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535095002845_-1662745024",
+      "id": "20180824-071642_1715974830",
+      "dateCreated": "Aug 24, 2018 7:16:42 AM",
+      "dateStarted": "Aug 24, 2018 7:25:39 AM",
+      "dateFinished": "Aug 24, 2018 7:25:43 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nif [ -e /tmp/2015-summary.json ]\nthen\n    rm -f /tmp/2015-summary.json\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/json/2015-summary.json -O /tmp/2015-summary.json\n\nhdfs dfs -rm -f /tmp/2015-summary.json\n\n# Move downloaded JSON file from local storage to HDFS\nhdfs dfs -put /tmp/2015-summary.json /tmp\n\nhdfs dfs -rm -r /tmp/my_temp.json\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:35:32 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2018-08-24 07:35:32--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/json/2015-summary.json\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.36.133\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.36.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 21368 (21K) [text/plain]\nSaving to: ‘/tmp/2015-summary.json’\n\n     0K .......... ..........                                 100%  126K\u003d0.2s\n\n2018-08-24 07:35:33 (126 KB/s) - ‘/tmp/2015-summary.json’ saved [21368/21368]\n\n18/08/24 07:35:35 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.json\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/2015-summary.json1535096135018\n18/08/24 07:35:42 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/my_temp.json\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/my_temp.json1535096142507\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535095621852_759902785",
+      "id": "20180824-072701_403067272",
+      "dateCreated": "Aug 24, 2018 7:27:01 AM",
+      "dateStarted": "Aug 24, 2018 7:35:32 AM",
+      "dateFinished": "Aug 24, 2018 7:35:43 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\n\nval myManualSchema \u003d new StructType(Array(  new StructField(\"DEST_COUNTRY_NAME\", StringType, true),  \n                                            new StructField(\"ORIGIN_COUNTRY_NAME\", StringType, true),  \n                                            new StructField(\"count\", LongType, false)))\nval jsonFile \u003d spark.read.format(\"json\")\n                        .option(\"header\", \"true\")\n                        .option(\"mode\", \"FAILFAST\")\n                        .schema(myManualSchema)\n                        .load(\"/tmp/2015-summary.json\")\n                        \n\njsonFile.show(2)\n\n\njsonFile.write.format(\"json\")\n              .option(\"header\", \"true\")\n              .option(\"mode\", \"overwrite\")\n              .save(\"/tmp/my_temp.json\")\n\n\n\n spark.read.format(\"json\")\n           .option(\"header\", \"true\")\n           .option(\"mode\", \"FAILFAST\")\n           .schema(myManualSchema)\n           .load(\"/tmp/my_temp.json\")\n           .show(2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:36:06 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\nmyManualSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(DEST_COUNTRY_NAME,StringType,true), StructField(ORIGIN_COUNTRY_NAME,StringType,true), StructField(count,LongType,false))\njsonFile: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|   15|\n|    United States|            Croatia|    1|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535095724637_1811760305",
+      "id": "20180824-072844_2078138594",
+      "dateCreated": "Aug 24, 2018 7:28:44 AM",
+      "dateStarted": "Aug 24, 2018 7:36:06 AM",
+      "dateFinished": "Aug 24, 2018 7:36:14 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- several options available for spark json read\n         - https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameReader.html#json(java.lang.String...)\n- several options available for spark json write\n         - https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameWriter.html#json(java.lang.String)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:37:27 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535096173419_662157951",
+      "id": "20180824-073613_149267558",
+      "dateCreated": "Aug 24, 2018 7:36:13 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Parquet \n\n- Parquet is an open source column-oriented data store that provides a variety of storage optimizations, especially for analytics workloads.\n- It provides columnar compression, which saves storage space and allows for reading individual columns instead of entire files. \n- It is a file format that works exceptionally well with Apache Spark and is in fact the default file format. \n- We recommend writing data out to Parquet for long-term storage because reading from a Parquet file will always be more efficient than JSON or CSV. \n- Another advantage of Parquet is that it supports complex types. \n- This means that if your column is an array (which would fail with a CSV file, for example), map, or struct, you’ll still be able to read and write that file without issue. \n- For more details\n    - https://parquet.apache.org/",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:45:25 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535096253296_1614350182",
+      "id": "20180824-073733_1971696226",
+      "dateCreated": "Aug 24, 2018 7:37:33 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nif [ -e  /tmp/2015-summary.parquet ]\nthen\n    rm -f  /tmp/2015-summary.parquet\nfi\n\nwget https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/parquet/2010-summary.parquet/part-r-00000-1a9822ba-b8fb-4d8e-844a-ea30d0801b9e.gz.parquet -O /tmp/2015-summary.parquet\n\nhdfs dfs -rm -f  /tmp/2015-summary.parquet\n\n# Move downloaded parquet file from local storage to HDFS\nhdfs dfs -put  /tmp/2015-summary.parquet /tmp\n\nhdfs dfs -rm -r /tmp/my_temp.parquet\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:55:53 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2018-08-24 07:55:53--  https://raw.githubusercontent.com/databricks/Spark-The-Definitive-Guide/master/data/flight-data/parquet/2010-summary.parquet/part-r-00000-1a9822ba-b8fb-4d8e-844a-ea30d0801b9e.gz.parquet\nResolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.192.133, 151.101.128.133, 151.101.64.133, ...\nConnecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.192.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 3921 (3.8K) [application/octet-stream]\nSaving to: ‘/tmp/2015-summary.parquet’\n\n     0K ...                                                   100% 24.8M\u003d0s\n\n2018-08-24 07:55:54 (24.8 MB/s) - ‘/tmp/2015-summary.parquet’ saved [3921/3921]\n\n18/08/24 07:55:55 INFO fs.TrashPolicyDefault: Moved: \u0027hdfs://sandbox-hdp.hortonworks.com:8020/tmp/2015-summary.parquet\u0027 to trash at: hdfs://sandbox-hdp.hortonworks.com:8020/user/zeppelin/.Trash/Current/tmp/2015-summary.parquet\nrm: `/tmp/my_temp.parquet\u0027: No such file or directory\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "ExitValue: 1"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535096725803_-803350086",
+      "id": "20180824-074525_1481927287",
+      "dateCreated": "Aug 24, 2018 7:45:25 AM",
+      "dateStarted": "Aug 24, 2018 7:55:53 AM",
+      "dateFinished": "Aug 24, 2018 7:56:03 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val parquetFile \u003d spark.read.format(\"parquet\")\n                            .load(\"/tmp/2015-summary.parquet\")\n          \n          \nparquetFile.show(2)\n\nparquetFile.write.format(\"parquet\")\n                 .option(\"mode\", \"overwrite\")\n                 .save(\"/tmp/my_temp.parquet\")\n                 \n\nspark.read.format(\"parquet\")\n          .load(\"/tmp/my_temp.parquet\")\n          .show(2)\n          ",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:56:05 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "parquetFile: org.apache.spark.sql.DataFrame \u003d [DEST_COUNTRY_NAME: string, ORIGIN_COUNTRY_NAME: string ... 1 more field]\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|    1|\n|    United States|            Ireland|  264|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n+-----------------+-------------------+-----+\n|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|\n+-----------------+-------------------+-----+\n|    United States|            Romania|    1|\n|    United States|            Ireland|  264|\n+-----------------+-------------------+-----+\nonly showing top 2 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1535096892239_-1058576524",
+      "id": "20180824-074812_603426893",
+      "dateCreated": "Aug 24, 2018 7:48:12 AM",
+      "dateStarted": "Aug 24, 2018 7:56:05 AM",
+      "dateFinished": "Aug 24, 2018 7:56:08 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n- Parquet datasource read options\n     - https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameReader.html#parquet(java.lang.String...)\n- Parquet datasource write options\n     - https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameWriter.html#parquet(java.lang.String)",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 7:53:23 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535097126860_2114384714",
+      "id": "20180824-075206_356727345",
+      "dateCreated": "Aug 24, 2018 7:52:06 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n- To write custom datasource https://developer.ibm.com/code/2016/11/10/exploring-apache-spark-datasource-api/",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 6:33:42 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1534935838000_1369242306",
+      "id": "20180822-110358_858706158",
+      "dateCreated": "Aug 22, 2018 11:03:58 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "spark_datasources",
+  "id": "2DQGS3H7B",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
