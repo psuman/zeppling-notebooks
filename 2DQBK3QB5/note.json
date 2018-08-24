@@ -129,9 +129,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "",
+      "text": "// By specifying maxFilesPerTrigger value lower, we’re artificially limiting the flow of the stream to one file per trigger.\n\nspark.conf.set(\"spark.sql.shuffle.partitions\", 5)\n\nval streamingDf \u003d spark.readStream.schema(df.schema)\n                                  .option(\"maxFilesPerTrigger\", 1)\n                                  .json(\"/tmp/activity-data\")\n\nval activityCounts \u003d streamingDf.groupBy(\"gt\")\n                                .count()\n\nval activityQuery \u003d activityCounts.writeStream.queryName(\"activity_counts\")\n                                              .format(\"memory\")\n                                              .outputMode(\"complete\")\n                                              .start()\n                                              \nactivityQuery.awaitTermination()",
       "user": "anonymous",
-      "dateUpdated": "Aug 24, 2018 4:23:59 PM",
+      "dateUpdated": "Aug 24, 2018 5:08:30 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -149,6 +149,83 @@
       "jobName": "paragraph_1535127111003_-29464335",
       "id": "20180824-161151_898673649",
       "dateCreated": "Aug 24, 2018 4:11:51 PM",
+      "dateStarted": "Aug 24, 2018 5:08:30 PM",
+      "dateFinished": "Aug 24, 2018 5:06:17 PM",
+      "status": "RUNNING",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "spark.streams.active\n\nfor( i \u003c- 1 to 5 ) {    \n    spark.sql(\"SELECT * FROM activity_counts\")\n         .show()\n    Thread.sleep(1000)\n}",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 5:13:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535130160215_-2057888493",
+      "id": "20180824-170240_747411825",
+      "dateCreated": "Aug 24, 2018 5:02:40 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#### Transformations on Streams\n\n- All select, filter, and simple transformations are supported, as are all DataFrame functions and individual column manipulations. \n- \n\n",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 5:17:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535130988508_1673786156",
+      "id": "20180824-171628_1991746325",
+      "dateCreated": "Aug 24, 2018 5:16:28 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions.expr\n\nval simpleTransform \u003d streamingDf.withColumn(\"stairs\", expr(\"gt like \u0027%stairs%\u0027\"))\n                                  .where(\"stairs\")\n                                  .where(\"gt is not null\")\n                                  .select(\"gt\", \"model\", \"arrival_time\", \"creation_time\")\n                                  .writeStream\n                                  .queryName(\"simple_transform\")\n                                  .format(\"memory\")\n                                  .outputMode(\"append\")\n                                  .start()\n                                  \nsimpleTransform.awaitTermination()",
+      "user": "anonymous",
+      "dateUpdated": "Aug 24, 2018 5:19:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1535131086355_-264276132",
+      "id": "20180824-171806_714435006",
+      "dateCreated": "Aug 24, 2018 5:18:06 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
